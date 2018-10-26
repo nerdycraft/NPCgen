@@ -1,0 +1,98 @@
+﻿{
+	"name": "Zyklopäer",
+	"parentspecies": [ "Mensch" ],
+	"language": {
+		"name": "Garethi",
+		"dialect": "Horathi",
+		"font": "Kusliker Zeichen"
+	},
+	"defaultjobs": [ 
+		"Barde",
+		"Gardist",
+		"Gaukler",
+		"Gladiator",
+		"Händler",
+		"Heiler",
+		"Höfling",
+		"Jäger",
+		"Krieger",
+		"Prostituierter",
+		"Seefahrer",
+		"Söldner",
+		"Spitzel",
+		"Streuner",
+		"Hexer",
+		"Magier",
+		"Borongeweihter",
+		"Hesindegeweihter",
+		"Perainegeweihter",
+		"Phexgeweihter",
+		"Praiosgeweihter",
+		"Rondrageweihter"
+	],
+	"talents": [{
+		"name": "Boote & Schiffe",
+		"value": 1
+	},{
+		"name": "Fischen & Angeln",
+		"value": 1
+	},{
+		"name": "Geschichtswissen",
+		"value": 1
+	},{
+		"name": "Götter & Kulte",
+		"value": 2
+	},{
+		"name": "Musizieren",
+		"value": 1
+	},{
+		"name": "Rechnen",
+		"value": 1
+	},{
+		"name": "Rechtskunde",
+		"value": 1
+	},{
+		"name": "Sagen & Legenden",
+		"value": 1
+	},{
+		"name": "Tanzen",
+		"value": 1
+	}],
+	"names": {
+		"male": [
+			"Alrikazander", 
+			"Amenelaos", 
+			"Dariyon", 
+			"Effer-daïos", 
+			"Kalchas", 
+			"Madaïon", 
+			"Mene ander", 
+			"Mermydion", 
+			"Peleïston",  
+			"Praiokles",  
+			"Rahj enÿsios",  
+			"Yidayion"
+		],
+		"female": [
+			"Boronike",  
+			"Efferdiana",  
+			"Ingerÿdike",  
+			"Insina",  
+			"Korïna", 
+			"Lanike",  
+			"Leonore",  
+			"Myrtale",  
+			"Nermaka",  
+			"Phylinna", 
+			"Phÿllis", 
+			"Sapeïdra", 
+			"Telemache"
+		],
+		"last": [
+			"Phÿrikos", 
+			"Spha-reïos",  
+			"Uÿis",
+			"Pydoctis"
+		]
+	}
+}

@@ -1,0 +1,37 @@
+﻿{
+	"levels": [{
+		"name": "Unerfahren",
+		"maxattr": 12,
+		"attr": 18,
+		"maxfw": 10,
+		"fw": 15
+	},
+	{
+		"name": "Durchschnittlich",
+		"maxattr": 13,
+		"attr": 26,
+		"maxfw": 12,
+		"fw": 13
+	},
+	{
+		"name": "Erfahren",
+		"maxattr": 14,
+		"attr": 33,
+		"maxfw": 14,
+		"fw": 30
+	},
+	{
+		"name": "Kompetent",
+		"maxattr": 15,
+		"attr": 40,
+		"maxfw": 15,
+		"fw": 38
+	},
+	{
+		"name": "Meisterlich",
+		"maxattr": 16,
+		"attr": 46,
+		"maxfw": 16,
+		"fw": 45
+	}]
+}

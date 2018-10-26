@@ -1,0 +1,36 @@
+﻿{
+	"name": "MaleName",
+	"femname": "FemaleName",
+	"basename": "ReferenzFürDefaultJobsInCulture-MaleName-AußerBeiMagierUndHexer-DannMagier/Hexer",
+	"statweight": {
+		"_comment": "Gewichtung muss addiert 100 ergeben! - Ganze Zahlen!",
+		"MU": 30,
+		"KL": 10,
+		"IN": 10,
+		"CH": 10,
+		"FF": 10,
+		"GE": 10,
+		"KO": 10,
+		"KK": 10
+	},
+	"_comment": "Talent Gewichtung darf maximal 80 ergeben - damit die Talente aus den Kulturen auch etwas abgekommen! Kampftechniken auch in Talente",
+	"talents": [{
+		"name": "talentname",
+		"weight": 10,
+		"value": 2
+	},
+	{
+		"name": "talentname",
+		"weight": 10,
+		"value": 5
+	}],
+	"weapon": {
+		"_comment": "at/pa kann bei fernkampf weggelassen werden und fk bei nahkampf - reichweite = kurz, mittel, lang ?",
+		"name": "waffe",
+		"at": 10,
+		"pa": 5,
+		"fk": 0,
+		"tp": "1w6+2",
+		"rw": "mittel"
+	}
+}

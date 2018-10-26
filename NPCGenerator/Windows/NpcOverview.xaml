@@ -1,0 +1,58 @@
+﻿<Window x:Class="NPCGenerator.Windows.NpcOverview"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:NPCGenerator.Controls"
+        mc:Ignorable="d"
+        Title="NpcOverview" Height="532.312" Width="815" MinHeight="500" MinWidth="815" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MinWidth="260"/>
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="2*" MinWidth="550" />
+        </Grid.ColumnDefinitions>
+        <controls:NpcTreeView x:Name="tree" AllowDrop="True" Margin="0,0,34,0">
+            <TreeView.ItemContainerStyle>
+                <Style TargetType="{x:Type TreeViewItem}">
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </controls:NpcTreeView>
+        <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,5,0" VerticalAlignment="Top" Height="24" Width="24" RenderTransformOrigin="-1.384,1.463" Click="NewFolder_Click">
+            <Image Source="/NPCGenerator;component/Resources/new-folder.png" />
+        </Button>
+        <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,39,5,0" VerticalAlignment="Top" Height="24" Width="24" RenderTransformOrigin="-1.384,1.463" Click="DeleteFile_Click">
+            <Image Source="/NPCGenerator;component/Resources/delete-file.png" />
+        </Button>
+        <GridSplitter Style="{StaticResource GridSplitterVerticalGripStyle}" Grid.Column="1"  HorizontalAlignment="Stretch"/>
+        <TabControl Name="tabs" Grid.Column="2" Margin="5,0,0,0" ItemsSource="{Binding Path=NPCs, NotifyOnSourceUpdated=True}" IsSynchronizedWithCurrentItem="true">
+            <TabControl.Template>
+                <ControlTemplate TargetType="TabControl">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <ScrollViewer HorizontalScrollBarVisibility="Auto"  VerticalScrollBarVisibility="Hidden" >
+                            <TabPanel x:Name="HeaderPanel" Panel.ZIndex ="1" KeyboardNavigation.TabIndex="1" Margin="2,2,2,0" IsItemsHost="true"/>
+                        </ScrollViewer>
+                        <ContentPresenter x:Name="PART_SelectedContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Margin="{TemplateBinding Padding}" ContentSource="SelectedContent" Grid.Row="1"/>
+                    </Grid>
+                </ControlTemplate>
+            </TabControl.Template>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" MouseUp="TextBlock_MouseUp"/>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <controls:NpcDetails DataContext="{Binding}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="NPCGenerator.Windows.TalentSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Talente Ignorieren" Height="600" Width="293" MaxWidth="293" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
+    </Window.Resources>
+    <Grid>
+        <DataGrid x:Name="dgInput" ItemsSource="{Binding Path=Talents}" CanUserAddRows="False" CellStyle="{StaticResource CellStyle}" RowHeight="25" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Talent" MinWidth="200"  MaxWidth="200"  CellStyle="{StaticResource DataGridContentCellCentering}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Ignore" MinWidth="50" MaxWidth="50" CellStyle="{StaticResource DataGridContentCellCentering}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding Ignore, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+    </Grid>
+</Window>

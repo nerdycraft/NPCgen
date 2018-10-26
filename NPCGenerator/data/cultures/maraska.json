@@ -1,0 +1,68 @@
+﻿{
+	"name": "Maraskaner",
+	"parentspecies": [ "Mensch" ],
+	"language": {
+		"name": "Garethi",
+		"dialect": "Maraskani",
+		"font": "Kusliker Zeichen"
+	},
+	"defaultjobs": [ 
+		"Barde",
+		"Gardist",
+		"Gaukler",
+		"Händler",
+		"Heiler",
+		"Höfling",
+		"Jäger",
+		"Krieger",
+		"Prostituierter",
+		"Seefahrer",
+		"Söldner",
+		"Spitzel",
+		"Streuner",
+		"Hexer",
+		"Magier"
+	],
+	"talents": [{
+		"name": "Götter & Kulte",
+		"value": 1
+	},{
+		"name": "Heilkunde Gift",
+		"value": 2
+	},{
+		"name": "Orientierung",
+		"value": 1
+	},{
+		"name": "Pflanzenkunde",
+		"value": 2
+	},{
+		"name": "Tierkunde",
+		"value": 2
+	},{
+		"name": "Verbergen",
+		"value": 1
+	},{
+		"name": "Wildnisleben",
+		"value": 1
+	}],
+	"names": {
+		"male": [
+			"eran",
+			"­oran", 
+			"­jian", 
+			"­jin", 
+			"­mold", 
+			"­ziber", 
+			"­rech"
+		],
+		"female": [
+			"jid", 
+			"­jida", 
+			"­sab", 
+			"­yscha"
+		],
+		"last": [
+		
+		]
+	}
+}

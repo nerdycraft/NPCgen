@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="NPCGenerator.Controls.NpcDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:NPCGenerator.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
+        </Grid.Resources>
+        <Label Content="Name" Style="{StaticResource LeftTop}" Margin="10,10,0,0"/>
+        <TextBox Text="{Binding Name}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="23" Width="205" Margin="57,14,0,0"/>
+        <CheckBox Content="Editierbar (NIY)" Style="{StaticResource LeftTop}" IsEnabled="False" Margin="315,16,0,0"/>
+        <Button Content="Export (NYI)" Style="{StaticResource LeftTop}" Width="82" Margin="425,13,0,0"/>
+
+        <controls:LabelTextBox Label="Größe" TextBox="{Binding Size}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="59" Margin="15,110,0,0"/>
+        <controls:LabelTextBox Label="Alter" TextBox="{Binding Age}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="43" Margin="79,110,0,0"/>
+        <controls:LabelTextBox Label="Geschlecht" TextBox="{Binding Gender}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="87" Margin="127,110,0,0"/>
+        <controls:LabelTextBox Label="Charakter" TextBox="{Binding Charakter}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="196" Margin="219,110,0,0"/>
+        <controls:LabelTextBox Label="Spezies" TextBox="{Binding Species}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="104" Margin="18,178,0,0"/>
+        <controls:LabelTextBox Label="Kultur" TextBox="{Binding Culture}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="140" Margin="127,178,0,0"/>
+        <controls:LabelTextBox Label="Beruf" TextBox="{Binding Job}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="143" Margin="272,178,0,0"/>
+        <controls:LabelTextBox Label="MU" TextBox="{Binding Attributes.MU}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="41,49,0,0"/>
+        <controls:LabelTextBox Label="KL" TextBox="{Binding Attributes.KL}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="76,49,0,0"/>
+        <controls:LabelTextBox Label="IN" TextBox="{Binding Attributes.IN}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="111,49,0,0"/>
+        <controls:LabelTextBox Label="CH" TextBox="{Binding Attributes.CH}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="146,49,0,0"/>
+        <controls:LabelTextBox Label="FF" TextBox="{Binding Attributes.FF}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="181,49,0,0"/>
+        <controls:LabelTextBox Label="GE" TextBox="{Binding Attributes.GE}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="216,49,0,0"/>
+        <controls:LabelTextBox Label="KO" TextBox="{Binding Attributes.KO}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="251,49,0,0"/>
+        <controls:LabelTextBox Label="KK" TextBox="{Binding Attributes.KK}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="286,49,0,0"/>
+        <controls:LabelTextBox Label="LP" TextBox="{Binding Stats.LP}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,49,0,0"/>
+        <controls:LabelTextBox Label="AW" TextBox="{Binding Stats.AW}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,105,0,0"/>
+        <controls:LabelTextBox Label="SK" TextBox="{Binding Stats.SK}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,161,0,0"/>
+        <controls:LabelTextBox Label="GS" TextBox="{Binding Stats.GS}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,49,0,0"/>
+        <controls:LabelTextBox Label="INI" TextBox="{Binding Stats.INI}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,105,0,0"/>
+        <controls:LabelTextBox Label="ZK" TextBox="{Binding Stats.ZK}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,161,0,0"/>
+
+        <DataGrid ItemsSource="{Binding Talents}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="191" Width="385" Margin="18,239,0,0" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Talent" MinWidth="200" CellStyle="{StaticResource DataGridContentCellCentering}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="FW" MinWidth="50" MaxWidth="50" CellStyle="{StaticResource DataGridContentCellCentering}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Value}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Attribute" MinWidth="50" MaxWidth="60" CellStyle="{StaticResource DataGridContentCellCentering}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Format}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Roll" MinWidth="50" MaxWidth="50" CellStyle="{StaticResource DataGridContentCellCentering}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Roll_Click" Tag="{Binding}">
+                                <Image Source="/NPCGenerator;component/Resources/dice.jpg"  Width="20" Height="20"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock x:Name="rollInfo" Style="{StaticResource LeftTop}" Margin="415,244,0,0" Height="18" Width="104"/>
+        <TextBlock x:Name="attr1" Style="{StaticResource LeftTop}" Margin="415,267,0,0" Height="18" Width="26"/>
+        <Image Source="/NPCGenerator;component/Resources/dice.jpg" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="19" Margin="446,267,0,0"/>
+        <TextBlock x:Name="roll1" Style="{StaticResource LeftTop}" Margin="470,267,0,0" Height="18" Width="26"/>
+        <TextBlock x:Name="attr2" Style="{StaticResource LeftTop}" Margin="415,292,0,0" Height="18" Width="26"/>
+        <Image Source="/NPCGenerator;component/Resources/dice.jpg" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="19" Margin="446,292,0,0" />
+        <TextBlock x:Name="roll2" Style="{StaticResource LeftTop}" Margin="470,292,0,0" Height="18" Width="26" />
+        <TextBlock x:Name="attr3" Style="{StaticResource LeftTop}" Margin="415,317,0,0" Height="18" Width="26"/>
+        <Image Source="/NPCGenerator;component/Resources/dice.jpg" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="19" Margin="446,317,0,0"/>
+        <TextBlock x:Name="roll3" Style="{StaticResource LeftTop}" Margin="470,317,0,0" Height="18" Width="26"/>
+        <TextBlock x:Name="rollResult" Style="{StaticResource LeftTop}" Margin="415,340,0,0" Height="18" Width="81"/>
+    </Grid>
+</UserControl>

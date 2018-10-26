@@ -1,0 +1,68 @@
+﻿{
+	"name": "Name",
+	"parentspecies": [ "Spezies" ],
+	"language": {
+		"name": "Garethi",
+		"dialect": "Andergastisch",
+		"font": "Kusliker Zeichen"
+	},
+	"defaultjobs": [ 
+		"Barde",
+		"Gardist",
+		"Gaukler",
+		"Gladiator",
+		"Händler",
+		"Heiler",
+		"Höfling",
+		"Jäger",
+		"Krieger",
+		"Prostituierter",
+		"Ritter",
+		"Seefahrer",
+		"Söldner",
+		"Spitzel",
+		"Stammeskrieger",
+		"Streuner",
+		"Wildnisläufer",
+		"Zauberweber",
+		"Hexer",
+		"Magier",
+		"Borongeweihter",
+		"Hesindegeweihter",
+		"Perainegeweihter",
+		"Phexgeweihter",
+		"Praiosgeweihter",
+		"Rondrageweihter"
+	],
+	"_comment": "Kulturtalente haben keine gewichtung, die gewichtung berechnet sich aus den übrigen punkten von den Jobgewichtungspunkten (min 20)",
+	"talents": [{
+		"name": "Holzbearbeitung",
+		"value": 2
+	},{
+		"name": "Orientierung",
+		"value": 1
+	},{
+		"name": "Pflanzenkunde",
+		"value": 1
+	},{
+		"name": "Sagen & Legenden",
+		"value": 1
+	},{
+		"name": "Tierkunde",
+		"value": 1
+	},{
+		"name": "Wildnisleben",
+		"value": 2
+	}],
+	"names": {
+		"male": [
+
+		],
+		"female": [
+		
+		],
+		"last": [
+		
+		]
+	}
+}

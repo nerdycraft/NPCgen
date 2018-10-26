@@ -1,0 +1,359 @@
+﻿{
+	"defaultgen": true,
+	"talents": [{
+			"name": "Fliegen",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "GE"
+		},{
+			"name": "Gaukeleien",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "CH",
+			"attr3": "FF"
+		},{
+			"name": "Klettern",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "GE",
+			"attr3": "KK"
+		},{
+			"name": "Körperbeherrschung",
+			"ignore": false,
+			"attr1": "GE",
+			"attr2": "GE",
+			"attr3": "KO"
+		},{
+			"name": "Kraftakt",
+			"ignore": false,
+			"attr1": "KO",
+			"attr2": "KK",
+			"attr3": "KK"
+		},{
+			"name": "Reiten",
+			"ignore": false,
+			"attr1": "CH",
+			"attr2": "GE",
+			"attr3": "KK"
+		},{
+			"name": "Schwimmen",
+			"ignore": false,
+			"attr1": "GE",
+			"attr2": "KO",
+			"attr3": "KK"
+		},{
+			"name": "Selbstbeherrschung",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "MU",
+			"attr3": "KO"
+		},{
+			"name": "Singen",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "CH",
+			"attr3": "KO"
+		},{
+			"name": "Sinnesschärfe",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "IN",
+			"attr3": "IN"
+		},{
+			"name": "Tanzen",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "CH",
+			"attr3": "GE"
+		},{
+			"name": "Taschendiebstahl",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "FF",
+			"attr3": "GE"
+		},{
+			"name": "Verbergen",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "GE"
+		},{
+			"name": "Zechen",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KO",
+			"attr3": "KK"
+		},{
+			"name": "Bekehren & Überzeugen",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "KL",
+			"attr3": "CH"
+		},{
+			"name": "Betören",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "CH",
+			"attr3": "CH"
+		},{
+			"name": "Einschüchtern",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Etikette",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Gassenwissen",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Menschenkenntnis",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Überreden",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Verkleiden",
+			"ignore": false,
+			"attr1": "IN",
+			"attr2": "CH",
+			"attr3": "GE"
+		},{
+			"name": "Willenskraft",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Fährtensuchen",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "GE"
+		},{
+			"name": "Fesseln",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "FF",
+			"attr3": "KK"
+		},{
+			"name": "Fischen & Angeln",
+			"ignore": false,
+			"attr1": "FF",
+			"attr2": "GE",
+			"attr3": "KO"
+		},{
+			"name": "Orientierung",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "IN",
+			"attr3": "IN"
+		},{
+			"name": "Pflanzenkunde",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "FF",
+			"attr3": "KO"
+		},{
+			"name": "Tierkunde",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "MU",
+			"attr3": "CH"
+		},{
+			"name": "Wildnisleben",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "GE",
+			"attr3": "KO"
+		},{
+			"name": "Brett & Glücksspiel",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Geographie",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Geschichtswissen",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Götter & Kulte",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Kriegskunst",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Magiekunde",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Mechanik",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "FF"
+		},{
+			"name": "Rechnen",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Rechtskunde",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Sagen & Legenden",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Sphärenkunde",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Sternkunde",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Alchimie",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "KL",
+			"attr3": "FF"
+		},{
+			"name": "Boote & Schiffe",
+			"ignore": false,
+			"attr1": "FF",
+			"attr2": "GE",
+			"attr3": "KK"
+		},{
+			"name": "Fahrzeuge",
+			"ignore": false,
+			"attr1": "CH",
+			"attr2": "FF",
+			"attr3": "KO"
+		},{
+			"name": "Handel",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "IN",
+			"attr3": "CH"
+		},{
+			"name": "Heilkunde Gift",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "KL",
+			"attr3": "IN"
+		},{
+			"name": "Heilkunde Krankheiten",
+			"ignore": false,
+			"attr1": "MU",
+			"attr2": "IN",
+			"attr3": "KO"
+		},{
+			"name": "Heilkunde Seele",
+			"ignore": false,
+			"attr1": "IN",
+			"attr2": "CH",
+			"attr3": "KO"
+		},{
+			"name": "Heilkunde Wunden",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "FF",
+			"attr3": "FF"
+		},{
+			"name": "Holzbearbeitung",
+			"ignore": false,
+			"attr1": "FF",
+			"attr2": "GE",
+			"attr3": "KK"
+		},{
+			"name": "Lebensmittelbearbeitung",
+			"ignore": false,
+			"attr1": "IN",
+			"attr2": "FF",
+			"attr3": "FF"
+		},{
+			"name": "Lederbearbeitung",
+			"ignore": false,
+			"attr1": "FF",
+			"attr2": "GE",
+			"attr3": "KO"
+		},{
+			"name": "Malen & Zeichnen",
+			"ignore": false,
+			"attr1": "IN",
+			"attr2": "FF",
+			"attr3": "FF"
+		},{
+			"name": "Metallbearbeitung",
+			"ignore": false,
+			"attr1": "FF",
+			"attr2": "KO",
+			"attr3": "KK"
+		},{
+			"name": "Musizieren",
+			"ignore": false,
+			"attr1": "CH",
+			"attr2": "FF",
+			"attr3": "KO"
+		},{
+			"name": "Schlösserknacken",
+			"ignore": false,
+			"attr1": "IN",
+			"attr2": "FF",
+			"attr3": "FF"
+		},{
+			"name": "Steinbearbeitung",
+			"ignore": false,
+			"attr1": "FF",
+			"attr2": "FF",
+			"attr3": "KK"
+		},{
+			"name": "Stoffbearbeitung",
+			"ignore": false,
+			"attr1": "KL",
+			"attr2": "FF",
+			"attr3": "FF"
+		}
+	]
+}
