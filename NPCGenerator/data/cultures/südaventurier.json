@@ -1,6 +1,6 @@
 {
   "name": "Südaventurier",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Garethi",
     "dialect": "Brabaci, Charypto, Gatamo",

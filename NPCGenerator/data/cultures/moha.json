@@ -1,6 +1,6 @@
 {
   "name": "Mohas",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Mohisch",
     "dialect": "",

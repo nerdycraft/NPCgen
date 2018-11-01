@@ -1,6 +1,6 @@
 {
   "name": "Aranier",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Garethi",
     "dialect": "Aretya",

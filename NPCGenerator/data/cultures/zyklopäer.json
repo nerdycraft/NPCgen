@@ -1,6 +1,6 @@
 {
   "name": "Zyklopäer",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Garethi",
     "dialect": "Horathi",

@@ -306,7 +306,7 @@ namespace NPCGenerator.Util
                 culture = rowCulture.Value;
             else
             {
-                var defaultCults = Data.Cultures.Where(c => c.DefaultSpecies.Contains(species.Name));
+                var defaultCults = Data.Cultures.Where(c => c.DefaultSpecies.Contains(species.Id));
                 if (!defaultCults.Any())
                     throw new GenerationException("there is no culture with the species " + species.Name);
                 culture = RandomFromList(defaultCults);

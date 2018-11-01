@@ -1,6 +1,6 @@
 {
   "name": "Mhanadistani",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Tulamidya",
     "dialect": "Mhanadisch-Balashidisch",

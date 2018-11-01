@@ -1,6 +1,6 @@
 {
   "name": "Norbarden",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Alaani",
     "dialect": "Gajka, Takellen",

@@ -1,6 +1,6 @@
 {
   "name": "Auelf",
-  "parentspecies": [ "Elf", "Halbelf" ],
+  "parentspecies": [ 3, 2 ],
   "language": {
     "name": "Isdira",
     "dialect": "auelfisch",

@@ -1,6 +1,6 @@
 {
   "name": "Novadis",
-  "parentspecies": [ "Mensch" ],
+  "parentspecies": [ 1 ],
   "language": {
     "name": "Tulamidya",
     "dialect": "Köhm-Novadisch",
