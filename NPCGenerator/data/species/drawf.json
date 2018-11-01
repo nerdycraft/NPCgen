@@ -1,0 +1,17 @@
+﻿{
+  "name": "Zwerg",
+  "baseHP": 8,
+  "baseSK": -4,
+  "baseZK": -4,
+  "baseGS": 6,
+  "mod": {
+    "and": {
+      "value": 1,
+      "stats": [ "KO", "KK" ]
+    },
+    "or": {
+      "value": -2,
+      "stats": [ "CH", "GE" ]
+    }
+  }
+}

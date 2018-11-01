@@ -1,0 +1,10 @@
+﻿{
+  "name": "Mensch",
+  "baseHP": 5,
+  "baseSK": -5,
+  "baseZK": -5,
+  "baseGS": 8,
+  "mod": {
+    "rnd": 1
+  }
+}

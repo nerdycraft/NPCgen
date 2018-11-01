@@ -105,8 +105,7 @@
     <Compile Include="Model\JsonDataContainer.cs" />
     <Compile Include="Model\JsonJob.cs" />
     <Compile Include="Model\JsonSpecies.cs" />
-    <Compile Include="Model\JsonStringList.cs" />
-    <Compile Include="Model\JsonXP.cs" />
+    <Compile Include="Model\JsonData.cs" />
     <Compile Include="Model\Settings.cs" />
     <Compile Include="Util\Controller.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />
@@ -266,26 +265,28 @@
     <None Include="data\cultures\andergast.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="data\general.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="data\jobs\barde.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\jobtemplate.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="data\names.json" />
-    <None Include="data\sizes.json">
+    <None Include="data\species\drawf.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="data\species.json">
+    <None Include="data\species\elf.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="data\species\halfelf.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="data\statures.json">
+    <None Include="data\species\human.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\settings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\xp.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

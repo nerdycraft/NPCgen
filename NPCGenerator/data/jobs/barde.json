@@ -1,99 +1,119 @@
 ﻿{
-	"name": "Barde",
-	"femname": "Bardin",
-	"basename": "Barde",
-	"statweight": {
-		"_comment": "Gewichtung muss addiert 100 ergeben! - Ganze Zahlen!",
-		"MU": 5,
-		"KL": 13,
-		"IN": 13,
-		"CH": 25,
-		"FF": 20,
-		"GE": 13,
-		"KO": 6,
-		"KK": 5
-	},
-	"_comment": "Talent Gewichtung darf maximal 80 ergeben - damit die Talente aus den Kulturen auch etwas abgekommen! Kampftechniken auch in Talente - 0 weight stellt das talent zu den kultur talenten",
-	"talents": [{
-		"name": "Dolche",
-		"weight": 3,
-		"value": 8
-	},{
-		"name": "Raufen",
-		"weight": 4,
-		"value": 8
-	},{
-		"name": "Singen",
-		"weight": 6,
-		"value": 7
-	},{
-		"name": "Tanzen",
-		"weight": 6,
-		"value": 2
-	},{
-		"name": "Bekehren & Überzeugen",
-		"weight": 3,
-		"value": 2
-	},{
-		"name": "Etikette",
-		"weight": 5,
-		"value": 4
-	},{
-		"name": "Gassenwissen",
-		"weight": 5,
-		"value": 4
-	},{
-		"name": "Menschenkenntnis",
-		"weight": 6,
-		"value": 5
-	},{
-		"name": "Überreden",
-		"weight": 6,
-		"value": 5
-	},{
-		"name": "Wildnisleben",
-		"weight": 4,
-		"value": 2
-	},{
-		"name": "Geographie",
-		"weight": 4,
-		"value": 4
-	},{
-		"name": "Geschichtswissen",
-		"weight": 5,
-		"value": 4
-	},{
-		"name": "Götter & Kulte",
-		"weight": 5,
-		"value": 4
-	},{
-		"name": "Rechnen",
-		"weight": 2,
-		"value": 3
-	},{
-		"name": "Rechtskunde",
-		"weight": 2,
-		"value": 2
-	},{
-		"name": "Sagen & Legenden",
-		"weight": 7,
-		"value": 5
-	},{
-		"name": "Holzbearbeitung",
-		"weight": 0,
-		"value": 3
-	},{
-		"name": "Musizieren",
-		"weight": 7,
-		"value": 7
-	}],
-	"weapon": {
-		"_comment": "at/pa kann bei fernkampf weggelassen werden und fk bei nahkampf - reichweite = kurz, mittel, lang ?",
-		"name": "waffe",
-		"at": 10,
-		"pa": 5,
-		"fk": 0,
-		"tp": "1w6+2",
-		"rw": "mittel"
-	}
+  "name": "Barde",
+  "femname": "Bardin",
+  "basename": "Barde",
+  "statweight": {
+    "_comment": "Gewichtung muss addiert 100 ergeben! - Ganze Zahlen!",
+    "MU": 5,
+    "KL": 13,
+    "IN": 13,
+    "CH": 25,
+    "FF": 20,
+    "GE": 13,
+    "KO": 6,
+    "KK": 5
+  },
+  "_comment": "Talent Gewichtung darf max 800 ergeben - frag nicht warum!!! Kampftechniken auch in Talente - 0 weight stellt das talent zu den kultur talenten",
+  "_comment2": "Kulturtalente werden auf die 'restlichen' Punkte verteilt, sodass die Gesamtgewichtung 1000 beträgt",
+  "talents": [
+    {
+      "name": "Dolche",
+      "weight": 30,
+      "value": 8
+    },
+    {
+      "name": "Raufen",
+      "weight": 40,
+      "value": 8
+    },
+    {
+      "name": "Singen",
+      "weight": 60,
+      "value": 7
+    },
+    {
+      "name": "Tanzen",
+      "weight": 60,
+      "value": 2
+    },
+    {
+      "name": "Bekehren & Überzeugen",
+      "weight": 30,
+      "value": 2
+    },
+    {
+      "name": "Etikette",
+      "weight": 50,
+      "value": 4
+    },
+    {
+      "name": "Gassenwissen",
+      "weight": 50,
+      "value": 4
+    },
+    {
+      "name": "Menschenkenntnis",
+      "weight": 60,
+      "value": 5
+    },
+    {
+      "name": "Überreden",
+      "weight": 60,
+      "value": 5
+    },
+    {
+      "name": "Wildnisleben",
+      "weight": 40,
+      "value": 2
+    },
+    {
+      "name": "Geographie",
+      "weight": 40,
+      "value": 4
+    },
+    {
+      "name": "Geschichtswissen",
+      "weight": 50,
+      "value": 4
+    },
+    {
+      "name": "Götter & Kulte",
+      "weight": 50,
+      "value": 4
+    },
+    {
+      "name": "Rechnen",
+      "weight": 20,
+      "value": 3
+    },
+    {
+      "name": "Rechtskunde",
+      "weight": 20,
+      "value": 2
+    },
+    {
+      "name": "Sagen & Legenden",
+      "weight": 70,
+      "value": 5
+    },
+    {
+      "name": "Holzbearbeitung",
+      "weight": 0,
+      "value": 3
+    },
+    {
+      "name": "Musizieren",
+      "weight": 70,
+      "value": 7
+    }
+  ],
+  "weapon": {
+    "_comment": "at/pa kann bei fernkampf weggelassen werden und fk bei nahkampf - reichweite = kurz, mittel, lang ?",
+    "name": "waffe",
+    "at": 10,
+    "pa": 5,
+    "fk": 0,
+    "tp": "1w6+2",
+    "rw": "mittel"
+  }
 }

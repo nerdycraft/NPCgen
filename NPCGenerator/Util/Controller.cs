@@ -17,10 +17,7 @@ namespace NPCGenerator.Util
     {
         private const int BUILD_VERSION = 1;
 
-        private const string STATURES_FILE = @"data\statures.json";
-        private const string SPECIES_FILE = @"data\species.json";
-        private const string SIZES_FILE = @"data\sizes.json";
-        private const string XP_FILE = @"data\xp.json";
+        private const string DATA_FILE = @"data\general.json";
 
         private const string SPECIES_FOLDER = @"data\species";
         private const string CULTURES_FOLDER = @"data\cultures";
@@ -90,8 +87,8 @@ namespace NPCGenerator.Util
         {
             var dr = new DataRow
                      {
-                                 DisplayName = displayName, DisplayValueAs = displayValueAs,
-                                 ItemSource = itemSource, NoGeneration = noGen
+                         DisplayName = displayName, DisplayValueAs = displayValueAs,
+                         ItemSource = itemSource, NoGeneration = noGen
                      };
             dataRows.Add(dr);
             return dr;
@@ -99,16 +96,16 @@ namespace NPCGenerator.Util
 
         private void LoadJsonData()
         {
-            Data.Species = DeserializeHandler<SpeciesFile>(SPECIES_FILE).Species;
-            Data.Statures = DeserializeHandler<StringData>(STATURES_FILE).Data;
-            Data.Sizes = DeserializeHandler<StringData>(SIZES_FILE).Data;
-            Data.XpLevels = DeserializeHandler<XPFile>(XP_FILE).Levels;
+            var data = DeserializeHandler<DataFile>(DATA_FILE);
 
-            //Data.Species = Directory.GetFiles(SPECIES_FILE, "*.json").Select(DeserializeHandler<Species>);
+            Data.Gender = data.Gender;
+            Data.Statures = data.Statures;
+            Data.Sizes = data.Sizes;
+            Data.XpLevels = data.Levels;
+
+            Data.Species = Directory.GetFiles(SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>);
             Data.Jobs = Directory.GetFiles(JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>);
             Data.Cultures = Directory.GetFiles(CULTURES_FOLDER, "*.json").Select(DeserializeHandler<Culture>);
-
-            Data.Gender = new[] {"männlich", "weiblich", "-"};
 
             Settings = DeserializeHandler<Settings>(SETTINGS_FILE);
 
@@ -237,10 +234,10 @@ namespace NPCGenerator.Util
                     noWeightTalents++;
             }
 
-            if (totalWeight > 80)
-                throw new GenerationException("Job Talent weight should be max 80!");
+            if (totalWeight > 800)
+                throw new GenerationException("Job Talent weight should be 800!");
 
-            var newTalentWeight = (uint) Math.Ceiling((100f - totalWeight) / noWeightTalents);
+            var newTalentWeight = (uint) Math.Ceiling((1000f - totalWeight) / noWeightTalents);
             foreach (var talent in talents.Where(t => t.Weight == 0))
             {
                 totalWeight += newTalentWeight;

@@ -1,0 +1,10 @@
+﻿{
+  "name": "Halbelf",
+  "baseHP": 5,
+  "baseSK": -4,
+  "baseZK": -6,
+  "baseGS": 8,
+  "mod": {
+    "rnd": 1
+  }
+}

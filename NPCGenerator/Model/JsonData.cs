@@ -1,11 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+
+using Newtonsoft.Json;
 
 namespace NPCGenerator.Model
 {
-    public class XPFile
+    public class DataFile
     {
+        [JsonProperty("statures"), JsonRequired]
+        public IEnumerable<string> Statures { get; set; }
+
+        [JsonProperty("sizes"), JsonRequired]
+        public IEnumerable<string> Sizes { get; set; }
+
+        [JsonProperty("gender"), JsonRequired]
+        public IEnumerable<string> Gender { get; set; }
+
         [JsonProperty( "levels" ), JsonRequired]
-        public Level[] Levels { get; set; }
+        public IEnumerable<Level> Levels { get; set; }
     }
 
     public class Level

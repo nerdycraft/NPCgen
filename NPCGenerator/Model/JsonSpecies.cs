@@ -2,12 +2,6 @@
 
 namespace NPCGenerator.Model
 {
-    public class SpeciesFile
-    {
-        [JsonProperty( "species" ), JsonRequired]
-        public Species[] Species { get; set; }
-    }
-
     public class Species
     {
         [JsonProperty( "name" ), JsonRequired]
