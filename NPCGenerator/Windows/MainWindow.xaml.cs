@@ -61,6 +61,7 @@ namespace NPCGenerator.Windows
         {
             MessageBox.Show( controller.CheckJobTalentWeight() );
         }
+
         private void TalentIgnore_Click(object sender, RoutedEventArgs e)
         {
             (new TalentSetting( controller.Settings )).ShowDialog();

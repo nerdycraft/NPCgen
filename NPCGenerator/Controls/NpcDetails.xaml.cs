@@ -37,6 +37,7 @@ namespace NPCGenerator.Controls
 
             for (var roll = 0; roll < 3; roll++)
             {
+                // ReSharper disable once SwitchStatementMissingSomeCases
                 switch (Roll(attrs[roll], rolls[roll], npc, values[roll], ref fw))
                 {
                 case RollResult.Fail:

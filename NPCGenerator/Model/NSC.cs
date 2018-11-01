@@ -139,7 +139,7 @@ namespace NPCGenerator.Model
 
     public class Talent
     {
-        [JsonProperty( "name" ), JsonRequired()]
+        [JsonProperty( "name" ), JsonRequired]
         public string Name { get; set; }
 
         [JsonProperty( "value" )]
@@ -157,7 +157,7 @@ namespace NPCGenerator.Model
         [JsonProperty( "attr3" )]
         public string Attr3 { get; set; }
 
-        [JsonIgnore()]
+        [JsonIgnore]
         public string Format => ToString();
 
         public override string ToString()

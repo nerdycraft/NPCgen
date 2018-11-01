@@ -60,7 +60,7 @@ namespace NPCGenerator.Controls
                 break;
             }
 
-            if ( ReferenceEquals( directoryInfo, null ) ) return;
+            if (directoryInfo == null) return;
 
             foreach ( var directory in directoryInfo.GetDirectories() )
             {
