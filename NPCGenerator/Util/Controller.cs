@@ -244,15 +244,13 @@ namespace NPCGenerator.Util
                 talentWeight.Add(totalWeight, talent);
             }
 
-            var sorted = from pair in talentWeight orderby pair.Key descending select pair;
-
             //punkte verteilen
             var pointsSpent = 0;
             while (pointsSpent < level.Fw)
             {
                 var rndWeight = rnd.Next(1, (int) totalWeight);
-                foreach (var kvp in sorted)
-                    if (kvp.Key <= rndWeight)
+                foreach (var kvp in talentWeight)
+                    if (kvp.Key >= rndWeight)
                     {
                         if (kvp.Value.Value >= level.MaxFw)
                             break;
