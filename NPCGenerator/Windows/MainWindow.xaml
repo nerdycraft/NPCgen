@@ -48,7 +48,6 @@
         <Button x:Name="btnGen" Content="Generate" VerticalAlignment="Bottom" Height="20" Click="Button_Click" Margin="0,0,0,21"/>
         <Menu Height="19" VerticalAlignment="Top">
             <MenuItem Header="_Einstellungen">
-                <MenuItem Header="_Standard Zuordnung" IsCheckable="True" IsChecked="{Binding Path=Settings.UseDefaultGeneration, UpdateSourceTrigger=PropertyChanged}" />
                 <MenuItem Header="_Talentgewichtung prüfen" Click="CheckTalentWeight_Click"/>
                 <MenuItem Header="_Reload Json" Click="ReloadJson_Click"/>
                 <MenuItem Header="_Talente ignorieren" Click="TalentIgnore_Click"/>

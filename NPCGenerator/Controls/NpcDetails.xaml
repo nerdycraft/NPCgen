@@ -22,20 +22,20 @@
         <controls:LabelTextBox Label="Spezies" TextBox="{Binding Species}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="104" Margin="18,178,0,0"/>
         <controls:LabelTextBox Label="Kultur" TextBox="{Binding Culture}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="140" Margin="127,178,0,0"/>
         <controls:LabelTextBox Label="Beruf" TextBox="{Binding Job}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="56" Width="143" Margin="272,178,0,0"/>
-        <controls:LabelTextBox Label="MU" TextBox="{Binding Attributes.MU}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="41,49,0,0"/>
-        <controls:LabelTextBox Label="KL" TextBox="{Binding Attributes.KL}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="76,49,0,0"/>
-        <controls:LabelTextBox Label="IN" TextBox="{Binding Attributes.IN}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="111,49,0,0"/>
-        <controls:LabelTextBox Label="CH" TextBox="{Binding Attributes.CH}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="146,49,0,0"/>
-        <controls:LabelTextBox Label="FF" TextBox="{Binding Attributes.FF}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="181,49,0,0"/>
-        <controls:LabelTextBox Label="GE" TextBox="{Binding Attributes.GE}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="216,49,0,0"/>
-        <controls:LabelTextBox Label="KO" TextBox="{Binding Attributes.KO}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="251,49,0,0"/>
-        <controls:LabelTextBox Label="KK" TextBox="{Binding Attributes.KK}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="286,49,0,0"/>
-        <controls:LabelTextBox Label="LP" TextBox="{Binding Stats.LP}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,49,0,0"/>
-        <controls:LabelTextBox Label="AW" TextBox="{Binding Stats.AW}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,105,0,0"/>
-        <controls:LabelTextBox Label="SK" TextBox="{Binding Stats.SK}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,161,0,0"/>
-        <controls:LabelTextBox Label="GS" TextBox="{Binding Stats.GS}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,49,0,0"/>
-        <controls:LabelTextBox Label="INI" TextBox="{Binding Stats.INI}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,105,0,0"/>
-        <controls:LabelTextBox Label="ZK" TextBox="{Binding Stats.ZK}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,161,0,0"/>
+        <controls:LabelTextBox Label="MU" TextBox="{Binding Attributes.Mu}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="41,49,0,0"/>
+        <controls:LabelTextBox Label="KL" TextBox="{Binding Attributes.Kl}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="76,49,0,0"/>
+        <controls:LabelTextBox Label="IN" TextBox="{Binding Attributes.In}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="111,49,0,0"/>
+        <controls:LabelTextBox Label="CH" TextBox="{Binding Attributes.Ch}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="146,49,0,0"/>
+        <controls:LabelTextBox Label="FF" TextBox="{Binding Attributes.Ff}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="181,49,0,0"/>
+        <controls:LabelTextBox Label="GE" TextBox="{Binding Attributes.Ge}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="216,49,0,0"/>
+        <controls:LabelTextBox Label="KO" TextBox="{Binding Attributes.Ko}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="251,49,0,0"/>
+        <controls:LabelTextBox Label="KK" TextBox="{Binding Attributes.Kk}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="286,49,0,0"/>
+        <controls:LabelTextBox Label="LP" TextBox="{Binding Stats.Lp}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,49,0,0"/>
+        <controls:LabelTextBox Label="AW" TextBox="{Binding Stats.Aw}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,105,0,0"/>
+        <controls:LabelTextBox Label="SK" TextBox="{Binding Stats.Sk}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="447,161,0,0"/>
+        <controls:LabelTextBox Label="GS" TextBox="{Binding Stats.Gs}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,49,0,0"/>
+        <controls:LabelTextBox Label="INI" TextBox="{Binding Stats.Ini}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,105,0,0"/>
+        <controls:LabelTextBox Label="ZK" TextBox="{Binding Stats.Zk}" Style="{StaticResource CenterBox}" IsReadOnly="True" Margin="482,161,0,0"/>
 
         <DataGrid ItemsSource="{Binding Talents}" Style="{StaticResource LeftTop}" IsReadOnly="True" Height="191" Width="385" Margin="18,239,0,0" AutoGenerateColumns="False">
             <DataGrid.Columns>

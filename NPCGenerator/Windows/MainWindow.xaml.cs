@@ -64,7 +64,7 @@ namespace NPCGenerator.Windows
 
         private void TalentIgnore_Click(object sender, RoutedEventArgs e)
         {
-            (new TalentSetting( controller.Settings )).ShowDialog();
+            new TalentSetting( controller.Data ).ShowDialog();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

@@ -23,7 +23,7 @@ namespace NPCGenerator.Controls
 
         private void Roll_Click(object sender, RoutedEventArgs e)
         {
-            if (!(((Button)sender).Tag is AttrTalent talent))
+            if (!(((Button)sender).Tag is Talent talent))
                 throw new ArgumentNullException(nameof(sender));
             if (!(DataContext is NPC npc))
                 throw new ArgumentNullException(nameof(sender));
@@ -31,14 +31,12 @@ namespace NPCGenerator.Controls
             var fw = (int)talent.Value;
             int failCount = 0, successCount = 0;
 
-            var values = new[] {talent.Attr1, talent.Attr2, talent.Attr3};
-
             rollInfo.Text = talent.Name;
 
             for (var roll = 0; roll < 3; roll++)
             {
                 // ReSharper disable once SwitchStatementMissingSomeCases
-                switch (Roll(attrs[roll], rolls[roll], npc, values[roll], ref fw))
+                switch (Roll(attrs[roll], rolls[roll], npc, talent.Attr[roll], ref fw))
                 {
                 case RollResult.Fail:
                     failCount++;

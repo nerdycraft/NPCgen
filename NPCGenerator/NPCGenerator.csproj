@@ -105,8 +105,7 @@
     <Compile Include="Model\JsonDataContainer.cs" />
     <Compile Include="Model\JsonJob.cs" />
     <Compile Include="Model\JsonSpecies.cs" />
-    <Compile Include="Model\JsonData.cs" />
-    <Compile Include="Model\Settings.cs" />
+    <Compile Include="Model\Talent.cs" />
     <Compile Include="Util\Controller.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
@@ -284,9 +283,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="data\species\human.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="data\settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />

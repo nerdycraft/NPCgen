@@ -17,91 +17,109 @@
   "_comment2": "Kulturtalente werden auf die 'restlichen' Punkte verteilt, sodass die Gesamtgewichtung 1000 beträgt",
   "talents": [
     {
+      "id": 65, 
       "name": "Dolche",
       "weight": 30,
       "value": 8
     },
     {
+      "id": 72,
       "name": "Raufen",
       "weight": 40,
       "value": 8
     },
     {
+      "id": 9,
       "name": "Singen",
       "weight": 60,
       "value": 7
     },
     {
+      "id": 11,
       "name": "Tanzen",
       "weight": 60,
       "value": 2
     },
     {
+      "id": 15,
       "name": "Bekehren & Überzeugen",
       "weight": 30,
       "value": 2
     },
     {
+      "id": 18,
       "name": "Etikette",
       "weight": 50,
       "value": 4
     },
     {
+      "id": 19,
       "name": "Gassenwissen",
       "weight": 50,
       "value": 4
     },
     {
+      "id": 20,
       "name": "Menschenkenntnis",
       "weight": 60,
       "value": 5
     },
     {
+      "id": 21,
       "name": "Überreden",
       "weight": 60,
       "value": 5
     },
     {
+      "id": 30,
       "name": "Wildnisleben",
       "weight": 40,
       "value": 2
     },
     {
+      "id": 32,
       "name": "Geographie",
       "weight": 40,
       "value": 4
     },
     {
+      "id": 33,
       "name": "Geschichtswissen",
       "weight": 50,
       "value": 4
     },
     {
+      "id": 34,
       "name": "Götter & Kulte",
       "weight": 50,
       "value": 4
     },
     {
+      "id": 38,
       "name": "Rechnen",
       "weight": 20,
       "value": 3
     },
     {
+      "id": 39,
       "name": "Rechtskunde",
       "weight": 20,
       "value": 2
     },
     {
+      "id": 40,
       "name": "Sagen & Legenden",
       "weight": 70,
       "value": 5
     },
     {
+      "id": 51,
       "name": "Holzbearbeitung",
       "weight": 0,
       "value": 3
     },
     {
+      "id": 56,
       "name": "Musizieren",
       "weight": 70,
       "value": 7

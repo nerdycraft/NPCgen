@@ -1,117 +1,136 @@
-﻿{
-	"name": "Aranier",
-	"parentspecies": [ "Mensch" ],
-	"language": {
-		"name": "Garethi",
-		"dialect": "Aretya",
-		"font": "Kusliker Zeichen"
-	},
-	"defaultjobs": [ 
-		"Barde",
-		"Gardist",
-		"Gaukler",
-		"Händler",
-		"Heiler",
-		"Höfling",
-		"Jäger",
-		"Krieger",
-		"Prostituierter",
-		"Seefahrer",
-		"Söldner",
-		"Spitzel",
-		"Streuner",
-		"Hexer",
-		"Magier",
-		"Borongeweihter",
-		"Hesindegeweihter",
-		"Perainegeweihter",
-		"Phexgeweihter",
-		"Praiosgeweihter",
-		"Rondrageweihter"
-	],
-	"talents": [{
-		"name": "Betören",
-		"value": 1
-	},{
-		"name": "Glücksspiel",
-		"value": 1
-	},{
-		"name": "Gassenwissen",
-		"value": 2
-	},{
-		"name": "Sagen & Legenden",
-		"value": 1
-	},{
-		"name": "Handel",
-		"value": 2
-	},{
-		"name": "Menschenkenntnis",
-		"value": 1
-	},{
-		"name": "Rechnen",
-		"value": 1
-	},{
-		"name": "Stoffbearbeitung",
-		"value": 1
-	},{
-		"name": "Überreden",
-		"value": 2
-	}],
-	"names": {
-		"male": [
-			"Abubrecht",
-			"Abdulon",
-			"Amirwolf",
-			"Bey-helm",
-			"Djafardeon",
-			"Dscheridan",
-			"Farukol",
-			"Hamar-bald",
-			"Harunian",
-			"Jikhbald",
-			"Marwamir",
-			"Melekhelm",
-			"Mukarribald",
-			"Narebold",
-			"Omjaralf",
-			"Retoban",
-			"Rohaldor",
-			"Selimwar",
-			"Shabobert",
-			"Shafirio",
-			"Sultanor",
-			"Tuleffried",
-			"Yussufried"
-		],
-		"female": [
-			"Aischanka",
-			"Aylalind",
-			"Ayshulianne",
-			"Azi-zelis",
-			"Dunjanild",
-			"Emerbeth",
-			"Fayrieke",
-			"Gazalinde",
-			"Halimyanis",
-			"Hildebeth",
-			"Ishannah",
-			"Jushiberta",
-			"Lai-lalinde",
-			"Nedimsira",
-			"Neraidane",
-			"Perainibith",
-			"Rash-patane",
-			"Rhayadaque",
-			"Shilaldara",
-			"Shulamunde",
-			"Shulinai",
-			"Sulajmaid",
-			"Sybia",
-			"Yullabethild",
-			"Zulha-minai"
-		],
-		"last": [
-		
-		]
-	}
+{
+  "name": "Aranier",
+  "parentspecies": [ "Mensch" ],
+  "language": {
+    "name": "Garethi",
+    "dialect": "Aretya",
+    "font": "Kusliker Zeichen"
+  },
+  "defaultjobs": [
+    "Barde",
+    "Gardist",
+    "Gaukler",
+    "Händler",
+    "Heiler",
+    "Höfling",
+    "Jäger",
+    "Krieger",
+    "Prostituierter",
+    "Seefahrer",
+    "Söldner",
+    "Spitzel",
+    "Streuner",
+    "Hexer",
+    "Magier",
+    "Borongeweihter",
+    "Hesindegeweihter",
+    "Perainegeweihter",
+    "Phexgeweihter",
+    "Praiosgeweihter",
+    "Rondrageweihter"
+  ],
+  "talents": [
+    {
+      "id": 16,
+      "name": "Betören",
+      "value": 1
+    },
+    {
+      "id": 31,
+      "name": "Glücksspiel",
+      "value": 1
+    },
+    {
+      "id": 19,
+      "name": "Gassenwissen",
+      "value": 2
+    },
+    {
+      "id": 40,
+      "name": "Sagen & Legenden",
+      "value": 1
+    },
+    {
+      "id": 46,
+      "name": "Handel",
+      "value": 2
+    },
+    {
+      "id": 20,
+      "name": "Menschenkenntnis",
+      "value": 1
+    },
+    {
+      "id": 38,
+      "name": "Rechnen",
+      "value": 1
+    },
+    {
+      "id": 59,
+      "name": "Stoffbearbeitung",
+      "value": 1
+    },
+    {
+      "id": 21,
+      "name": "Überreden",
+      "value": 2
+    }
+  ],
+  "names": {
+    "male": [
+      "Abubrecht",
+      "Abdulon",
+      "Amirwolf",
+      "Bey-helm",
+      "Djafardeon",
+      "Dscheridan",
+      "Farukol",
+      "Hamar-bald",
+      "Harunian",
+      "Jikhbald",
+      "Marwamir",
+      "Melekhelm",
+      "Mukarribald",
+      "Narebold",
+      "Omjaralf",
+      "Retoban",
+      "Rohaldor",
+      "Selimwar",
+      "Shabobert",
+      "Shafirio",
+      "Sultanor",
+      "Tuleffried",
+      "Yussufried"
+    ],
+    "female": [
+      "Aischanka",
+      "Aylalind",
+      "Ayshulianne",
+      "Azi-zelis",
+      "Dunjanild",
+      "Emerbeth",
+      "Fayrieke",
+      "Gazalinde",
+      "Halimyanis",
+      "Hildebeth",
+      "Ishannah",
+      "Jushiberta",
+      "Lai-lalinde",
+      "Nedimsira",
+      "Neraidane",
+      "Perainibith",
+      "Rash-patane",
+      "Rhayadaque",
+      "Shilaldara",
+      "Shulamunde",
+      "Shulinai",
+      "Sulajmaid",
+      "Sybia",
+      "Yullabethild",
+      "Zulha-minai"
+    ],
+    "last": [
+
+    ]
+  }
 }

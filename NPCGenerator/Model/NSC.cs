@@ -40,7 +40,7 @@ namespace NPCGenerator.Model
         [JsonProperty( "stats" )]
         public Stats Stats { get; set; }
         [JsonProperty( "talents" )]
-        public AttrTalent[] Talents { get; set; }
+        public Talent[] Talents { get; set; }
 
         private bool isSelected;
         [JsonIgnore]
@@ -135,34 +135,5 @@ namespace NPCGenerator.Model
         public int Sk { get; set; }
         [JsonProperty( "zk" )]
         public int Zk { get; set; }
-    }
-
-    public class Talent
-    {
-        [JsonProperty( "name" ), JsonRequired]
-        public string Name { get; set; }
-
-        [JsonProperty( "value" )]
-        public uint Value { get; set; }
-    }
-
-    public class AttrTalent : Talent
-    {
-        [JsonProperty( "attr1" )]
-        public string Attr1 { get; set; }
-
-        [JsonProperty( "attr2" )]
-        public string Attr2 { get; set; }
-
-        [JsonProperty( "attr3" )]
-        public string Attr3 { get; set; }
-
-        [JsonIgnore]
-        public string Format => ToString();
-
-        public override string ToString()
-        {
-            return $"{Attr1}/{Attr2}/{Attr3}";
-        }
     }
 }

@@ -54,5 +54,551 @@
       "maxfw": 16,
       "fw": 45
     }
-  ]
+  ],
+  "talents": [
+    {
+      "id": 1,
+      "name": "Fliegen",
+      "category": "Körpertalente",
+      "cost": "B",
+      "attr": [ "MU", "IN", "GE" ]
+    },
+    {
+      "id": 2,
+      "name": "Gaukeleien",
+      "category": "Körpertalente",
+      "cost": "A",
+      "attr": [ "MU", "CH", "FF" ]
+    },
+    {
+      "id": 3,
+      "name": "Klettern",
+      "category": "Körpertalente",
+      "cost": "B",
+      "attr": [ "MU", "GE", "KK" ]
+    },
+    {
+      "id": 4,
+      "name": "Körperbeherrschung",
+      "category": "Körpertalente",
+      "cost": "D",
+      "attr": [ "GE", "GE", "KO" ]
+    },
+    {
+      "id": 5,
+      "name": "Kraftakt",
+      "category": "Körpertalente",
+      "cost": "B",
+      "attr": [ "KO", "KK", "KK" ]
+    },
+    {
+      "id": 6,
+      "name": "Reiten",
+      "category": "Körpertalente",
+      "cost": "B",
+      "attr": [ "CH", "GE", "KK" ]
+    },
+    {
+      "id": 7,
+      "name": "Schwimmen",
+      "category": "Körpertalente",
+      "cost": "B",
+      "attr": [ "GE", "KO", "KK" ]
+    },
+    {
+      "id": 8,
+      "name": "Selbstbeherrschung",
+      "category": "Körpertalente",
+      "cost": "D",
+      "attr": [ "MU", "MU", "KO" ]
+    },
+    {
+      "id": 9,
+      "name": "Singen",
+      "category": "Körpertalente",
+      "cost": "A",
+      "attr": [ "KL", "CH", "KO" ]
+    },
+    {
+      "id": 10,
+      "name": "Sinnesschärfe",
+      "category": "Körpertalente",
+      "cost": "D",
+      "attr": [ "KL", "IN", "IN" ]
+    },
+    {
+      "id": 11,
+      "name": "Tanzen",
+      "category": "Körpertalente",
+      "cost": "A",
+      "attr": [ "KL", "CH", "GE" ]
+    },
+    {
+      "id": 12,
+      "name": "Taschendiebstahl",
+      "category": "Körpertalente",
+      "cost": "B",
+      "attr": [ "MU", "FF", "GE" ]
+    },
+    {
+      "id": 13,
+      "name": "Verbergen",
+      "category": "Körpertalente",
+      "cost": "C",
+      "attr": [ "MU", "IN", "GE" ]
+    },
+    {
+      "id": 14,
+      "name": "Zechen",
+      "category": "Körpertalente",
+      "attr": [ "KL", "KO", "KK" ]
+    },
+    {
+      "id": 15,
+      "name": "Bekehren & Überzeugen",
+      "category": "Gesellschaftstalente",
+      "cost": "B",
+      "attr": [ "MU", "KL", "CH" ]
+    },
+    {
+      "id": 16,
+      "name": "Betören",
+      "category": "Gesellschaftstalente",
+      "cost": "B",
+      "attr": [ "MU", "CH", "CH" ]
+    },
+    {
+      "id": 17,
+      "name": "Einschüchtern",
+      "category": "Gesellschaftstalente",
+      "cost": "B",
+      "attr": [ "MU", "IN", "CH" ]
+    },
+    {
+      "id": 18,
+      "name": "Etikette",
+      "category": "Gesellschaftstalente",
+      "cost": "B",
+      "attr": [ "KL", "IN", "CH" ]
+    },
+    {
+      "id": 19,
+      "name": "Gassenwissen",
+      "category": "Gesellschaftstalente",
+      "cost": "C",
+      "attr": [ "KL", "IN", "CH" ]
+    },
+    {
+      "id": 20,
+      "name": "Menschenkenntnis",
+      "category": "Gesellschaftstalente",
+      "cost": "C",
+      "attr": [ "KL", "IN", "CH" ]
+    },
+    {
+      "id": 21,
+      "name": "Überreden",
+      "category": "Gesellschaftstalente",
+      "cost": "C",
+      "attr": [ "MU", "IN", "CH" ]
+    },
+    {
+      "id": 22,
+      "name": "Verkleiden",
+      "category": "Gesellschaftstalente",
+      "cost": "B",
+      "attr": [ "IN", "CH", "GE" ]
+    },
+    {
+      "id": 23,
+      "name": "Willenskraft",
+      "category": "Gesellschaftstalente",
+      "cost": "D",
+      "attr": [ "MU", "IN", "CH" ]
+    },
+    {
+      "id": 24,
+      "name": "Fährtensuchen",
+      "category": "Naturtalente",
+      "cost": "C",
+      "attr": [ "MU", "IN", "GE" ]
+    },
+    {
+      "id": 25,
+      "name": "Fesseln",
+      "category": "Naturtalente",
+      "cost": "A",
+      "attr": [ "KL", "FF", "KK" ]
+    },
+    {
+      "id": 26,
+      "name": "Fischen & Angeln",
+      "category": "Naturtalente",
+      "cost": "A",
+      "attr": [ "FF", "GE", "KO" ]
+    },
+    {
+      "id": 27,
+      "name": "Orientierung",
+      "category": "Naturtalente",
+      "cost": "B",
+      "attr": [ "KL", "IN", "IN" ]
+    },
+    {
+      "id": 28,
+      "name": "Pflanzenkunde",
+      "category": "Naturtalente",
+      "cost": "C",
+      "attr": [ "KL", "FF", "KO" ]
+    },
+    {
+      "id": 29,
+      "name": "Tierkunde",
+      "category": "Naturtalente",
+      "cost": "C",
+      "attr": [ "MU", "MU", "CH" ]
+    },
+    {
+      "id": 30,
+      "name": "Wildnisleben",
+      "category": "Naturtalente",
+      "cost": "C",
+      "attr": [ "MU", "GE", "KO" ]
+    },
+    {
+      "id": 31,
+      "name": "Brett & Glücksspiel",
+      "category": "Wissenstalente",
+      "cost": "A",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 32,
+      "name": "Geographie",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 33,
+      "name": "Geschichtswissen",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 34,
+      "name": "Götter & Kulte",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 35,
+      "name": "Kriegskunst",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "MU", "KL", "IN" ]
+    },
+    {
+      "id": 36,
+      "name": "Magiekunde",
+      "category": "Wissenstalente",
+      "cost": "C",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 37,
+      "name": "Mechanik",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "KL", "KL", "FF" ]
+    },
+    {
+      "id": 38,
+      "name": "Rechnen",
+      "category": "Wissenstalente",
+      "cost": "A",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 39,
+      "name": "Rechtskunde",
+      "category": "Wissenstalente",
+      "cost": "A",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 40,
+      "name": "Sagen & Legenden",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 41,
+      "name": "Sphärenkunde",
+      "category": "Wissenstalente",
+      "cost": "B",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 42,
+      "name": "Sternkunde",
+      "category": "Wissenstalente",
+      "cost": "A",
+      "attr": [ "KL", "KL", "IN" ]
+    },
+    {
+      "id": 43,
+      "name": "Alchimie",
+      "category": "Handwerkstalente",
+      "cost": "C",
+      "attr": [ "MU", "KL", "FF" ]
+    },
+    {
+      "id": 44,
+      "name": "Boote & Schiffe",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "FF", "GE", "KK" ]
+    },
+    {
+      "id": 45,
+      "name": "Fahrzeuge",
+      "category": "Handwerkstalente",
+      "cost": "A",
+      "attr": [ "CH", "FF", "KO" ]
+    },
+    {
+      "id": 46,
+      "name": "Handel",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "KL", "IN", "CH" ]
+    },
+    {
+      "id": 47,
+      "name": "Heilkunde Gift",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "MU", "KL", "IN" ]
+    },
+    {
+      "id": 48,
+      "name": "Heilkunde Krankheiten",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "MU", "IN", "KO" ]
+    },
+    {
+      "id": 49,
+      "name": "Heilkunde Seele",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "IN", "CH", "KO" ]
+    },
+    {
+      "id": 50,
+      "name": "Heilkunde Wunden",
+      "category": "Handwerkstalente",
+      "cost": "D",
+      "attr": [ "KL", "FF", "FF" ]
+    },
+    {
+      "id": 51,
+      "name": "Holzbearbeitung",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "FF", "GE", "KK" ]
+    },
+    {
+      "id": 52,
+      "name": "Lebensmittelbearbeitung",
+      "category": "Handwerkstalente",
+      "cost": "A",
+      "attr": [ "IN", "FF", "FF" ]
+    },
+    {
+      "id": 53,
+      "name": "Lederbearbeitung",
+      "category": "Handwerkstalente",
+      "cost": "B",
+      "attr": [ "FF", "GE", "KO" ]
+    },
+    {
+      "id": 54,
+      "name": "Malen & Zeichnen",
+      "category": "Handwerkstalente",
+      "attr": [ "IN", "FF", "FF" ]
+    },
+    {
+      "id": 55,
+      "name": "Metallbearbeitung",
+      "category": "Handwerkstalente",
+      "cost": "C",
+      "attr": [ "FF", "KO", "KK" ]
+    },
+    {
+      "id": 56,
+      "name": "Musizieren",
+      "category": "Handwerkstalente",
+      "cost": "A",
+      "attr": [ "CH", "FF", "KO" ]
+    },
+    {
+      "id": 57,
+      "name": "Schlösserknacken",
+      "category": "Handwerkstalente",
+      "cost": "C",
+      "attr": [ "IN", "FF", "FF" ]
+    },
+    {
+      "id": 58,
+      "name": "Steinbearbeitung",
+      "category": "Handwerkstalente",
+      "cost": "A",
+      "attr": [ "FF", "FF", "KK" ]
+    },
+    {
+      "id": 59,
+      "name": "Stoffbearbeitung",
+      "category": "Handwerkstalente",
+      "cost": "A",
+      "attr": [ "KL", "FF", "FF" ]
+    },
+    {
+      "id": 61,
+      "name": "Armbrüste",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 62,
+      "name": "Blasrohre",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 62,
+      "name": "Bögen",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 64,
+      "name": "Diskusse",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 65,
+      "name": "Dolche",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "GE" ]
+    },
+    {
+      "id": 66,
+      "name": "Fachtwaffen",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "GE" ]
+    },
+    {
+      "id": 67,
+      "name": "Feuerspeien",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 68,
+      "name": "Hiebwaffen",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "KK" ]
+    },
+    {
+      "id": 69,
+      "name": "Kettenwaffen",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "KK" ]
+    },
+    {
+      "id": 70,
+      "name": "Lanzen",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "KK" ]
+    },
+    {
+      "id": 71,
+      "name": "Peitschen",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 72,
+      "name": "Raufen",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "GE", "KK" ]
+    },
+    {
+      "id": 73,
+      "name": "Schilde",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "KK" ]
+    },
+    {
+      "id": 74,
+      "name": "Schleudern",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 75,
+      "name": "Schwerter",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "GE", "KK" ]
+    },
+    {
+      "id": 76,
+      "name": "Stangenwaffen",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "GE", "KK" ]
+    },
+    {
+      "id": 77,
+      "name": "Wurfwaffen",
+      "category": "Kampftalente",
+      "cost": "B",
+      "attr": [ "FF" ]
+    },
+    {
+      "id": 78,
+      "name": "Zweihandhiebwaffen",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "KK" ]
+    },
+    {
+      "id": 79,
+      "name": "Zweihandschwerter",
+      "category": "Kampftalente",
+      "cost": "C",
+      "attr": [ "KK" ]
+    }
+  ] 
 }

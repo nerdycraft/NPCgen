@@ -1,120 +1,141 @@
-﻿{
-	"name": "Mohas",
-	"parentspecies": [ "Mensch" ],
-	"language": {
-		"name": "Mohisch",
-		"dialect": "",
-		"font": ""
-	},
-	"defaultjobs": [ 
-		"Händler",
-		"Heiler",
-		"Jäger",
-		"Söldner",
-		"Stammeskrieger"
-	],
-	"talents": [{
-		"name": "Fährtensuchen",
-		"value": 1
-	},{
-		"name": "Heilkunde Gift",
-		"value": 1
-	},{
-		"name": "Körperbeherrschung",
-		"value": 1
-	},{
-		"name": "Orientierung",
-		"value": 1
-	},{
-		"name": "Pflanzenkunde",
-		"value": 2
-	},{
-		"name": "Sagen & Legenden",
-		"value": 1
-	},{
-		"name": "Sinnesschärfe",
-		"value": 1
-	},{
-		"name": "Tierkunde",
-		"value": 1
-	},{
-		"name": "Verbergen",
-		"value": 1
-	},{
-		"name": "Wildnisleben",
-		"value": 2
-	}],
-	"names": {
-		"male": [
-			"Ake-Iya (Schreitet mit Kamaluq)",
-			"Anhe (Kommt bei Morgendämme-rung)",
-			"Anpa-Ha (Giftpfeil)",
-			"Cankuna (Flink)",
-			"Cante-Tinza (Tapferes Herz)",
-			"Catka (Linke Hand)",
-			"Cekpa (Nabelschnur)",
-			"Eyapa-Tisa (Laute Stimme)",
-			"Ha haton wan (Rauschkraut)",
-			"Han-Hepi (Mond/Nacht)",
-			"Hayate-pe (Drei Speere)",
-			"He-Sche (Sonne)",
-			"Hey-Mo (Vier Finger)",
-			"Hiye-Haja (Tausend Worte)",
-			"Ho-Iaya-Yo (Geht voran)",
-			"Huka  (Fürchtet sich nicht)",
-			"Huka-Hey (Kriegs ruf)",
-			"Isna-Inti (Einsam)",
-			"Istima-Ton-ko (Hört im Schlaf den Schreivogel nicht)",
-			"Kehala (Schildkröte)",
-			"Miniwatu (Kind des Wassers)",
-			"Paha-ha (Kurzes Haar)",
-			"Panhahe (Alligatorzahn)",
-			"Sica (Spricht mit zwei Zungen)",
-			"Takate (Dessen Hand immer  blutig ist)",
-			"Tapam-Wah (Den die Geister schützen)",
-			"Tapo (Schlange)",
-			"Taya-Zo (Flötenspie-ler)",
-			"Tokahe (Großmaul)",
-			"Tonkowan (Geis tertänzer)",
-			"Wapiya (Seine Hände tun Gutes)",
-			"Yako (Katze)"
-		],
-		"female": [
-			"Ake-Iya (Schreitet mit Kamaluq)",
-			"Anhe (Kommt bei Morgendämme-rung)",
-			"Anpa-Ha (Giftpfeil)",
-			"Cankuna (Flink)",
-			"Cante-Tinza (Tapferes Herz)",
-			"Catka (Linke Hand)",
-			"Cekpa (Nabelschnur)",
-			"Eyapa-Tisa (Laute Stimme)",
-			"Ha haton wan (Rauschkraut)",
-			"Han-Hepi (Mond/Nacht)",
-			"Hayate-pe (Drei Speere)",
-			"He-Sche (Sonne)",
-			"Hey-Mo (Vier Finger)",
-			"Hiye-Haja (Tausend Worte)",
-			"Ho-Iaya-Yo (Geht voran)",
-			"Huka  (Fürchtet sich nicht)",
-			"Huka-Hey (Kriegs ruf)",
-			"Isna-Inti (Einsam)",
-			"Istima-Ton-ko (Hört im Schlaf den Schreivogel nicht)",
-			"Kehala (Schildkröte)",
-			"Miniwatu (Kind des Wassers)",
-			"Paha-ha (Kurzes Haar)",
-			"Panhahe (Alligatorzahn)",
-			"Sica (Spricht mit zwei Zungen)",
-			"Takate (Dessen Hand immer  blutig ist)",
-			"Tapam-Wah (Den die Geister schützen)",
-			"Tapo (Schlange)",
-			"Taya-Zo (Flötenspie-ler)",
-			"Tokahe (Großmaul)",
-			"Tonkowan (Geis tertänzer)",
-			"Wapiya (Seine Hände tun Gutes)",
-			"Yako (Katze)"
-		],
-		"last": [
-		
-		]
-	}
+{
+  "name": "Mohas",
+  "parentspecies": [ "Mensch" ],
+  "language": {
+    "name": "Mohisch",
+    "dialect": "",
+    "font": ""
+  },
+  "defaultjobs": [
+    "Händler",
+    "Heiler",
+    "Jäger",
+    "Söldner",
+    "Stammeskrieger"
+  ],
+  "talents": [
+    {
+      "id": 24,
+      "name": "Fährtensuchen",
+      "value": 1
+    },
+    {
+      "id": 47,
+      "name": "Heilkunde Gift",
+      "value": 1
+    },
+    {
+      "id": 4,
+      "name": "Körperbeherrschung",
+      "value": 1
+    },
+    {
+      "id": 27,
+      "name": "Orientierung",
+      "value": 1
+    },
+    {
+      "id": 28,
+      "name": "Pflanzenkunde",
+      "value": 2
+    },
+    {
+      "id": 40,
+      "name": "Sagen & Legenden",
+      "value": 1
+    },
+    {
+      "id": 10,
+      "name": "Sinnesschärfe",
+      "value": 1
+    },
+    {
+      "id": 29,
+      "name": "Tierkunde",
+      "value": 1
+    },
+    {
+      "id": 13,
+      "name": "Verbergen",
+      "value": 1
+    },
+    {
+      "id": 30,
+      "name": "Wildnisleben",
+      "value": 2
+    }
+  ],
+  "names": {
+    "male": [
+      "Ake-Iya (Schreitet mit Kamaluq)",
+      "Anhe (Kommt bei Morgendämme-rung)",
+      "Anpa-Ha (Giftpfeil)",
+      "Cankuna (Flink)",
+      "Cante-Tinza (Tapferes Herz)",
+      "Catka (Linke Hand)",
+      "Cekpa (Nabelschnur)",
+      "Eyapa-Tisa (Laute Stimme)",
+      "Ha haton wan (Rauschkraut)",
+      "Han-Hepi (Mond/Nacht)",
+      "Hayate-pe (Drei Speere)",
+      "He-Sche (Sonne)",
+      "Hey-Mo (Vier Finger)",
+      "Hiye-Haja (Tausend Worte)",
+      "Ho-Iaya-Yo (Geht voran)",
+      "Huka  (Fürchtet sich nicht)",
+      "Huka-Hey (Kriegs ruf)",
+      "Isna-Inti (Einsam)",
+      "Istima-Ton-ko (Hört im Schlaf den Schreivogel nicht)",
+      "Kehala (Schildkröte)",
+      "Miniwatu (Kind des Wassers)",
+      "Paha-ha (Kurzes Haar)",
+      "Panhahe (Alligatorzahn)",
+      "Sica (Spricht mit zwei Zungen)",
+      "Takate (Dessen Hand immer  blutig ist)",
+      "Tapam-Wah (Den die Geister schützen)",
+      "Tapo (Schlange)",
+      "Taya-Zo (Flötenspie-ler)",
+      "Tokahe (Großmaul)",
+      "Tonkowan (Geis tertänzer)",
+      "Wapiya (Seine Hände tun Gutes)",
+      "Yako (Katze)"
+    ],
+    "female": [
+      "Ake-Iya (Schreitet mit Kamaluq)",
+      "Anhe (Kommt bei Morgendämme-rung)",
+      "Anpa-Ha (Giftpfeil)",
+      "Cankuna (Flink)",
+      "Cante-Tinza (Tapferes Herz)",
+      "Catka (Linke Hand)",
+      "Cekpa (Nabelschnur)",
+      "Eyapa-Tisa (Laute Stimme)",
+      "Ha haton wan (Rauschkraut)",
+      "Han-Hepi (Mond/Nacht)",
+      "Hayate-pe (Drei Speere)",
+      "He-Sche (Sonne)",
+      "Hey-Mo (Vier Finger)",
+      "Hiye-Haja (Tausend Worte)",
+      "Ho-Iaya-Yo (Geht voran)",
+      "Huka  (Fürchtet sich nicht)",
+      "Huka-Hey (Kriegs ruf)",
+      "Isna-Inti (Einsam)",
+      "Istima-Ton-ko (Hört im Schlaf den Schreivogel nicht)",
+      "Kehala (Schildkröte)",
+      "Miniwatu (Kind des Wassers)",
+      "Paha-ha (Kurzes Haar)",
+      "Panhahe (Alligatorzahn)",
+      "Sica (Spricht mit zwei Zungen)",
+      "Takate (Dessen Hand immer  blutig ist)",
+      "Tapam-Wah (Den die Geister schützen)",
+      "Tapo (Schlange)",
+      "Taya-Zo (Flötenspie-ler)",
+      "Tokahe (Großmaul)",
+      "Tonkowan (Geis tertänzer)",
+      "Wapiya (Seine Hände tun Gutes)",
+      "Yako (Katze)"
+    ],
+    "last": [
+
+    ]
+  }
 }

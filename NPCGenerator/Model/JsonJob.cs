@@ -17,7 +17,7 @@ namespace NPCGenerator.Model
         public Statweight Statweight { get; set; }
 
         [JsonProperty( "talents" ), JsonRequired]
-        public WeightedTalent[] Talents { get; set; }
+        public Talent[] Talents { get; set; }
 
         [JsonProperty( "weapon" )]
         public Weapon Weapon { get; set; }
@@ -90,11 +90,5 @@ namespace NPCGenerator.Model
 
         [JsonProperty( "rw" )]
         public string Rw { get; set; }
-    }
-
-    public class WeightedTalent : Talent
-    {
-        [JsonProperty( "weight" )]
-        public uint Weight { get; set; }
     }
 }

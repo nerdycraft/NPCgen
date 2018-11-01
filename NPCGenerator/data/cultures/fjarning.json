@@ -1,83 +1,102 @@
-﻿{
-	"name": "Fjarninger",
-	"parentspecies": [ "Mensch" ],
-	"language": {
-		"name": "Fjarningsch",
-		"dialect": "",
-		"font": ""
-	},
-	"defaultjobs": [ 
-		"Händler",
-		"Heiler",
-		"Jäger",
-		"Söldner",
-		"Stammeskrieger"
-	],
-	"talents": [{
-		"name": "Einschüchtern",
-		"value": 2
-	},{
-		"name": "Fährtensuchen",
-		"value": 1
-	},{
-		"name": "Körperbeherrschung",
-		"value": 1
-	},{
-		"name": "Kraftakt",
-		"value": 2
-	},{
-		"name": "Metallbearbeitung",
-		"value": 1
-	},{
-		"name": "Orientierung",
-		"value": 2
-	},{
-		"name": "Selbstbeherrschung",
-		"value": 1
-	},{
-		"name": "Steinbearbeitung",
-		"value": 1
-	},{
-		"name": "Wildnisleben",
-		"value": 2
-	}],
-	"names": {
-		"male": [
-			"Asgold",  
-			"Blotgrim", 
-			"Blotulfur",   
-			"Bodvar",   
-			"Engur",   
-			"Fjallgart",   
-			"Frunobar", 
-			"Gjallur",   
-			"Havgrimur",   
-			"Pandur",   
-			"Raluf",   
-			"Steinthor", 
-			"Valbrand",
-			"Valbrandar",  
-			"Waleif"
-		],
-		"female": [
-			"Arn thrud",
-			"Arn thrudir",
-			"Asgo-ra",
-			"Blotsaxa",  
-			"Dandagard",  
-			"Fu nudara",  
-			"Gunnlaug", 
-			"Halfga",  
-			"Jaldrud",  
-			"Rangra",  
-			"Rannveig",  
-			"Svannlaug", 
-			"Ulfgard",  
-			"Ylwa",  
-			"Yngheld"
-		],
-		"last": [
-		
-		]
-	}
+{
+  "name": "Fjarninger",
+  "parentspecies": [ "Mensch" ],
+  "language": {
+    "name": "Fjarningsch",
+    "dialect": "",
+    "font": ""
+  },
+  "defaultjobs": [
+    "Händler",
+    "Heiler",
+    "Jäger",
+    "Söldner",
+    "Stammeskrieger"
+  ],
+  "talents": [
+    {
+      "id": 17,
+      "name": "Einschüchtern",
+      "value": 2
+    },
+    {
+      "id": 24,
+      "name": "Fährtensuchen",
+      "value": 1
+    },
+    {
+      "id": 4,
+      "name": "Körperbeherrschung",
+      "value": 1
+    },
+    {
+      "id": 5,
+      "name": "Kraftakt",
+      "value": 2
+    },
+    {
+      "id": 55,
+      "name": "Metallbearbeitung",
+      "value": 1
+    },
+    {
+      "id": 27,
+      "name": "Orientierung",
+      "value": 2
+    },
+    {
+      "id": 8,
+      "name": "Selbstbeherrschung",
+      "value": 1
+    },
+    {
+      "id": 58,
+      "name": "Steinbearbeitung",
+      "value": 1
+    },
+    {
+      "id": 30,
+      "name": "Wildnisleben",
+      "value": 2
+    }
+  ],
+  "names": {
+    "male": [
+      "Asgold",
+      "Blotgrim",
+      "Blotulfur",
+      "Bodvar",
+      "Engur",
+      "Fjallgart",
+      "Frunobar",
+      "Gjallur",
+      "Havgrimur",
+      "Pandur",
+      "Raluf",
+      "Steinthor",
+      "Valbrand",
+      "Valbrandar",
+      "Waleif"
+    ],
+    "female": [
+      "Arn thrud",
+      "Arn thrudir",
+      "Asgo-ra",
+      "Blotsaxa",
+      "Dandagard",
+      "Fu nudara",
+      "Gunnlaug",
+      "Halfga",
+      "Jaldrud",
+      "Rangra",
+      "Rannveig",
+      "Svannlaug",
+      "Ulfgard",
+      "Ylwa",
+      "Yngheld"
+    ],
+    "last": [
+
+    ]
+  }
 }

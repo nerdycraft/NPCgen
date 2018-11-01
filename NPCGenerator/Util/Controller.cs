@@ -25,15 +25,12 @@ namespace NPCGenerator.Util
 
         public const string OUT_PATH = @"output\{0}.json";
 
-        private const string SETTINGS_FILE = @"data\settings.json";
-
         private readonly Random rnd = new Random();
 
-        public JsonDataContainer Data { get; } = new JsonDataContainer();
+        public JsonDataContainer Data { get; private set; }
 
         private readonly ObservableCollection<DataRow> dataRows = new ObservableCollection<DataRow>();
         public IEnumerable<DataRow> DataRows => dataRows;
-        public Settings Settings { get; private set; }
 
         public bool HasJsonErrors { get; private set; }
         private string statusText;
@@ -67,7 +64,7 @@ namespace NPCGenerator.Util
             dataRows.Clear();
             LoadJsonData();
 
-            rowXp = CreateDataRow("Erfahrung", "ComboBox", true, Data.XpLevels);
+            rowXp = CreateDataRow("Erfahrung", "ComboBox", true, Data.Levels);
             rowFirstName = CreateDataRow("Vorname", "TextBox");
             rowLastName = CreateDataRow("Nachname", "TextBox");
             rowAge = CreateDataRow("Alter", "Numeric");
@@ -96,18 +93,11 @@ namespace NPCGenerator.Util
 
         private void LoadJsonData()
         {
-            var data = DeserializeHandler<DataFile>(DATA_FILE);
-
-            Data.Gender = data.Gender;
-            Data.Statures = data.Statures;
-            Data.Sizes = data.Sizes;
-            Data.XpLevels = data.Levels;
+            Data = DeserializeHandler<JsonDataContainer>(DATA_FILE);
 
             Data.Species = Directory.GetFiles(SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>);
             Data.Jobs = Directory.GetFiles(JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>);
             Data.Cultures = Directory.GetFiles(CULTURES_FOLDER, "*.json").Select(DeserializeHandler<Culture>);
-
-            Settings = DeserializeHandler<Settings>(SETTINGS_FILE);
 
             HasJsonErrors = false;
         }
@@ -117,9 +107,9 @@ namespace NPCGenerator.Util
             var output = new System.Text.StringBuilder();
             foreach (var job in Data.Jobs)
             {
-                var totalWeight = job.Talents.Sum(talent => (int) talent.Weight);
+                var totalWeight = job.Talents.Sum(talent => talent.Weight);
 
-                output.AppendLine($"{job.Name} - Hat {totalWeight} von 80 Gewichtungspunkte verwendet");
+                output.AppendLine($"{job.Name} - Hat {totalWeight} von 800 Gewichtungspunkte verwendet");
             }
 
             return output.ToString();
@@ -164,7 +154,7 @@ namespace NPCGenerator.Util
             StatusText = $"NPC Erstellt: {npc}";
         }
 
-        public void SaveSettings() { File.WriteAllText(SETTINGS_FILE, JsonConvert.SerializeObject(Settings)); }
+        public void SaveSettings() { File.WriteAllText(DATA_FILE, JsonConvert.SerializeObject(Data)); }
 
         private Attributes CalculateAttr(Level level, Statweight weight, AttrMod mod)
         {
@@ -218,11 +208,11 @@ namespace NPCGenerator.Util
             return stats;
         }
 
-        private IEnumerable<AttrTalent> CalculateTalents(Level level, IEnumerable<WeightedTalent> talents)
+        private IEnumerable<Talent> CalculateTalents(Level level, IEnumerable<Talent> talents)
         {
-            var talentWeight = new Dictionary<uint, WeightedTalent>();
+            var talentWeight = new Dictionary<int, Talent>();
             var noWeightTalents = 0;
-            uint totalWeight = 0;
+            var totalWeight = 0;
             foreach (var talent in talents)
             {
                 if (talent.Weight > 0)
@@ -230,14 +220,14 @@ namespace NPCGenerator.Util
                     totalWeight += talent.Weight;
                     talentWeight.Add(totalWeight, talent);
                 }
-                else
+                else if (talent.Weight == 0)
                     noWeightTalents++;
             }
 
             if (totalWeight > 800)
                 throw new GenerationException("Job Talent weight should be 800!");
 
-            var newTalentWeight = (uint) Math.Ceiling((1000f - totalWeight) / noWeightTalents);
+            var newTalentWeight = (int) Math.Ceiling((1000f - totalWeight) / noWeightTalents);
             foreach (var talent in talents.Where(t => t.Weight == 0))
             {
                 totalWeight += newTalentWeight;
@@ -248,7 +238,7 @@ namespace NPCGenerator.Util
             var pointsSpent = 0;
             while (pointsSpent < level.Fw)
             {
-                var rndWeight = rnd.Next(1, (int) totalWeight);
+                var rndWeight = rnd.Next(1, totalWeight);
                 foreach (var kvp in talentWeight)
                     if (kvp.Key >= rndWeight)
                     {
@@ -260,22 +250,7 @@ namespace NPCGenerator.Util
                     }
             }
 
-            var list = new List<AttrTalent>();
-            foreach (var talent in talentWeight.Values)
-            {
-                var attrT = Settings.Talents.FirstOrDefault(t => t.Name == talent.Name);
-                if (attrT != null)
-                    list.Add(new AttrTalent
-                             {
-                                 Name = talent.Name,
-                                 Value = talent.Value,
-                                 Attr1 = attrT.Attr1,
-                                 Attr2 = attrT.Attr2,
-                                 Attr3 = attrT.Attr3
-                             });
-            }
-
-            return list;
+            return talentWeight.Values;
         }
 
         private T RandomFromList<T>(IEnumerable<T> lst) { return lst.ElementAt(rnd.Next(0, lst.Count())); }
@@ -299,24 +274,28 @@ namespace NPCGenerator.Util
             return attrLst[new Random().Next(0, 7)];
         }
 
-        private IEnumerable<WeightedTalent> MergeBaseTalents(IEnumerable<Talent> cultTalents, IEnumerable<WeightedTalent> jobTalents)
+        private IEnumerable<Talent> MergeBaseTalents(IEnumerable<Talent> cultTalents, IEnumerable<Talent> jobTalents)
         {
-            var talents = cultTalents.Select(t => new WeightedTalent
-                                    { Name = t.Name, Value = t.Value, Weight = 0 }).ToList();
+            var talents = Data.Talents.ToList();
 
-            foreach (var talent in jobTalents)
+            foreach (var talent in talents)
             {
-                var tal = talents.FirstOrDefault(t => t.Name == talent.Name);
+                var tal = cultTalents.FirstOrDefault(t => t.Id == talent.Id);
                 if (tal != null)
                 {
-                    tal.Value += talent.Value;
-                    tal.Weight = talent.Weight;
+                    talent.Value += tal.Value;
+                    talent.Weight = 0;
                 }
-                else
-                    talents.Add(talent);
+
+                tal = jobTalents.FirstOrDefault(t => t.Id == talent.Id);
+                if (tal != null)
+                {
+                    talent.Value += tal.Value;
+                    talent.Weight = tal.Weight;
+                }
             }
 
-            return talents.Where(t => !Settings.Talents.Any(it => it.Name == t.Name && it.Ignore));
+            return talents.Where(talent => !talent.Ignore);
         }
 
 
@@ -325,8 +304,6 @@ namespace NPCGenerator.Util
             Culture culture;
             if (rowCulture.NoGeneration)
                 culture = rowCulture.Value;
-            else if (!Settings.UseDefaultGeneration)
-                culture = RandomFromList(Data.Cultures);
             else
             {
                 var defaultCults = Data.Cultures.Where(c => c.DefaultSpecies.Contains(species.Name));
@@ -340,14 +317,7 @@ namespace NPCGenerator.Util
 
         private Job GetJob(Culture culture)
         {
-            Job job;
-            if (rowJob.NoGeneration)
-                job = rowJob.Value;
-            else if (!Settings.UseDefaultGeneration)
-                job = RandomFromList(Data.Jobs);
-            else
-                job = RandomFromList(Data.Jobs.Where(j => culture.DefaultJobs.Contains(j.ReferenceName)));
-            return job;
+            return rowJob.NoGeneration ? (Job)rowJob.Value : RandomFromList(Data.Jobs.Where(j => culture.DefaultJobs.Contains(j.ReferenceName)));
         }
 
         private string GetName(bool isFemale, Culture culture)
