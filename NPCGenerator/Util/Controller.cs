@@ -123,16 +123,16 @@ namespace NPCGenerator.Util
                           Build = BUILD_VERSION,
 
                           Age = rowAge.NoGeneration ? rowAge.Value : (uint) rnd.Next(12, 100),
-                          Gender = rowGender.NoGeneration ? rowGender.Value : RandomFromList(Data.Gender),
                           Size = rowSize.NoGeneration ? rowSize.Value : RandomFromList(Data.Sizes),
                           Stature = rowStature.NoGeneration ? rowStature.Value : RandomFromList(Data.Statures),
                           Charakter = rowCharacter.Value
                       };
 
-            var isFemale = npc.Gender == "weiblich";
-
             Level level = rowXp.Value;
             npc.Level = level.Name;
+
+            Gender gender = rowGender.NoGeneration ? rowGender.Value : RandomFromList(Data.Gender);
+            npc.Gender = gender.Id;
 
             Species species = rowSpecies.NoGeneration ? rowSpecies.Value : RandomFromList(Data.Species);
             npc.Species = species.Name;
@@ -141,9 +141,9 @@ namespace NPCGenerator.Util
             npc.Culture = culture.Name;
 
             var job = GetJob(culture);
-            npc.Job = isFemale ? job.FemName : job.Name;
+            npc.Job = gender.NameList == Gender.NamingList.Female ? job.FemName : job.Name;
 
-            npc.Name = GetName(isFemale, culture);
+            npc.Name = GetName(gender.NameList, culture);
 
             npc.Talents = CalculateTalents(level, MergeBaseTalents(culture.Talents, job.Talents)).ToArray();
 
@@ -297,8 +297,7 @@ namespace NPCGenerator.Util
 
             return talents.Where(talent => !talent.Ignore);
         }
-
-
+        
         private Culture GetCulture(Species species)
         {
             Culture culture;
@@ -320,20 +319,32 @@ namespace NPCGenerator.Util
             return rowJob.NoGeneration ? (Job)rowJob.Value : RandomFromList(Data.Jobs.Where(j => culture.DefaultJobs.Contains(j.ReferenceName)));
         }
 
-        private string GetName(bool isFemale, Culture culture)
+        private string GetName(Gender.NamingList naming, Culture culture)
         {
-            string firstName,
-                        lastName;
+            string firstName = string.Empty, lastName;
 
             if (rowFirstName.NoGeneration)
                 firstName = rowFirstName.Value;
             else
             {
-                var format = isFemale ? culture.Names.FormatFemale : culture.Names.FormatMale;
-                if (string.IsNullOrEmpty(format))
-                    firstName = isFemale ? culture.Names.Female[rnd.Next(0, culture.Names.Female.Length - 1)]
-                                            : culture.Names.Male[rnd.Next(0, culture.Names.Male.Length - 1)];
-                else
+                string format;
+                switch (naming)
+                {
+                case Gender.NamingList.Male:
+                    format = culture.Names.FormatMale;
+                    if (string.IsNullOrEmpty(format))
+                        firstName = RandomFromList(culture.Names.Male);
+                    break;
+                case Gender.NamingList.Female:
+                    format = culture.Names.FormatFemale;
+                    if (string.IsNullOrEmpty(format))
+                        firstName = RandomFromList(culture.Names.Female);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+                }
+
+                if (!string.IsNullOrEmpty(format))
                     firstName = ResolveNameFormat(format, culture.Names);
             }
 
@@ -341,11 +352,21 @@ namespace NPCGenerator.Util
                 lastName = rowLastName.Value;
             else
             {
-                var format = isFemale ? culture.Names.FormatFemaleLast : culture.Names.FormatMaleLast;
+                string format;
+                switch (naming)
+                {
+                case Gender.NamingList.Male:
+                    format = culture.Names.FormatMaleLast;
+                    break;
+                case Gender.NamingList.Female:
+                    format = culture.Names.FormatFemaleLast;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+                }
+
                 if (string.IsNullOrEmpty(format))
-                    lastName = culture.Names.Last.Any() ? 
-                                           culture.Names.Last[rnd.Next(0, culture.Names.Last.Length - 1)]
-                                           : string.Empty;
+                    lastName = culture.Names.Last.Any() ? RandomFromList(culture.Names.Last) : string.Empty;
                 else
                     lastName = ResolveNameFormat(format, culture.Names);
             }

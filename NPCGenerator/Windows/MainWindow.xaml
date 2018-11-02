@@ -45,7 +45,7 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnGen" Content="Generate" VerticalAlignment="Bottom" Height="20" Click="Button_Click" Margin="0,0,0,21"/>
+        <Button x:Name="btnGen" Content="Generate" VerticalAlignment="Bottom" Height="20" Click="Generate_Click" Margin="0,0,0,21"/>
         <Menu Height="19" VerticalAlignment="Top">
             <MenuItem Header="_Einstellungen">
                 <MenuItem Header="_Talentgewichtung prüfen" Click="CheckTalentWeight_Click"/>

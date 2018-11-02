@@ -14,9 +14,14 @@
     "fett"
   ],
   "gender": [
-    "männlich",
-    "weiblich",
-    "neutral"
+    {
+      "id": "männlich",
+      "namelist": "Male"
+    },
+    {
+      "id": "weiblich",
+      "namelist": "Female"
+    }
   ],
   "levels": [
     {

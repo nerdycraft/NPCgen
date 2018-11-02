@@ -101,10 +101,12 @@
     </Compile>
     <Compile Include="Controls\NumericTextBox.cs" />
     <Compile Include="Model\DataRow.cs" />
+    <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\JsonCulture.cs" />
     <Compile Include="Model\JsonDataContainer.cs" />
     <Compile Include="Model\JsonJob.cs" />
     <Compile Include="Model\JsonSpecies.cs" />
+    <Compile Include="Model\Level.cs" />
     <Compile Include="Model\Talent.cs" />
     <Compile Include="Util\Controller.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />

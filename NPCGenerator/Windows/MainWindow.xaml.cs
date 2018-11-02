@@ -1,5 +1,6 @@
 ﻿using NPCGenerator.Util;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace NPCGenerator.Windows
 {
@@ -23,9 +24,11 @@ namespace NPCGenerator.Windows
 
         private void NoGenCheckChange(object sender, RoutedEventArgs e)
         {
-            var cb = e.Source as System.Windows.Controls.CheckBox;
-            var row = dgInput.Items.IndexOf( cb.DataContext );
-            dgInput.GetCell( row, 1 ).IsEnabled = cb.IsChecked.HasValue && cb.IsChecked.Value;
+            if (e.Source is CheckBox cb)
+            {
+                var row = dgInput.Items.IndexOf(cb.DataContext);
+                dgInput.GetCell(row, 1).IsEnabled = cb.IsChecked.HasValue && cb.IsChecked.Value;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -35,12 +38,12 @@ namespace NPCGenerator.Windows
             MaxHeight = ActualHeight;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Generate_Click(object sender, RoutedEventArgs e)
         {
-            if ( !controller.HasJsonErrors )
+            if (!controller.HasJsonErrors)
                 controller.Generate();
             else
-                MessageBox.Show( "Fix and reload json!" );
+                MessageBox.Show("Fix and reload json!");
         }
 
         private void ReloadJson_Click(object sender, RoutedEventArgs e)
@@ -51,20 +54,20 @@ namespace NPCGenerator.Windows
 
                 System.Media.SystemSounds.Beep.Play();
             }
-            catch ( JsonLoadException ex )
+            catch (JsonLoadException ex)
             {
-                MessageBox.Show( ex.Message );
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void CheckTalentWeight_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show( controller.CheckJobTalentWeight() );
+            MessageBox.Show(controller.CheckJobTalentWeight());
         }
 
         private void TalentIgnore_Click(object sender, RoutedEventArgs e)
         {
-            new TalentSetting( controller.Data ).ShowDialog();
+            new TalentSetting(controller.Data).ShowDialog();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -75,7 +78,7 @@ namespace NPCGenerator.Windows
         private void NPCOverview_Click(object sender, RoutedEventArgs e)
         {
             vm.Data = controller.Data;
-            new NpcOverview( vm ).ShowDialog();
+            new NpcOverview(vm).ShowDialog();
         }
     }
 }
