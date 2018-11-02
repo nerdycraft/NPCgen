@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:NPCGenerator.Controls"
         mc:Ignorable="d"
-        Title="NpcOverview" Height="532.312" Width="815" MinHeight="500" MinWidth="815" WindowStyle="ToolWindow">
+        Title="NpcOverview" Height="530" Width="815" MinHeight="500" MinWidth="815" WindowStyle="ToolWindow">
     <Window.Resources>
         <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
     </Window.Resources>
@@ -17,18 +17,17 @@
         </Grid.ColumnDefinitions>
         <controls:NpcTreeView x:Name="tree" AllowDrop="True" Margin="0,0,34,0">
             <TreeView.ItemContainerStyle>
-                <Style TargetType="{x:Type TreeViewItem}">
-                </Style>
+                <Style TargetType="{x:Type TreeViewItem}" />
             </TreeView.ItemContainerStyle>
         </controls:NpcTreeView>
-        <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,5,0" VerticalAlignment="Top" Height="24" Width="24" RenderTransformOrigin="-1.384,1.463" Click="NewFolder_Click">
+        <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,5,0" VerticalAlignment="Top" Height="24" Width="24" Click="NewFolder_Click">
             <Image Source="/NPCGenerator;component/Resources/new-folder.png" />
         </Button>
-        <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,39,5,0" VerticalAlignment="Top" Height="24" Width="24" RenderTransformOrigin="-1.384,1.463" Click="DeleteFile_Click">
+        <Button Grid.Column="0" HorizontalAlignment="Right" Margin="0,39,5,0" VerticalAlignment="Top" Height="24" Width="24" Click="DeleteFile_Click">
             <Image Source="/NPCGenerator;component/Resources/delete-file.png" />
         </Button>
         <GridSplitter Style="{StaticResource GridSplitterVerticalGripStyle}" Grid.Column="1"  HorizontalAlignment="Stretch"/>
-        <TabControl Name="tabs" Grid.Column="2" Margin="5,0,0,0" ItemsSource="{Binding Path=NPCs, NotifyOnSourceUpdated=True}" IsSynchronizedWithCurrentItem="true">
+        <TabControl Name="Tabs" Grid.Column="2" Margin="5,0,0,0" ItemsSource="{Binding Path=NPCs, NotifyOnSourceUpdated=True}" IsSynchronizedWithCurrentItem="true">
             <TabControl.Template>
                 <ControlTemplate TargetType="TabControl">
                     <Grid>

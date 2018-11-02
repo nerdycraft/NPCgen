@@ -3,87 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:Controls="clr-namespace:NPCGenerator.Controls" x:Class="NPCGenerator.Windows.NpcDetails"
+        xmlns:controls="clr-namespace:NPCGenerator.Controls" x:Class="NPCGenerator.Windows.NpcDetails"
         mc:Ignorable="d"
-        Height="471.309" Width="538.996">
+        Height="480" Width="540" ResizeMode="NoResize" >
     <Window.Resources>
         <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
     </Window.Resources>
     <Grid Margin="0,0,2,0">
-        <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="205" Margin="57,14,0,0"/>
-        <CheckBox Content="Editierbar" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="4.793,3.381" Margin="315,16,0,0"/>
-
-        <Controls:LabelTextBox Label="Größe" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="59" Margin="15,110,0,0"/>
-        <Controls:LabelTextBox Label="Alter" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="43" Margin="79,110,0,0"/>
-        <Controls:LabelTextBox Label="Geschlecht" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="87" Margin="127,110,0,0"/>
-        <Controls:LabelTextBox Label="Charakter" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="196" Margin="219,110,0,0"/>
-        <Controls:LabelTextBox Label="Spezies" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="104" Margin="18,178,0,0"/>
-        <Controls:LabelTextBox Label="Kultur" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="135" Margin="127,178,0,0"/>
-        <Controls:LabelTextBox Label="Beruf" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="143" Margin="272,178,0,0"/>
-        <Controls:LabelTextBox Label="MU" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="41,49,0,0"/>
-        <Controls:LabelTextBox Label="KL" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="76,49,0,0"/>
-        <Controls:LabelTextBox Label="IN" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="111,49,0,0"/>
-        <Controls:LabelTextBox Label="CH" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="146,49,0,0"/>
-        <Controls:LabelTextBox Label="FF" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="181,49,0,0"/>
-        <Controls:LabelTextBox Label="GE" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="216,49,0,0"/>
-        <Controls:LabelTextBox Label="KO" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="251,49,0,0"/>
-        <Controls:LabelTextBox Label="KK" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="286,49,0,0"/>
-        <Controls:LabelTextBox Label="LP" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="447,49,0,0"/>
-        <Controls:LabelTextBox Label="GS" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="482,49,0,0"/>
-        <Controls:LabelTextBox Label="AW" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="447,105,0,0"/>
-        <Controls:LabelTextBox Label="INI" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="482,105,0,0"/>
-        <Controls:LabelTextBox Label="SK" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="447,161,0,0"/>
-        <Controls:LabelTextBox Label="ZK" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="30" Margin="482,161,0,0"/>
-
-        <DataGrid HorizontalAlignment="Left" Height="191" VerticalAlignment="Top" Width="385" Margin="18,239,0,0">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Talent" MinWidth="200" CellStyle="{StaticResource DataGridContentCellCentering}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="FW" MinWidth="50" MaxWidth="50" CellStyle="{StaticResource DataGridContentCellCentering}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBox Text="{Binding Value}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Attr" MinWidth="50" MaxWidth="60" CellStyle="{StaticResource CellStyle}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Format}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-
-                <DataGridTemplateColumn Header="Roll" MinWidth="50" MaxWidth="50" CellStyle="{StaticResource CellStyle}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button>
-                                <Image Source="/NPCGenerator;component/Resources/dice.jpg"  Width="20" Height="20"/>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <TextBlock HorizontalAlignment="Left" Text="TextBlock" VerticalAlignment="Top" Margin="415,244,0,0" Height="18" Width="104"/>
-        <TextBlock HorizontalAlignment="Left" Text="TextBlock" VerticalAlignment="Top" Margin="415,267,0,0" Height="18" Width="26" RenderTransformOrigin="0.397,1.556"/>
-        <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="19" Margin="446,267,0,0" RenderTransformOrigin="-0.316,-0.717"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="470,267,0,0" Height="18" Width="26" RenderTransformOrigin="2.603,0.556"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="416,292,0,0" Height="18" Width="26" RenderTransformOrigin="0.397,1.556"/>
-        <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="19" Margin="447,292,0,0" RenderTransformOrigin="-0.316,-0.717"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="471,292,0,0" Height="18" Width="26" RenderTransformOrigin="2.603,0.556"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="415,317,0,0" Height="18" Width="26" RenderTransformOrigin="0.397,1.556"/>
-        <Image HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="19" Margin="446,317,0,0" RenderTransformOrigin="-0.316,-0.717"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="470,317,0,0" Height="18" Width="26" RenderTransformOrigin="2.603,0.556"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Margin="415,340,0,0" Height="18" Width="81" RenderTransformOrigin="0.397,1.556"/>
-        <Button Content="Export (NYI)" HorizontalAlignment="Left" VerticalAlignment="Top" Width="82" Margin="414,13,0,0"/>
+        <controls:NpcDetails x:Name="Details"/>
     </Grid>
 </Window>

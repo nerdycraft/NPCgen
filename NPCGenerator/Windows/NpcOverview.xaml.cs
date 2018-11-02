@@ -1,9 +1,14 @@
-﻿using NPCGenerator.Controls;
+﻿using System;
+
+using NPCGenerator.Controls;
 using NPCGenerator.Util;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+
+using NPCGenerator.Model;
+
 // ReSharper disable StringLiteralTypo
 
 namespace NPCGenerator.Windows
@@ -74,23 +79,33 @@ namespace NPCGenerator.Windows
 
         private void CreateFolderNode(ItemsControl item, string folderName)
         {
-            var di = item.Tag as DirectoryInfo;
-
-            if (!vm.IsValidFolderName(di, folderName))
-                MessageBox.Show("Pfad ungültig oder so.");
-            else
+            if (item.Tag is DirectoryInfo di)
             {
-                var newDi = Directory.CreateDirectory(Path.Combine(di.FullName, folderName));
+                if (!vm.IsValidFolderName(di, folderName))
+                    MessageBox.Show("Pfad ungültig oder so.");
+                else
+                {
+                    var newDi = Directory.CreateDirectory(Path.Combine(di.FullName, folderName));
 
-                item.Items.Add(new NpcTreeViewItem(newDi, "*.json"));
+                    item.Items.Add(new NpcTreeViewItem(newDi, "*.json"));
+                }
             }
         }
 
+        private DateTime lastClick = DateTime.Now;
         private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Middle)
+                vm.RemoveNpc(Tabs.SelectedItem);
+            else if (e.ChangedButton == MouseButton.Left)
             {
-                vm.RemoveNpc(tabs.SelectedItem);
+                if (DateTime.Now.Subtract(lastClick).TotalMilliseconds <= 500)
+                {
+                    new NpcDetails(Tabs.SelectedItem as NPC).Show();
+                    vm.RemoveNpc(Tabs.SelectedItem);
+                }
+
+                lastClick = DateTime.Now;
             }
         }
     }
