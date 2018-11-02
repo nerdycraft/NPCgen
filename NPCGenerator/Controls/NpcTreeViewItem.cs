@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace NPCGenerator.Controls
 {
@@ -17,6 +19,7 @@ namespace NPCGenerator.Controls
 
             Header = di.Name;
             Tag = di;
+            Icon = new BitmapImage(new Uri(@"data\img\dwarf.png", UriKind.Relative));
             filter = fileFilter;
             AddDummy();
 
@@ -39,6 +42,8 @@ namespace NPCGenerator.Controls
         }
 
         public bool HasDummy => HasItems && Items.OfType<DummyTreeViewItem>().Any();
+
+        public ImageSource Icon { get; private set; }
 
         private void RemoveDummy()
         {

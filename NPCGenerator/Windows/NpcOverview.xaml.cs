@@ -29,9 +29,9 @@ namespace NPCGenerator.Windows
             DataContext = this.vm;
 
             var root = new NpcTreeViewItem(new DirectoryInfo(vm.NpcPath), "*.json");
-            tree.Items.Add(root);
+            Tree.Items.Add(root);
             root.IsExpanded = true;
-            tree.ItemDoubleClicked += Tree_ItemDoubleClicked;
+            Tree.ItemDoubleClicked += Tree_ItemDoubleClicked;
         }
 
         private void Tree_ItemDoubleClicked(object sender, NpcTreeViewItemDoubleClickedEventArgs e)
@@ -42,13 +42,13 @@ namespace NPCGenerator.Windows
 
         private void NewFolder_Click(object sender, RoutedEventArgs e)
         {
-            if (tree.SelectedItem == null)
+            if (Tree.SelectedItem == null)
                 return;
 
             var input = new InputDialog("Ordnernamen eingeben :)");
             if (input.ShowDialog() != true) return;
 
-            var item = (NpcTreeViewItem)tree.SelectedItem;
+            var item = (NpcTreeViewItem)Tree.SelectedItem;
             if (!item.IsDirectoryNode)
                 item = (NpcTreeViewItem)item.Parent;
 
@@ -57,13 +57,13 @@ namespace NPCGenerator.Windows
 
         private void DeleteFile_Click(object sender, RoutedEventArgs e)
         {
-            if (tree.SelectedItem == null)
+            if (Tree.SelectedItem == null)
                 return;
 
             if (MessageBox.Show("Wirklich löschen?", ":o", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
                 return;
 
-            var item = (NpcTreeViewItem)tree.SelectedItem;
+            var item = (NpcTreeViewItem)Tree.SelectedItem;
 
             if (item.IsDirectoryNode)
             {
