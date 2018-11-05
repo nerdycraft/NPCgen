@@ -1,0 +1,54 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:controls="clr-namespace:NPCGenerator.Controls"
+        xmlns:util="clr-namespace:NPCGenerator.Util"
+        x:Class="NPCGenerator.Windows.JobDesigner"
+        mc:Ignorable="d"
+        Title="JobDesigner" Height="450" Width="578" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
+    </Window.Resources>
+    <Grid>
+        <!-- ReSharper disable MarkupAttributeTypo -->
+        <ListBox x:Name="List" ItemsSource="{Binding Path=(util:JobDesignerVM.Jobs)}" IsSynchronizedWithCurrentItem="true" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="200" SelectionMode="Single"/>
+        <Button Content="Hinzufügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,395,0,0" Click="OnAddJobClick"/>
+        <Button Content="Löschen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="115,395,0,0"/>
+
+        <Grid DataContext="{Binding SelectedItem, ElementName=List}">
+            <controls:LabelTextBox Label="Basisname" TextBox="{Binding ReferenceName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNew}" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="174" Margin="205,10,0,0"/>
+            <controls:LabelTextBox Label="Männlicher Name" TextBox="{Binding Name}" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="174" Margin="205,70,0,0"/>
+            <controls:LabelTextBox Label="Weiblicher Name" TextBox="{Binding FemName}" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="174" Margin="385,70,0,0"/>
+            <Button Content="Speichern" HorizontalAlignment="Left" Margin="483,13,0,0" VerticalAlignment="Top" Width="75" Click="OnSaveJobClicked"/>
+            <GroupBox Header="Attribut Gewichtung" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="353" Margin="205,125,0,0">
+                <Grid>
+                    <controls:LabelTextBox Label="MU" TextBox="{Binding Statweight.Mu}" Style="{StaticResource CenterBox}" Margin="28,10,0,0"/>
+                    <controls:LabelTextBox Label="KL" TextBox="{Binding Statweight.Kl}" Style="{StaticResource CenterBox}" Margin="63,10,0,0"/>
+                    <controls:LabelTextBox Label="IN" TextBox="{Binding Statweight.In}" Style="{StaticResource CenterBox}" Margin="98,10,0,0"/>
+                    <controls:LabelTextBox Label="CH" TextBox="{Binding Statweight.Ch}" Style="{StaticResource CenterBox}" Margin="133,10,0,0"/>
+                    <controls:LabelTextBox Label="FF" TextBox="{Binding Statweight.Ff}" Style="{StaticResource CenterBox}" Margin="168,10,0,0"/>
+                    <controls:LabelTextBox Label="GE" TextBox="{Binding Statweight.Ge}" Style="{StaticResource CenterBox}" Margin="203,10,0,0"/>
+                    <controls:LabelTextBox Label="KO" TextBox="{Binding Statweight.Ko}" Style="{StaticResource CenterBox}" Margin="238,10,0,0"/>
+                    <controls:LabelTextBox Label="KK" TextBox="{Binding Statweight.Kk}" Style="{StaticResource CenterBox}" Margin="273,10,0,0"/>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Talent Gewichtung" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="353" Margin="205,220,0,0">
+                <Grid>
+                    <ComboBox Margin="10,10,90,138" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.(util:JobDesignerVM.Talents)}"/>
+                    <Button Content="Hinzufügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="255,10,0,0"/>
+                    <ListView HorizontalAlignment="Left" Height="122" Margin="10,35,0,0" VerticalAlignment="Top" Width="320">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <!-- ReSharper restore MarkupAttributeTypo -->
+    </Grid>
+</Window>

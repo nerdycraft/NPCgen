@@ -21,7 +21,7 @@ namespace NPCGenerator.Util
 
         private const string SPECIES_FOLDER = @"data\species";
         private const string CULTURES_FOLDER = @"data\cultures";
-        private const string JOB_FOLDER = @"data\jobs";
+        public const string JOB_FOLDER = @"data\jobs";
 
         public const string OUT_PATH = @"output\{0}.json";
 
@@ -158,7 +158,7 @@ namespace NPCGenerator.Util
 
         private Attributes CalculateAttr(Level level, Statweight weight, AttrMod mod)
         {
-            if (weight.Kk != 100)
+            if (weight.CumKk != 100)
                 throw new GenerationException("Ich habe gesagt es muss 100 ergeben!!!!");
 
             var attr = new Attributes();
@@ -169,21 +169,21 @@ namespace NPCGenerator.Util
             while (pointsSpent < level.Attr)
             {
                 var w = rnd.Next(1, 100);
-                if (w <= weight.Mu && attr.Mu < GetMaxAttr("MU", level.MaxAttr, mod, rndAttr))
+                if (w <= weight.CumMu && attr.Mu < GetMaxAttr("MU", level.MaxAttr, mod, rndAttr))
                     attr.Mu++;
-                else if (w <= weight.Kl && attr.Kl < GetMaxAttr("KL", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumKl && attr.Kl < GetMaxAttr("KL", level.MaxAttr, mod, rndAttr))
                     attr.Kl++;
-                else if (w <= weight.In && attr.In < GetMaxAttr("IN", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumIn && attr.In < GetMaxAttr("IN", level.MaxAttr, mod, rndAttr))
                     attr.In++;
-                else if (w <= weight.Ch && attr.Ch < GetMaxAttr("CH", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumCh && attr.Ch < GetMaxAttr("CH", level.MaxAttr, mod, rndAttr))
                     attr.Ch++;
-                else if (w <= weight.Ff && attr.Ff < GetMaxAttr("FF", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumFf && attr.Ff < GetMaxAttr("FF", level.MaxAttr, mod, rndAttr))
                     attr.Ff++;
-                else if (w <= weight.Ge && attr.Ge < GetMaxAttr("GE", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumGe && attr.Ge < GetMaxAttr("GE", level.MaxAttr, mod, rndAttr))
                     attr.Ge++;
-                else if (w <= weight.Ko && attr.Ko < GetMaxAttr("KO", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumKo && attr.Ko < GetMaxAttr("KO", level.MaxAttr, mod, rndAttr))
                     attr.Ko++;
-                else if (w <= weight.Kk && attr.Kk < GetMaxAttr("KK", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumKk && attr.Kk < GetMaxAttr("KK", level.MaxAttr, mod, rndAttr))
                     attr.Kk++;
                 else
                     continue;

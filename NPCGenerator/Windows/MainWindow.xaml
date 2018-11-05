@@ -50,6 +50,7 @@
             <MenuItem Header="_Einstellungen">
                 <MenuItem Header="_Talentgewichtung prüfen" Click="CheckTalentWeight_Click"/>
                 <MenuItem Header="_Reload Json" Click="ReloadJson_Click"/>
+                <MenuItem Header="_Job Designer" Click="OnOpenJobDesigner"/>
                 <MenuItem Header="_Talente ignorieren" Click="TalentIgnore_Click"/>
             </MenuItem>
             <MenuItem Header="_NSC Übersicht" Click="NPCOverview_Click" />

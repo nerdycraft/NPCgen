@@ -78,5 +78,10 @@ namespace NPCGenerator.Windows
         {
             new NpcOverview().ShowDialog();
         }
+
+        private void OnOpenJobDesigner(object sender, RoutedEventArgs e)
+        {
+            new JobDesigner(controller.Data.Jobs, controller.Data.Talents).ShowDialog();
+        }
     }
 }

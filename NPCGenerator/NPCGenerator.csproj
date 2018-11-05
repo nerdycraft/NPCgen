@@ -102,10 +102,10 @@
     <Compile Include="Controls\NumericTextBox.cs" />
     <Compile Include="Model\DataRow.cs" />
     <Compile Include="Model\Gender.cs" />
-    <Compile Include="Model\JsonCulture.cs" />
+    <Compile Include="Model\Culture.cs" />
     <Compile Include="Model\JsonDataContainer.cs" />
-    <Compile Include="Model\JsonJob.cs" />
-    <Compile Include="Model\JsonSpecies.cs" />
+    <Compile Include="Model\Job.cs" />
+    <Compile Include="Model\Species.cs" />
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\Talent.cs" />
     <Compile Include="Util\Controller.cs" />
@@ -113,11 +113,15 @@
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
     <Compile Include="Util\EventArgs.cs" />
     <Compile Include="Util\Exceptions.cs" />
+    <Compile Include="Util\JobDesignerVM.cs" />
     <Compile Include="Util\NpcOverviewVM.cs" />
     <Compile Include="Controls\NpcTreeView.cs" />
     <Compile Include="Controls\NpcTreeViewItem.cs" />
     <Compile Include="Windows\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\JobDesigner.xaml.cs">
+      <DependentUpon>JobDesigner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\NpcDetails.xaml.cs">
       <DependentUpon>NpcDetails.xaml</DependentUpon>
@@ -137,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\RessourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\JobDesigner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
