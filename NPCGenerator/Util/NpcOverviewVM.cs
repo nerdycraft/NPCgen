@@ -16,8 +16,6 @@ namespace NPCGenerator.Util
         public string NpcPath => "output";
         public IEnumerable<NPC> NPCs => npcs;
 
-        public JsonDataContainer Data { get; set; }
-
         public void LoadNpcFromFile(string path)
         {
             var npc = JsonConvert.DeserializeObject<NPC>(File.ReadAllText(path));

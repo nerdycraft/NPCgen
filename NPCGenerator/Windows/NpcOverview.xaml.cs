@@ -21,11 +21,10 @@ namespace NPCGenerator.Windows
     /// </summary>
     public partial class NpcOverview
     {
-        private readonly NpcOverviewVM vm;
-        public NpcOverview(NpcOverviewVM vm)
+        private readonly NpcOverviewVM vm = new NpcOverviewVM();
+        public NpcOverview()
         {
             InitializeComponent();
-            this.vm = vm;
             DataContext = this.vm;
 
             var root = new NpcTreeViewItem(new DirectoryInfo(vm.NpcPath), "*.json");

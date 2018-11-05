@@ -12,7 +12,6 @@ namespace NPCGenerator.Windows
     public partial class MainWindow
     {
         private readonly Controller controller;
-        private readonly NpcOverviewVM vm = new NpcOverviewVM();
         public MainWindow(Controller trolly)
         {
             InitializeComponent();
@@ -77,8 +76,7 @@ namespace NPCGenerator.Windows
 
         private void NPCOverview_Click(object sender, RoutedEventArgs e)
         {
-            vm.Data = controller.Data;
-            new NpcOverview(vm).ShowDialog();
+            new NpcOverview().ShowDialog();
         }
     }
 }
