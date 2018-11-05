@@ -9,7 +9,7 @@ namespace NPCGenerator.Model
         public string Name { get; set; }
 
         [JsonProperty( "parentspecies" ), JsonRequired]
-        public int[] DefaultSpecies { get; set; }
+        public string[] DefaultSpecies { get; set; }
 
         [JsonProperty( "language"), JsonRequired]
         public Language Language { get; set; }

@@ -1,6 +1,6 @@
 {
   "name": "Mittelreich",
-  "parentspecies": [ 1, 2 ],
+  "parentspecies": [ 1, "halfelf" ],
   "language": {
     "name": "Garethi",
     "dialect": "",

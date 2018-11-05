@@ -1,6 +1,6 @@
 {
   "name": "Brillantzwerg",
-  "parentspecies": [ 4 ],
+  "parentspecies": [ "dwarf" ],
   "language": {
     "name": "Rogolan",
     "dialect": "Brillantzwergisch",

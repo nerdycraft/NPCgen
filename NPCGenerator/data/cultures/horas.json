@@ -1,6 +1,6 @@
 {
   "name": "Horasier",
-  "parentspecies": [ 1, 2 ],
+  "parentspecies": [ "human", "halfelf" ],
   "language": {
     "name": "Gerathi",
     "dialect": "Horathi",

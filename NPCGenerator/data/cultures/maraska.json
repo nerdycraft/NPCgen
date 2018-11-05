@@ -1,6 +1,6 @@
 {
   "name": "Maraskaner",
-  "parentspecies": [ 1 ],
+  "parentspecies": [ "human" ],
   "language": {
     "name": "Garethi",
     "dialect": "Maraskani",

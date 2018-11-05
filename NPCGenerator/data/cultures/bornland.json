@@ -1,6 +1,6 @@
 {
   "name": "Bornländer",
-  "parentspecies": [ 1, 2 ],
+  "parentspecies": [ "human", "halfelf" ],
   "language": {
     "name": "Garethi",
     "dialect": "Bornländisch",

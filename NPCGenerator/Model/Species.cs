@@ -5,7 +5,7 @@ namespace NPCGenerator.Model
     public class Species
     {
         [JsonProperty("id"), JsonRequired]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty( "name" ), JsonRequired]
         public string Name { get; set; }

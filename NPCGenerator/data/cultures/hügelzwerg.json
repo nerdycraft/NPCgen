@@ -1,6 +1,6 @@
 {
   "name": "Hügelzwerg",
-  "parentspecies": [ 4 ],
+  "parentspecies": [ "dwarf" ],
   "language": {
     "name": "Rogolan",
     "dialect": "Hügelzwergisch",

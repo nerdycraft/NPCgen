@@ -1,6 +1,6 @@
 {
   "name": "Erzzwerg",
-  "parentspecies": [ 4 ],
+  "parentspecies": [ "dwarf" ],
   "language": {
     "name": "Rogolan",
     "dialect": "erzzwergisch",
