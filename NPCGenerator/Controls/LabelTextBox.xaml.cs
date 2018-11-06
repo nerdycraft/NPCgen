@@ -13,36 +13,32 @@ namespace NPCGenerator.Controls
         public LabelTextBox()
         {
             InitializeComponent();
+            LayoutRoot.DataContext = this;
         }
-
-        private string localLabel = string.Empty;
 
         public string Label
         {
-            get => localLabel;
-            set
-            {
-                localLabel = value;
-                BaseLabel.Content = value;
-            }
+            get => (string)GetValue(LabelProperty);
+            set => SetValue(LabelProperty, value);
         }
 
-        public string TextBox
+        public static readonly DependencyProperty LabelProperty =
+                    DependencyProperty.Register("Label",
+                                                typeof(string),
+                                                typeof(LabelTextBox),
+                                                new FrameworkPropertyMetadata("Label"));
+
+        public string Text
         {
-            get => (string)GetValue(TextBoxProperty);
-            set => SetValue(TextBoxProperty, value);
+            get => (string)GetValue(TextProperty);
+            set => SetValue(TextProperty, value);
         }
 
-        public static readonly DependencyProperty TextBoxProperty =
-             DependencyProperty.Register("TextBox",
+        public static readonly DependencyProperty TextProperty =
+             DependencyProperty.Register("Text",
                          typeof(string),
                          typeof(LabelTextBox),
-                         new FrameworkPropertyMetadata(string.Empty, OnTextBoxPropertyChanged));
-
-        private static void OnTextBoxPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            if (source is LabelTextBox control) control.BaseTextBox.Text = (string)e.NewValue;
-        }
+                         new FrameworkPropertyMetadata(string.Empty));
 
         public bool IsReadOnly
         {
@@ -55,12 +51,7 @@ namespace NPCGenerator.Controls
             DependencyProperty.Register("IsReadOnly",
                         typeof(bool),
                         typeof(LabelTextBox),
-                        new PropertyMetadata(false, OnIsReadOnlyPropertyChanged));
-
-        private static void OnIsReadOnlyPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            if (source is LabelTextBox control) control.BaseTextBox.IsReadOnly = (bool)e.NewValue;
-        }
+                        new PropertyMetadata(false));
 
         public HorizontalAlignment TextHorizontalAlignment
         {
@@ -73,12 +64,7 @@ namespace NPCGenerator.Controls
             DependencyProperty.Register("TextHorizontalAlignment",
                         typeof(HorizontalAlignment),
                         typeof(LabelTextBox),
-                        new PropertyMetadata(HorizontalAlignment.Left, OnTextHorizontalAlignmentPropertyChanged));
-
-        private static void OnTextHorizontalAlignmentPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            if (source is LabelTextBox control) control.BaseTextBox.HorizontalContentAlignment = (HorizontalAlignment)e.NewValue;
-        }
+                        new PropertyMetadata(HorizontalAlignment.Left));
 
 
         public VerticalAlignment TextVerticalAlignment
@@ -92,11 +78,6 @@ namespace NPCGenerator.Controls
             DependencyProperty.Register("TextVerticalAlignment",
                         typeof(VerticalAlignment),
                         typeof(LabelTextBox),
-                        new PropertyMetadata(VerticalAlignment.Top, OnTextVerticalAlignmentPropertyChanged));
-
-        private static void OnTextVerticalAlignmentPropertyChanged(DependencyObject source, DependencyPropertyChangedEventArgs e)
-        {
-            if (source is LabelTextBox control) control.BaseTextBox.VerticalContentAlignment = (VerticalAlignment)e.NewValue;
-        }
+                        new PropertyMetadata(VerticalAlignment.Top));
     }
 }
