@@ -10,7 +10,7 @@ namespace NPCGenerator.Windows
     /// </summary>
     public partial class TalentSetting
     {
-        public TalentSetting(JsonDataContainer data)
+        public TalentSetting(DataContainer data)
         {
             InitializeComponent();
             DataContext = data;

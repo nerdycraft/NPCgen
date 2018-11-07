@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace NPCGenerator.Model
 {
-    public class JsonDataContainer
+    public class DataContainer
     {
         [JsonIgnore]
         public IEnumerable<Culture> Cultures { get; set; }

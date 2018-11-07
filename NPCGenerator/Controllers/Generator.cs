@@ -14,7 +14,7 @@ namespace NPCGenerator.Controllers
         private const int BUILD_VERSION = 1;
 
         private readonly Random rnd = new Random();
-        private readonly JsonDataContainer data;
+        private readonly DataContainer data;
 
         public DataRow RowXp { get; set; }
         public DataRow RowFirstName { get; set; }
@@ -30,7 +30,7 @@ namespace NPCGenerator.Controllers
 
         public event EventHandler<string> UpdateStatus;
 
-        public Generator(JsonDataContainer data) { this.data = data; }
+        public Generator(DataContainer data) { this.data = data; }
         public NPC Generate()
         {
             OnUpdateStatus("Erstelle NPC!");

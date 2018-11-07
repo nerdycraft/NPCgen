@@ -13,9 +13,9 @@ namespace NPCGenerator.Controllers
 {
     public class JobDesignerController
     {
-        public JsonDataContainer Data { get; }
+        public DataContainer Data { get; }
 
-        public JobDesignerController(JsonDataContainer data) { Data = data; }
+        public JobDesignerController(DataContainer data) { Data = data; }
 
         public void Run()
         {
