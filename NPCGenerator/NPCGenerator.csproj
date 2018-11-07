@@ -93,6 +93,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\JobDesignerController.cs" />
+    <Compile Include="Controllers\Generator.cs" />
     <Compile Include="Controls\LabelTextBox.xaml.cs">
       <DependentUpon>LabelTextBox.xaml</DependentUpon>
     </Compile>
@@ -112,12 +114,13 @@
     <Compile Include="Util\Controller.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
-    <Compile Include="Util\EventArgs.cs" />
     <Compile Include="Util\Exceptions.cs" />
     <Compile Include="Util\JobDesignerVM.cs" />
+    <Compile Include="Util\MainVM.cs" />
     <Compile Include="Util\NpcOverviewVM.cs" />
     <Compile Include="Controls\NpcTreeView.cs" />
     <Compile Include="Controls\NpcTreeViewItem.cs" />
+    <Compile Include="Util\References.cs" />
     <Compile Include="Windows\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>

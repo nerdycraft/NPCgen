@@ -2,81 +2,72 @@
 
 using NPCGenerator.Model;
 
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
-// ReSharper disable PossibleMultipleEnumeration
+using NPCGenerator.Controllers;
+using NPCGenerator.Windows;
 
 namespace NPCGenerator.Util
 {
-    public class Controller : INotifyPropertyChanged
+    public class Controller
     {
-        private const int BUILD_VERSION = 1;
-
-        private const string DATA_FILE = @"data\general.json";
-
-        private const string SPECIES_FOLDER = @"data\species";
-        private const string CULTURES_FOLDER = @"data\cultures";
-        public const string JOB_FOLDER = @"data\jobs";
-
-        public const string OUT_PATH = @"output\{0}.json";
-
-        private readonly Random rnd = new Random();
+        private MainWindow wnd;
+        private MainVM vm;
 
         public JsonDataContainer Data { get; private set; }
 
         private readonly ObservableCollection<DataRow> dataRows = new ObservableCollection<DataRow>();
-        public IEnumerable<DataRow> DataRows => dataRows;
 
-        public bool HasJsonErrors { get; private set; }
-        private string statusText;
+        private Generator generator;
 
-        public string StatusText
+        public void Run()
         {
-            get => statusText;
-            set
+            if (wnd == null)
             {
-                statusText = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("StatusText"));
+                Directory.CreateDirectory(References.OUT_FOLDER);
+                vm = new MainVM(dataRows);
+                wnd = new MainWindow(vm);
+                wnd.OpenJobDesignerClicked += delegate { new JobDesignerController(Data).Run(); };
+                wnd.OpenNpcOverviewClicked += delegate { new NpcOverview().ShowDialog(); };
+                wnd.Closing += delegate { SaveSettings(); };
+                wnd.GenerateClicked += delegate { Generate(); };
+                wnd.ReloadJsonClicked += delegate { Init(); };
             }
+
+            wnd.Show();
+            Init();
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private DataRow rowXp,
-                    rowFirstName,
-                    rowLastName,
-                    rowAge,
-                    rowGender,
-                    rowSpecies,
-                    rowCulture,
-                    rowStature,
-                    rowSize,
-                    rowCharacter,
-                    rowJob;
-
-        public void Init()
+        private void Init()
         {
-            dataRows.Clear();
-            LoadJsonData();
+            try
+            {
+                dataRows.Clear();
+                LoadJsonData();
 
-            rowXp = CreateDataRow("Erfahrung", "ComboBox", true, Data.Levels);
-            rowFirstName = CreateDataRow("Vorname", "TextBox");
-            rowLastName = CreateDataRow("Nachname", "TextBox");
-            rowAge = CreateDataRow("Alter", "Numeric");
-            rowGender = CreateDataRow("Geschlecht", "ComboBox", false, Data.Gender);
-            rowSpecies = CreateDataRow("Spezies", "ComboBox", false, Data.Species);
-            rowCulture = CreateDataRow("Kultur", "ComboBox", false, Data.Cultures);
-            rowStature = CreateDataRow("Statur", "ComboBox", false, Data.Statures);
-            rowSize = CreateDataRow("Größe", "ComboBox", false, Data.Sizes);
-            rowCharacter = CreateDataRow("Charakter", "TextBox", true);
-            rowJob = CreateDataRow("Beruf", "ComboBox", true, Data.Jobs);
+                generator.RowXp = CreateDataRow("Erfahrung", "ComboBox", true, Data.Levels);
+                generator.RowFirstName = CreateDataRow("Vorname", "TextBox");
+                generator.RowLastName = CreateDataRow("Nachname", "TextBox");
+                generator.RowAge = CreateDataRow("Alter", "Numeric");
+                generator.RowGender = CreateDataRow("Geschlecht", "ComboBox", false, Data.Gender);
+                generator.RowSpecies = CreateDataRow("Spezies", "ComboBox", false, Data.Species);
+                generator.RowCulture = CreateDataRow("Kultur", "ComboBox", false, Data.Cultures);
+                generator.RowStature = CreateDataRow("Statur", "ComboBox", false, Data.Statures);
+                generator.RowSize = CreateDataRow("Größe", "ComboBox", false, Data.Sizes);
+                generator.RowCharacter = CreateDataRow("Charakter", "TextBox", true);
+                generator.RowJob = CreateDataRow("Beruf", "ComboBox", true, Data.Jobs);
 
-            StatusText = "Data successfully loaded.";
+                vm.StatusText = "Data successfully loaded.";
+
+                System.Media.SystemSounds.Beep.Play();
+            }
+            catch (JsonLoadException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private DataRow CreateDataRow(string displayName, string displayValueAs, bool noGen = false,
@@ -93,11 +84,12 @@ namespace NPCGenerator.Util
 
         private void LoadJsonData()
         {
-            Data = DeserializeHandler<JsonDataContainer>(DATA_FILE);
+            generator = null;
+            Data = DeserializeHandler<JsonDataContainer>(References.DATA_FILE);
 
-            Data.Species = Directory.GetFiles(SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>).ToList();
-            Data.Jobs = Directory.GetFiles(JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>).ToList();
-            Data.Cultures = Directory.GetFiles(CULTURES_FOLDER, "*.json").Select(DeserializeHandler<Culture>).ToList();
+            Data.Species = Directory.GetFiles(References.SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>).ToList();
+            Data.Jobs = new ObservableCollection<Job>(Directory.GetFiles(References.JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>));
+            Data.Cultures = Directory.GetFiles(References.CULTURE_FOLDER, "*.json").Select(DeserializeHandler<Culture>).ToList();
 
             foreach (var job in Data.Jobs)
                 foreach (var talent in job.Talents)
@@ -107,294 +99,40 @@ namespace NPCGenerator.Util
                     talent.Category = refTalent.Category;
                 }
 
-            HasJsonErrors = false;
+            CheckJobTalentWeight();
+
+            generator = new Generator(Data);
+            generator.UpdateStatus += (sender, s) => vm.StatusText = s;
         }
 
-        public string CheckJobTalentWeight()
+        public void CheckJobTalentWeight()
         {
             var output = new System.Text.StringBuilder();
             foreach (var job in Data.Jobs)
             {
                 var totalWeight = job.Talents.Sum(talent => talent.Weight);
-
-                output.AppendLine($"{job.Name} - Hat {totalWeight} von 800 Gewichtungspunkte verwendet");
+                if (totalWeight > 800)
+                    output.AppendLine($"{job.ReferenceName} - Hat {totalWeight} von 800 Gewichtungspunkte verwendet");
             }
 
-            return output.ToString();
+            if (output.Length > 0)
+                throw new JsonLoadException(output.ToString());
         }
 
         public void Generate()
         {
-            StatusText = "Erstelle NPC!";
-            var npc = new NPC
-                      {
-                          Build = BUILD_VERSION,
-
-                          Age = rowAge.NoGeneration ? rowAge.Value : (uint) rnd.Next(12, 100),
-                          Size = rowSize.NoGeneration ? rowSize.Value : RandomFromList(Data.Sizes),
-                          Stature = rowStature.NoGeneration ? rowStature.Value : RandomFromList(Data.Statures),
-                          Charakter = rowCharacter.Value
-                      };
-
-            Level level = rowXp.Value;
-            npc.Level = level.Name;
-
-            Gender gender = rowGender.NoGeneration ? rowGender.Value : RandomFromList(Data.Gender);
-            npc.Gender = gender.Id;
-
-            Species species = rowSpecies.NoGeneration ? rowSpecies.Value : RandomFromList(Data.Species);
-            npc.Species = species.Name;
-
-            var culture = GetCulture(species);
-            npc.Culture = culture.Name;
-
-            var job = GetJob(culture);
-            npc.Job = gender.NameList == Gender.NamingList.Female ? job.FemName : job.Name;
-
-            npc.Name = GetName(gender.NameList, culture);
-
-            npc.Talents = CalculateTalents(level, MergeBaseTalents(culture.Talents, job.Talents)).ToArray();
-
-            npc.Attributes = CalculateAttr(level, job.Statweight, species.Mod);
-            npc.Stats = CalculateStats(species, npc.Attributes);
-
-            File.WriteAllText(string.Format(OUT_PATH, npc), JsonConvert.SerializeObject(npc));
-            StatusText = $"NPC Erstellt: {npc}";
-        }
-
-        public void SaveSettings() { File.WriteAllText(DATA_FILE, JsonConvert.SerializeObject(Data)); }
-
-        private Attributes CalculateAttr(Level level, Statweight weight, AttrMod mod)
-        {
-            if (weight.CumKk != 100)
-                throw new GenerationException("Ich habe gesagt es muss 100 ergeben!!!!");
-
-            var attr = new Attributes();
-
-            var rndAttr = RandomAttrMod(mod);
-
-            var pointsSpent = 0;
-            while (pointsSpent < level.Attr)
+            if (generator == null)
             {
-                var w = rnd.Next(1, 100);
-                if (w <= weight.CumMu && attr.Mu < GetMaxAttr("MU", level.MaxAttr, mod, rndAttr))
-                    attr.Mu++;
-                else if (w <= weight.CumKl && attr.Kl < GetMaxAttr("KL", level.MaxAttr, mod, rndAttr))
-                    attr.Kl++;
-                else if (w <= weight.CumIn && attr.In < GetMaxAttr("IN", level.MaxAttr, mod, rndAttr))
-                    attr.In++;
-                else if (w <= weight.CumCh && attr.Ch < GetMaxAttr("CH", level.MaxAttr, mod, rndAttr))
-                    attr.Ch++;
-                else if (w <= weight.CumFf && attr.Ff < GetMaxAttr("FF", level.MaxAttr, mod, rndAttr))
-                    attr.Ff++;
-                else if (w <= weight.CumGe && attr.Ge < GetMaxAttr("GE", level.MaxAttr, mod, rndAttr))
-                    attr.Ge++;
-                else if (w <= weight.CumKo && attr.Ko < GetMaxAttr("KO", level.MaxAttr, mod, rndAttr))
-                    attr.Ko++;
-                else if (w <= weight.CumKk && attr.Kk < GetMaxAttr("KK", level.MaxAttr, mod, rndAttr))
-                    attr.Kk++;
-                else
-                    continue;
-                pointsSpent++;
+                MessageBox.Show("Fix and reload json!");
+                return;
             }
 
-            return attr;
+            var npc = generator.Generate();
+            var path = string.Format(References.OUT_FOLDER, npc);
+            File.WriteAllText(path, JsonConvert.SerializeObject(npc));
         }
 
-        private static Stats CalculateStats(Species species, Attributes attr)
-        {
-            var stats = new Stats
-                        {
-                            Lp = species.BaseHp + 2 * attr.Ko,
-                            Sk = species.BaseSk + (int) Math.Floor((attr.Mu + attr.Kl + attr.In) / 6d),
-                            Zk = species.BaseZk + (int) Math.Floor((attr.Ko + attr.Ko + attr.Kk) / 6d),
-                            Aw = attr.Ge / 2,
-                            Ini = (attr.Mu + attr.Ge) / 2,
-                            Gs = species.BaseGs
-                        };
-
-            return stats;
-        }
-
-        private IEnumerable<Talent> CalculateTalents(Level level, IEnumerable<Talent> talents)
-        {
-            var talentWeight = new Dictionary<int, Talent>();
-            var noWeightTalents = 0;
-            var totalWeight = 0;
-            foreach (var talent in talents)
-            {
-                if (talent.Weight > 0)
-                {
-                    totalWeight += talent.Weight;
-                    talentWeight.Add(totalWeight, talent);
-                }
-                else if (talent.Weight == 0)
-                    noWeightTalents++;
-            }
-
-            if (totalWeight > 800)
-                throw new GenerationException("Job Talent weight should be 800!");
-
-            var newTalentWeight = (int) Math.Ceiling((1000f - totalWeight) / noWeightTalents);
-            foreach (var talent in talents.Where(t => t.Weight == 0))
-            {
-                totalWeight += newTalentWeight;
-                talentWeight.Add(totalWeight, talent);
-            }
-
-            //punkte verteilen
-            var pointsSpent = 0;
-            while (pointsSpent < level.Fw)
-            {
-                var rndWeight = rnd.Next(1, totalWeight);
-                foreach (var kvp in talentWeight)
-                    if (kvp.Key >= rndWeight)
-                    {
-                        if (kvp.Value.Value >= level.MaxFw)
-                            break;
-
-                        kvp.Value.Value++;
-                        pointsSpent++;
-                    }
-            }
-
-            return talentWeight.Values;
-        }
-
-        private T RandomFromList<T>(IEnumerable<T> lst) { return lst.ElementAt(rnd.Next(0, lst.Count())); }
-
-        private static long GetMaxAttr(string attr, long defaultMax, AttrMod mod, string rndAttr)
-        {
-            if (mod.Rnd.HasValue && rndAttr == attr)
-                return defaultMax + 1;
-            if (mod.And != null && mod.And.Stats.Any(s => s == attr))
-                return defaultMax + mod.And.Value;
-            if (mod.Or != null && rndAttr == attr)
-                return defaultMax + mod.Or.Value;
-            return defaultMax;
-        }
-
-        private static string RandomAttrMod(AttrMod mod)
-        {
-            if (!mod.Rnd.HasValue)
-                return mod.Or.Stats[new Random().Next(0, 1)];
-            var attrLst = new[] { "MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK" };
-            return attrLst[new Random().Next(0, 7)];
-        }
-
-        private IEnumerable<Talent> MergeBaseTalents(IEnumerable<Talent> cultTalents, IEnumerable<Talent> jobTalents)
-        {
-            var talents = Data.Talents.ToList();
-
-            foreach (var talent in talents)
-            {
-                var tal = cultTalents.FirstOrDefault(t => t.Id == talent.Id);
-                if (tal != null)
-                {
-                    talent.Value += tal.Value;
-                    talent.Weight = 0;
-                }
-
-                tal = jobTalents.FirstOrDefault(t => t.Id == talent.Id);
-                if (tal != null)
-                {
-                    talent.Value += tal.Value;
-                    talent.Weight = tal.Weight;
-                }
-            }
-
-            return talents.Where(talent => !talent.Ignore);
-        }
-        
-        private Culture GetCulture(Species species)
-        {
-            Culture culture;
-            if (rowCulture.NoGeneration)
-                culture = rowCulture.Value;
-            else
-            {
-                var defaultCults = Data.Cultures.Where(c => c.DefaultSpecies.Contains(species.Id));
-                if (!defaultCults.Any())
-                    throw new GenerationException("there is no culture with the species " + species.Name);
-                culture = RandomFromList(defaultCults);
-            }
-
-            return culture;
-        }
-
-        private Job GetJob(Culture culture)
-        {
-            return rowJob.NoGeneration ? (Job)rowJob.Value : RandomFromList(Data.Jobs.Where(j => culture.DefaultJobs.Contains(j.ReferenceName)));
-        }
-
-        private string GetName(Gender.NamingList naming, Culture culture)
-        {
-            string firstName = string.Empty, lastName;
-
-            if (rowFirstName.NoGeneration)
-                firstName = rowFirstName.Value;
-            else
-            {
-                string format;
-                switch (naming)
-                {
-                case Gender.NamingList.Male:
-                    format = culture.Names.FormatMale;
-                    if (string.IsNullOrEmpty(format))
-                        firstName = RandomFromList(culture.Names.Male);
-                    break;
-                case Gender.NamingList.Female:
-                    format = culture.Names.FormatFemale;
-                    if (string.IsNullOrEmpty(format))
-                        firstName = RandomFromList(culture.Names.Female);
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (!string.IsNullOrEmpty(format))
-                    firstName = ResolveNameFormat(format, culture.Names);
-            }
-
-            if (rowLastName.NoGeneration)
-                lastName = rowLastName.Value;
-            else
-            {
-                string format;
-                switch (naming)
-                {
-                case Gender.NamingList.Male:
-                    format = culture.Names.FormatMaleLast;
-                    break;
-                case Gender.NamingList.Female:
-                    format = culture.Names.FormatFemaleLast;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-                }
-
-                if (string.IsNullOrEmpty(format))
-                    lastName = culture.Names.Last.Any() ? RandomFromList(culture.Names.Last) : string.Empty;
-                else
-                    lastName = ResolveNameFormat(format, culture.Names);
-            }
-
-            return $"{firstName} {lastName}".Trim();
-        }
-
-        private string ResolveNameFormat(string format, Names names)
-        {
-            var ret = format;
-            if (names.Male != null && names.Male.Any())
-                ret = ret.Replace("{male}", names.Male[rnd.Next(0, names.Male.Count() - 1)]);
-            if (names.Female != null && names.Female.Any())
-                ret = ret.Replace("{female}", names.Female[rnd.Next(0, names.Female.Count() - 1)]);
-            if (names.Last != null && names.Last.Any())
-                ret = ret.Replace("{last}", names.Last[rnd.Next(0, names.Last.Count() - 1)]);
-            if (names.Suffix != null && names.Suffix.Any())
-                ret = ret.Replace("{suffix}", names.Suffix[rnd.Next(0, names.Suffix.Count() - 1)]);
-            return ret;
-        }
+        public void SaveSettings() { File.WriteAllText(References.DATA_FILE, JsonConvert.SerializeObject(Data)); }
 
         private T DeserializeHandler<T>(string filePath)
         {
@@ -404,7 +142,6 @@ namespace NPCGenerator.Util
             }
             catch (JsonSerializationException ex)
             {
-                HasJsonErrors = true;
                 throw new JsonLoadException(ex.Message.Replace("\'\'", filePath), ex);
             }
         }

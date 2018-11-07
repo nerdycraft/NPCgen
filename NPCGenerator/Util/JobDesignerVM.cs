@@ -7,10 +7,7 @@ namespace NPCGenerator.Util
 {
     public class JobDesignerVM
     {
-        public ObservableCollection<Job> Jobs { get; } = new ObservableCollection<Job>();
+        public IEnumerable<Job> Jobs { get; set; }
         public IEnumerable<Talent> Talents { get; set; }
-
-        public bool EditMode { get; set; }
-        public bool NewMode { get; set; }
     }
 }

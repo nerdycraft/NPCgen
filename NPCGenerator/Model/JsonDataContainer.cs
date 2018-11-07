@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 using Newtonsoft.Json;
 
@@ -6,9 +7,12 @@ namespace NPCGenerator.Model
 {
     public class JsonDataContainer
     {
+        [JsonIgnore]
         public IEnumerable<Culture> Cultures { get; set; }
+        [JsonIgnore]
         public IEnumerable<Species> Species { get; set; }
-        public IEnumerable<Job> Jobs { get; set; }
+        [JsonIgnore]
+        public ObservableCollection<Job> Jobs { get; set; }
 
         [JsonProperty("talents"), JsonRequired]
         public IEnumerable<Talent> Talents { get; set; }

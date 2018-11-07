@@ -1,5 +1,4 @@
-﻿using NPCGenerator.Util;
-using System;
+﻿using System;
 using System.Collections.Specialized;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
@@ -27,18 +26,18 @@ namespace NPCGenerator.Controls
             }
         }
 
-        public event EventHandler<NpcTreeViewItemDoubleClickedEventArgs> ItemDoubleClicked;
+        public event EventHandler<NpcTreeViewItem> ItemDoubleClicked;
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton != MouseButtonState.Pressed) return;
 
             if (SelectedItem is NpcTreeViewItem item)
-                OnItemDoubleClicked(new NpcTreeViewItemDoubleClickedEventArgs(item));
+                OnItemDoubleClicked(item);
         }
 
-        protected void OnItemDoubleClicked(NpcTreeViewItemDoubleClickedEventArgs e)
+        protected void OnItemDoubleClicked(NpcTreeViewItem item)
         {
-            ItemDoubleClicked?.Invoke(this, e);
+            ItemDoubleClicked?.Invoke(this, item);
         }
 
         private Point startPos;

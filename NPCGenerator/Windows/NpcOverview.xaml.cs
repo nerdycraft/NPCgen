@@ -33,10 +33,10 @@ namespace NPCGenerator.Windows
             Tree.ItemDoubleClicked += Tree_ItemDoubleClicked;
         }
 
-        private void Tree_ItemDoubleClicked(object sender, NpcTreeViewItemDoubleClickedEventArgs e)
+        private void Tree_ItemDoubleClicked(object sender, NpcTreeViewItem item)
         {
-            if (!e.NpcTreeViewItem.IsDirectoryNode)
-                vm.LoadNpcFromFile(e.NpcTreeViewItem.FullPath);
+            if (!item.IsDirectoryNode)
+                vm.LoadNpcFromFile(item.FullPath);
         }
 
         private void NewFolder_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,11 @@
-﻿using NPCGenerator.Util;
+﻿using System;
+using System.Collections.Generic;
+
+using NPCGenerator.Util;
 using System.Windows;
 using System.Windows.Controls;
+
+using NPCGenerator.Model;
 
 namespace NPCGenerator.Windows
 {
@@ -11,14 +16,15 @@ namespace NPCGenerator.Windows
     /// </summary>
     public partial class MainWindow
     {
-        private readonly Controller controller;
-        public MainWindow(Controller trolly)
+        public event EventHandler<RoutedEventArgs> OpenJobDesignerClicked;
+        public event EventHandler<RoutedEventArgs> OpenNpcOverviewClicked;
+        public event EventHandler<RoutedEventArgs> GenerateClicked;
+        public event EventHandler<RoutedEventArgs> ReloadJsonClicked; 
+
+        public MainWindow(MainVM vm)
         {
             InitializeComponent();
-
-            controller = trolly;
-
-            DataContext = controller;
+            DataContext = vm;
         }
 
         private void NoGenCheckChange(object sender, RoutedEventArgs e)
@@ -39,49 +45,27 @@ namespace NPCGenerator.Windows
 
         private void Generate_Click(object sender, RoutedEventArgs e)
         {
-            if (!controller.HasJsonErrors)
-                controller.Generate();
-            else
-                MessageBox.Show("Fix and reload json!");
+            GenerateClicked?.Invoke(this, e);
         }
 
         private void ReloadJson_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                controller.Init();
-
-                System.Media.SystemSounds.Beep.Play();
-            }
-            catch (JsonLoadException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void CheckTalentWeight_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(controller.CheckJobTalentWeight());
+            ReloadJsonClicked?.Invoke(sender, e);
         }
 
         private void TalentIgnore_Click(object sender, RoutedEventArgs e)
         {
-            new TalentSetting(controller.Data).ShowDialog();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            controller.SaveSettings();
+            //new TalentSetting(controller.Data).ShowDialog();
         }
 
         private void NPCOverview_Click(object sender, RoutedEventArgs e)
         {
-            new NpcOverview().ShowDialog();
+            OpenNpcOverviewClicked?.Invoke(this, e);
         }
 
         private void OnOpenJobDesigner(object sender, RoutedEventArgs e)
         {
-            new JobDesigner(controller.Data.Jobs, controller.Data.Talents).ShowDialog();
+            OpenJobDesignerClicked?.Invoke(this, e);
         }
     }
 }

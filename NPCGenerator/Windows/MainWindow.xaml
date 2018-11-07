@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:NPCGenerator.Controls"
         mc:Ignorable="d"
-        Title="NSC Generator" Height="400" Width="445" Loaded="Window_Loaded" Closing="Window_Closing" ResizeMode="NoResize">
+        Title="NSC Generator" Height="400" Width="445" Loaded="Window_Loaded" ResizeMode="NoResize">
     <Window.Resources>
         <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
     </Window.Resources>
@@ -48,7 +48,6 @@
         <Button x:Name="btnGen" Content="Generate" VerticalAlignment="Bottom" Height="20" Click="Generate_Click" Margin="0,0,0,21"/>
         <Menu Height="19" VerticalAlignment="Top">
             <MenuItem Header="_Einstellungen">
-                <MenuItem Header="_Talentgewichtung prüfen" Click="CheckTalentWeight_Click"/>
                 <MenuItem Header="_Reload Json" Click="ReloadJson_Click"/>
                 <MenuItem Header="_Job Designer" Click="OnOpenJobDesigner"/>
                 <MenuItem Header="_Talente ignorieren" Click="TalentIgnore_Click"/>
