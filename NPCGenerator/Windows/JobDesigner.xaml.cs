@@ -46,14 +46,46 @@ namespace NPCGenerator.Windows
             if (List.SelectedItem is Job job)
             {
                 if (string.IsNullOrEmpty(job.ReferenceName)) //no empty id
-                    return; //msg
-                if (vm.Jobs.FirstOrDefault(j => string.Equals(job.ReferenceName, j.ReferenceName, StringComparison.CurrentCultureIgnoreCase)) != null) //no duplicate id
-                    return;//msg
+                {
+                    MessageBox.Show("Bitte setzen Sie eine ID für diesen Job.");
+                    return;
+                }
+
+                if (job.IsNew && vm.Jobs.FirstOrDefault(j => string.Equals(job.ReferenceName, j.ReferenceName, StringComparison.CurrentCultureIgnoreCase)) != null) //no duplicate id
+                {
+                    MessageBox.Show("Die gesetzte ID wird bereits verwendet.");
+                    return;
+                }
                 if (job.Statweight.CumKk != 100) //komuliert
-                    return;//msg
+                {
+                    MessageBox.Show("Das komulierte Ergebnis der Attribut-Gewichtung muss 100 ergeben.");
+                    return;
+                }
+
+                if (job.Talents.Sum(t => t.Weight) > 800)
+                {
+                    MessageBox.Show("Das komulierte Ergebnis der Talent-Gewichtung darf maximal 800 ergeben.");
+                    return;
+                }
 
                 job.IsNew = false;
                 File.WriteAllText(Path.Combine(Controller.JOB_FOLDER, $"{job.ReferenceName.ToLower()}.json"), JsonConvert.SerializeObject(job));
+            }
+        }
+
+        private void OnDeleteJobClicked(object sender, RoutedEventArgs e)
+        {
+            if (List.SelectedItem is Job job)
+            {
+                try
+                {
+                    File.Delete(Path.Combine(Controller.JOB_FOLDER, $"{job.ReferenceName.ToLower()}.json"));
+                    vm.Jobs.Remove(job);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
             }
         }
     }

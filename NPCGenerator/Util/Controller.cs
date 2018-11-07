@@ -95,9 +95,17 @@ namespace NPCGenerator.Util
         {
             Data = DeserializeHandler<JsonDataContainer>(DATA_FILE);
 
-            Data.Species = Directory.GetFiles(SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>);
-            Data.Jobs = Directory.GetFiles(JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>);
-            Data.Cultures = Directory.GetFiles(CULTURES_FOLDER, "*.json").Select(DeserializeHandler<Culture>);
+            Data.Species = Directory.GetFiles(SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>).ToList();
+            Data.Jobs = Directory.GetFiles(JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>).ToList();
+            Data.Cultures = Directory.GetFiles(CULTURES_FOLDER, "*.json").Select(DeserializeHandler<Culture>).ToList();
+
+            foreach (var job in Data.Jobs)
+                foreach (var talent in job.Talents)
+                {
+                    var refTalent = Data.Talents.First(t => talent.Id == t.Id);
+                    talent.Attr = refTalent.Attr;
+                    talent.Category = refTalent.Category;
+                }
 
             HasJsonErrors = false;
         }

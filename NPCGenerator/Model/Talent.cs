@@ -7,7 +7,7 @@ namespace NPCGenerator.Model
     public class Talent
     {
         [JsonProperty("id"), JsonRequired]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -31,11 +31,6 @@ namespace NPCGenerator.Model
         public string[] Attr { get; set; }
 
         [JsonIgnore]
-        public string Format => ToString();
-
-        public override string ToString()
-        {
-            return string.Join("/", Attr);
-        }
+        public string Format => string.Join("/", Attr);
     }
 }

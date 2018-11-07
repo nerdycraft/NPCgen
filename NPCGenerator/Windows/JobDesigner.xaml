@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:controls="clr-namespace:NPCGenerator.Controls"
         xmlns:util="clr-namespace:NPCGenerator.Util"
         x:Class="NPCGenerator.Windows.JobDesigner"
@@ -14,38 +13,72 @@
     </Window.Resources>
     <Grid>
         <!-- ReSharper disable MarkupAttributeTypo -->
-        <ListBox x:Name="List" ItemsSource="{Binding Path=(util:JobDesignerVM.Jobs)}" IsSynchronizedWithCurrentItem="true" HorizontalAlignment="Left" Height="385" VerticalAlignment="Top" Width="200" SelectionMode="Single"/>
-        <Button Content="Hinzufügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,395,0,0" Click="OnAddJobClick"/>
-        <Button Content="Löschen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="115,395,0,0"/>
+        <ListBox x:Name="List" ItemsSource="{Binding Path=(util:JobDesignerVM.Jobs)}" IsSynchronizedWithCurrentItem="true" SelectionMode="Single" Style="{StaticResource LeftTop}" Height="385" Width="200"/>
+        <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" Margin="10,395,0,0" Click="OnAddJobClick"/>
+        <Button Content="Löschen" Style="{StaticResource LeftTop}" Width="75" Margin="115,395,0,0" Click="OnDeleteJobClicked"/>
 
-        <Grid DataContext="{Binding SelectedItem, ElementName=List}">
-            <controls:LabelTextBox Label="Basisname" Text="{Binding ReferenceName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNew}" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="174" Margin="205,10,0,0"/>
-            <controls:LabelTextBox Label="Männlicher Name" Text="{Binding Name}" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="174" Margin="205,70,0,0"/>
-            <controls:LabelTextBox Label="Weiblicher Name" Text="{Binding FemName}" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="174" Margin="385,70,0,0"/>
-            <Button Content="Speichern" HorizontalAlignment="Left" Margin="483,13,0,0" VerticalAlignment="Top" Width="75" Click="OnSaveJobClicked"/>
+        <Grid DataContext="{Binding Path=SelectedItem, ElementName=List}">
+            <controls:LabelTextBox Label="Basisname" Text="{Binding ReferenceName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNew}" Style="{StaticResource LeftTop}" Height="54" Width="174" Margin="205,10,0,0"/>
+            <controls:LabelTextBox Label="Männlicher Name" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LeftTop}" Height="54" Width="174" Margin="205,70,0,0"/>
+            <controls:LabelTextBox Label="Weiblicher Name" Text="{Binding FemName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource LeftTop}" Height="54" Width="174" Margin="385,70,0,0"/>
+            <Button Content="Speichern" Style="{StaticResource LeftTop}" Margin="483,13,0,0" Width="75" Click="OnSaveJobClicked"/>
             <GroupBox Header="Attribut Gewichtung" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="353" Margin="205,125,0,0">
-                <Grid>
-                    <controls:LabelTextBox Label="MU" Text="{Binding Statweight.Mu}" Style="{StaticResource CenterBox}" Margin="28,10,0,0"/>
-                    <controls:LabelTextBox Label="KL" Text="{Binding Statweight.Kl}" Style="{StaticResource CenterBox}" Margin="63,10,0,0"/>
-                    <controls:LabelTextBox Label="IN" Text="{Binding Statweight.In}" Style="{StaticResource CenterBox}" Margin="98,10,0,0"/>
-                    <controls:LabelTextBox Label="CH" Text="{Binding Statweight.Ch}" Style="{StaticResource CenterBox}" Margin="133,10,0,0"/>
-                    <controls:LabelTextBox Label="FF" Text="{Binding Statweight.Ff}" Style="{StaticResource CenterBox}" Margin="168,10,0,0"/>
-                    <controls:LabelTextBox Label="GE" Text="{Binding Statweight.Ge}" Style="{StaticResource CenterBox}" Margin="203,10,0,0"/>
-                    <controls:LabelTextBox Label="KO" Text="{Binding Statweight.Ko}" Style="{StaticResource CenterBox}" Margin="238,10,0,0"/>
-                    <controls:LabelTextBox Label="KK" Text="{Binding Statweight.Kk}" Style="{StaticResource CenterBox}" Margin="273,10,0,0"/>
+                <Grid DataContext="{Binding Path=Statweight}">
+                    <controls:LabelTextBox Label="MU" Text="{Binding Path=Mu, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="28,10,0,0"/>
+                    <controls:LabelTextBox Label="KL" Text="{Binding Path=Kl, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="63,10,0,0"/>
+                    <controls:LabelTextBox Label="IN" Text="{Binding Path=In, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="98,10,0,0"/>
+                    <controls:LabelTextBox Label="CH" Text="{Binding Path=Ch, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="133,10,0,0"/>
+                    <controls:LabelTextBox Label="FF" Text="{Binding Path=Ff, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="168,10,0,0"/>
+                    <controls:LabelTextBox Label="GE" Text="{Binding Path=Ge, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="203,10,0,0"/>
+                    <controls:LabelTextBox Label="KO" Text="{Binding Path=Ko, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="238,10,0,0"/>
+                    <controls:LabelTextBox Label="KK" Text="{Binding Path=Kk, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CenterBox}" Margin="273,10,0,0"/>
                 </Grid>
             </GroupBox>
-            <GroupBox Header="Talent Gewichtung" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="353" Margin="205,220,0,0">
+            <GroupBox Header="Talent Gewichtung" Style="{StaticResource LeftTop}" Height="190" Width="353" Margin="205,220,0,0">
                 <Grid>
-                    <ComboBox Margin="10,10,90,138" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.(util:JobDesignerVM.Talents)}"/>
-                    <Button Content="Hinzufügen" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="255,10,0,0"/>
-                    <ListView HorizontalAlignment="Left" Height="122" Margin="10,35,0,0" VerticalAlignment="Top" Width="320">
-                        <ListView.View>
-                            <GridView>
-                                <GridViewColumn/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <ComboBox Margin="10,10,90,138" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.(util:JobDesignerVM.Talents)}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" Margin="255,10,0,0"/>
+                    <DataGrid ItemsSource="{Binding Path=Talents}" CanUserAddRows="False" AutoGenerateColumns="False" Style="{StaticResource LeftTop}" CellStyle="{StaticResource CellStyle}" Width="320" Height="122" RowHeight="25" Margin="10,35,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Talent" MinWidth="150" CellStyle="{StaticResource DataGridContentCellCentering}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Attribute" CanUserResize="False" Width="57" CellStyle="{StaticResource DataGridContentCellCentering}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Format}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Gewicht" CanUserResize="False" Width="52">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:NumericTextBox Text="{Binding Weight, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Wert" CanUserResize="False" Width="35">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:NumericTextBox Text="{Binding Value, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </Grid>
             </GroupBox>
         </Grid>
