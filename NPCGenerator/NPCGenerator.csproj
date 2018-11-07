@@ -108,6 +108,7 @@
     <Compile Include="Model\Species.cs" />
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\Talent.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Util\Controller.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />

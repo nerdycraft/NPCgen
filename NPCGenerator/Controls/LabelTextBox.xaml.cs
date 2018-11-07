@@ -38,7 +38,7 @@ namespace NPCGenerator.Controls
              DependencyProperty.Register("Text",
                          typeof(string),
                          typeof(LabelTextBox),
-                         new FrameworkPropertyMetadata(string.Empty));
+                         new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
         public bool IsReadOnly
         {

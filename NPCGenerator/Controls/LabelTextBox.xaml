@@ -6,7 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="49" d:DesignWidth="314" MinHeight="49" MaxHeight="49">
     <Grid x:Name="LayoutRoot">
-        <Label Content="{Binding Path=Label}" Height="28" HorizontalAlignment="Left" Name="BaseLabel" VerticalAlignment="Top" />
-        <TextBox Text="{Binding Path=Text}" IsReadOnly="{Binding Path=IsReadOnly}" HorizontalContentAlignment="{Binding Path=TextHorizontalAlignment}" VerticalContentAlignment="{Binding Path=TextVerticalAlignmentProperty}" Height="23" Margin="0,26,0,0" Name="BaseTextBox" VerticalAlignment="Top" />
+        <Label Content="{Binding Path=Label, UpdateSourceTrigger=PropertyChanged}" Height="28" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBox Text="{Binding Path=Text, Mode=TwoWay, NotifyOnTargetUpdated=True, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="{Binding Path=IsReadOnly}" HorizontalContentAlignment="{Binding Path=TextHorizontalAlignment}" VerticalContentAlignment="{Binding Path=TextVerticalAlignmentProperty}" Height="23" Margin="0,26,0,0" VerticalAlignment="Top" />
     </Grid>
 </UserControl>

@@ -13,14 +13,14 @@ namespace NPCGenerator.Controls
 
         protected override void OnPreviewTextInput(TextCompositionEventArgs e)
         {
-            e.Handled = IsNumeric( e.Text );
+            e.Handled = !IsNumeric( e.Text );
         }
 
         protected void CanExecuteRoutedEventHandler(object sender, CanExecuteRoutedEventArgs e)
         {
             if ( e.Command == ApplicationCommands.Paste )
             {
-                e.Handled = IsNumeric( Clipboard.GetText() );
+                e.Handled = !IsNumeric( Clipboard.GetText() );
             }
         }
 

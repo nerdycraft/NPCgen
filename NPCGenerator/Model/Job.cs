@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Documents;
 
 using Newtonsoft.Json;
 
@@ -7,13 +6,13 @@ namespace NPCGenerator.Model
 {
     public class Job
     {
+        [JsonProperty("basename"), JsonRequired]
+        public string ReferenceName { get; set; } = string.Empty;
+
         [JsonProperty("name"), JsonRequired] public string Name { get; set; } = string.Empty;
 
         [JsonProperty("femname"), JsonRequired]
         public string FemName { get; set; } = string.Empty;
-
-        [JsonProperty("basename"), JsonRequired]
-        public string ReferenceName { get; set; } = string.Empty;
 
         [JsonProperty("statweight"), JsonRequired]
         public Statweight Statweight { get; set; } = new Statweight();
