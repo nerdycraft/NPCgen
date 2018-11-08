@@ -13,7 +13,7 @@ using NPCGenerator.Windows;
 
 namespace NPCGenerator.Controllers
 {
-    public class Controller
+    public class MainController
     {
         private MainWindow wnd;
         private MainVM vm;

@@ -15,7 +15,7 @@ namespace NPCGenerator
             try
             {
                 // Create the startup window
-                new Controller().Run();
+                new MainController().Run();
             }
             catch ( Exception ex)
             {
