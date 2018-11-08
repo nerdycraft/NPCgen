@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:NPCGenerator.Controls"
-        xmlns:util="clr-namespace:NPCGenerator.Util"
+        xmlns:vm="clr-namespace:NPCGenerator.ViewModels"
         x:Class="NPCGenerator.Windows.JobDesigner"
         mc:Ignorable="d"
         Title="JobDesigner" Height="450" Width="578" ResizeMode="NoResize">
@@ -13,7 +13,7 @@
     </Window.Resources>
     <Grid>
         <!-- ReSharper disable MarkupAttributeTypo -->
-        <ListBox x:Name="List" ItemsSource="{Binding Path=(util:JobDesignerVM.Jobs)}" IsSynchronizedWithCurrentItem="true" SelectionMode="Single" Style="{StaticResource LeftTop}" Height="385" Width="200"/>
+        <ListBox x:Name="List" ItemsSource="{Binding Path=(vm:JobDesignerVM.Jobs)}" IsSynchronizedWithCurrentItem="true" SelectionMode="Single" Style="{StaticResource LeftTop}" Height="385" Width="200"/>
         <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" Margin="10,395,0,0" Click="OnAddJobClick"/>
         <Button Content="Löschen" Style="{StaticResource LeftTop}" Width="75" Margin="115,395,0,0" Click="OnDeleteJobClicked"/>
 
@@ -36,7 +36,7 @@
             </GroupBox>
             <GroupBox Header="Talent Gewichtung" Style="{StaticResource LeftTop}" Height="190" Width="353" Margin="205,220,0,0">
                 <Grid>
-                    <ComboBox Margin="10,10,90,138" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.(util:JobDesignerVM.Talents)}">
+                    <ComboBox Margin="10,10,90,138" ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.(vm:JobDesignerVM.Talents)}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}" />

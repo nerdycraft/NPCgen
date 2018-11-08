@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 using NPCGenerator.Model;
 
-namespace NPCGenerator.Util
+namespace NPCGenerator.ViewModels
 {
     public class JobDesignerVM
     {

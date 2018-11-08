@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 
-using NPCGenerator.Util;
+using NPCGenerator.Controllers;
 
 namespace NPCGenerator
 {

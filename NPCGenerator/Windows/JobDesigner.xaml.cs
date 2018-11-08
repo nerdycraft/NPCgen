@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows;
 
 using NPCGenerator.Model;
-using NPCGenerator.Util;
+using NPCGenerator.ViewModels;
 
 namespace NPCGenerator.Windows
 {

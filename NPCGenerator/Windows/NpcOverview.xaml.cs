@@ -1,13 +1,13 @@
 ﻿using System;
 
-using NPCGenerator.Controls;
-using NPCGenerator.Util;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
+using NPCGenerator.Controls;
 using NPCGenerator.Model;
+using NPCGenerator.Util;
+using NPCGenerator.ViewModels;
 
 // ReSharper disable StringLiteralTypo
 
@@ -21,88 +21,42 @@ namespace NPCGenerator.Windows
     /// </summary>
     public partial class NpcOverview
     {
-        private readonly NpcOverviewVM vm = new NpcOverviewVM();
-        public NpcOverview()
+        public event EventHandler<NpcTreeViewItem> TreeItemDoubleClicked;
+        public event EventHandler<NpcTreeViewItem> NewFolderClicked;
+        public event EventHandler<NpcTreeViewItem> DeleteItemClicked;
+        public event EventHandler<NPC> TabMiddleClick;
+        public event EventHandler<NPC> TabDoubleClick;
+
+        public NpcOverview(NpcOverviewVM vm)
         {
             InitializeComponent();
-            DataContext = this.vm;
+            DataContext = vm;
 
-            var root = new NpcTreeViewItem(new DirectoryInfo(vm.NpcPath), "*.json");
+            var root = new NpcTreeViewItem(new DirectoryInfo(References.OUT_FOLDER), "*.json");
             Tree.Items.Add(root);
             root.IsExpanded = true;
-            Tree.ItemDoubleClicked += Tree_ItemDoubleClicked;
-        }
-
-        private void Tree_ItemDoubleClicked(object sender, NpcTreeViewItem item)
-        {
-            if (!item.IsDirectoryNode)
-                vm.LoadNpcFromFile(item.FullPath);
+            Tree.ItemDoubleClicked += (sender, item) => TreeItemDoubleClicked?.Invoke(sender, item);
         }
 
         private void NewFolder_Click(object sender, RoutedEventArgs e)
         {
-            if (Tree.SelectedItem == null)
-                return;
-
-            var input = new InputDialog("Ordnernamen eingeben :)");
-            if (input.ShowDialog() != true) return;
-
-            var item = (NpcTreeViewItem)Tree.SelectedItem;
-            if (!item.IsDirectoryNode)
-                item = (NpcTreeViewItem)item.Parent;
-
-            CreateFolderNode(item, input.Input);
+            NewFolderClicked?.Invoke(sender, Tree.SelectedItem as NpcTreeViewItem);
         }
 
         private void DeleteFile_Click(object sender, RoutedEventArgs e)
         {
-            if (Tree.SelectedItem == null)
-                return;
-
-            if (MessageBox.Show("Wirklich löschen?", ":o", MessageBoxButton.YesNo, MessageBoxImage.Question) != MessageBoxResult.Yes)
-                return;
-
-            var item = (NpcTreeViewItem)Tree.SelectedItem;
-
-            if (item.IsDirectoryNode)
-            {
-                if (((DirectoryInfo)item.Tag).Name != vm.NpcPath)
-                    ((DirectoryInfo)item.Tag).Delete();
-                else
-                    MessageBox.Show("Root Verzeichnis kann nicht gelöscht werden");
-            }
-            else
-                ((FileInfo)item.Tag).Delete();
-            ((NpcTreeViewItem)item.Parent).Items.Remove(item);
-        }
-
-        private void CreateFolderNode(ItemsControl item, string folderName)
-        {
-            if (item.Tag is DirectoryInfo di)
-            {
-                if (!vm.IsValidFolderName(di, folderName))
-                    MessageBox.Show("Pfad ungültig oder so.");
-                else
-                {
-                    var newDi = Directory.CreateDirectory(Path.Combine(di.FullName, folderName));
-
-                    item.Items.Add(new NpcTreeViewItem(newDi, "*.json"));
-                }
-            }
+            DeleteItemClicked?.Invoke(sender, Tree.SelectedItem as NpcTreeViewItem);
         }
 
         private DateTime lastClick = DateTime.Now;
         private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Middle)
-                vm.RemoveNpc(Tabs.SelectedItem);
+                TabMiddleClick?.Invoke(sender, Tabs.SelectedItem as NPC);
             else if (e.ChangedButton == MouseButton.Left)
             {
                 if (DateTime.Now.Subtract(lastClick).TotalMilliseconds <= 500)
-                {
-                    new NpcDetails(Tabs.SelectedItem as NPC).Show();
-                    vm.RemoveNpc(Tabs.SelectedItem);
-                }
+                    TabDoubleClick?.Invoke(sender, Tabs.SelectedItem as NPC);
 
                 lastClick = DateTime.Now;
             }

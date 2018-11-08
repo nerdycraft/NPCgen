@@ -1,24 +1,24 @@
 ﻿using Newtonsoft.Json;
 
-using NPCGenerator.Model;
-
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-using NPCGenerator.Controllers;
+using NPCGenerator.Model;
+using NPCGenerator.Util;
+using NPCGenerator.ViewModels;
 using NPCGenerator.Windows;
 
-namespace NPCGenerator.Util
+namespace NPCGenerator.Controllers
 {
     public class Controller
     {
         private MainWindow wnd;
         private MainVM vm;
 
-        public JsonDataContainer Data { get; private set; }
+        public DataContainer Data { get; private set; }
 
         private readonly ObservableCollection<DataRow> dataRows = new ObservableCollection<DataRow>();
 
@@ -32,7 +32,7 @@ namespace NPCGenerator.Util
                 vm = new MainVM(dataRows);
                 wnd = new MainWindow(vm);
                 wnd.OpenJobDesignerClicked += delegate { new JobDesignerController(Data).Run(); };
-                wnd.OpenNpcOverviewClicked += delegate { new NpcOverview().ShowDialog(); };
+                wnd.OpenNpcOverviewClicked += delegate { new NpcOverviewController().Run(); };
                 wnd.Closing += delegate { SaveSettings(); };
                 wnd.GenerateClicked += delegate { Generate(); };
                 wnd.ReloadJsonClicked += delegate { Init(); };
@@ -85,7 +85,7 @@ namespace NPCGenerator.Util
         private void LoadJsonData()
         {
             generator = null;
-            Data = DeserializeHandler<JsonDataContainer>(References.DATA_FILE);
+            Data = DeserializeHandler<DataContainer>(References.DATA_FILE);
 
             Data.Species = Directory.GetFiles(References.SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>).ToList();
             Data.Jobs = new ObservableCollection<Job>(Directory.GetFiles(References.JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>));
@@ -128,13 +128,13 @@ namespace NPCGenerator.Util
             }
 
             var npc = generator.Generate();
-            var path = string.Format(References.OUT_FOLDER, npc);
+            var path = Path.Combine(References.OUT_FOLDER, $"{npc}.json");
             File.WriteAllText(path, JsonConvert.SerializeObject(npc));
         }
 
         public void SaveSettings() { File.WriteAllText(References.DATA_FILE, JsonConvert.SerializeObject(Data)); }
 
-        private T DeserializeHandler<T>(string filePath)
+        private static T DeserializeHandler<T>(string filePath)
         {
             try
             {

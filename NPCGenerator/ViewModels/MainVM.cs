@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 using NPCGenerator.Model;
 
-namespace NPCGenerator.Util
+namespace NPCGenerator.ViewModels
 {
     public class MainVM : INotifyPropertyChanged
     {

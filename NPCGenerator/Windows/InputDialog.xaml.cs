@@ -12,12 +12,12 @@ namespace NPCGenerator.Windows
             txtInput.Text = string.Empty;
         }
 
-        private void btnDialogOk_Click(object sender, RoutedEventArgs e)
+        private void DialogOkClicked(object sender, RoutedEventArgs e)
         {
             DialogResult = true;
         }
 
-        private void Window_ContentRendered(object sender, EventArgs e)
+        private void WindowContentRendered(object sender, EventArgs e)
         {
             txtInput.SelectAll();
             txtInput.Focus();

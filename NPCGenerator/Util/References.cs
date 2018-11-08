@@ -11,6 +11,6 @@ namespace NPCGenerator.Util
         public static string CULTURE_FOLDER { get; } = Path.Combine(Properties.Settings.Default.DataFolder, "cultures");
         public static string SPECIES_FOLDER { get; } = Path.Combine(Properties.Settings.Default.DataFolder, "species");
 
-        public static string OUT_FOLDER { get; } = Path.Combine(Properties.Settings.Default.OutFolder, "{0}.json");
+        public static string OUT_FOLDER { get; } = Properties.Settings.Default.OutFolder;
     }
 }

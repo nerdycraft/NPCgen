@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 
 using NPCGenerator.Model;
 using NPCGenerator.Util;
+using NPCGenerator.ViewModels;
 using NPCGenerator.Windows;
 
 namespace NPCGenerator.Controllers

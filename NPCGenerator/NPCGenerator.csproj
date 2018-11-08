@@ -95,6 +95,7 @@
     </ApplicationDefinition>
     <Compile Include="Controllers\JobDesignerController.cs" />
     <Compile Include="Controllers\Generator.cs" />
+    <Compile Include="Controllers\NpcOverviewController.cs" />
     <Compile Include="Controls\LabelTextBox.xaml.cs">
       <DependentUpon>LabelTextBox.xaml</DependentUpon>
     </Compile>
@@ -105,19 +106,19 @@
     <Compile Include="Model\DataRow.cs" />
     <Compile Include="Model\Gender.cs" />
     <Compile Include="Model\Culture.cs" />
-    <Compile Include="Model\JsonDataContainer.cs" />
+    <Compile Include="Model\DataContainer.cs" />
     <Compile Include="Model\Job.cs" />
     <Compile Include="Model\Species.cs" />
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\Talent.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Util\Controller.cs" />
+    <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
     <Compile Include="Util\Exceptions.cs" />
-    <Compile Include="Util\JobDesignerVM.cs" />
-    <Compile Include="Util\MainVM.cs" />
-    <Compile Include="Util\NpcOverviewVM.cs" />
+    <Compile Include="ViewModels\JobDesignerVM.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
+    <Compile Include="ViewModels\NpcOverviewVM.cs" />
     <Compile Include="Controls\NpcTreeView.cs" />
     <Compile Include="Controls\NpcTreeViewItem.cs" />
     <Compile Include="Util\References.cs" />
