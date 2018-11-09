@@ -30,28 +30,30 @@ namespace NPCGenerator.Controllers
 
         public event EventHandler<string> UpdateStatus;
 
+        protected virtual void OnUpdateStatus(string e) { UpdateStatus?.Invoke(this, e); }
+
         public Generator(DataContainer data) { this.data = data; }
         public NPC Generate()
         {
             OnUpdateStatus("Erstelle NPC!");
             var npc = new NPC
                       {
-                                  Build = BUILD_VERSION,
+                          Build = BUILD_VERSION,
 
-                                  Age = RowAge.NoGeneration ? RowAge.Value : (uint)rnd.Next(12, 100),
-                                  Size = RowSize.NoGeneration ? RowSize.Value : RandomFromList(data.Sizes),
-                                  Stature = RowStature.NoGeneration ? RowStature.Value : RandomFromList(data.Statures),
-                                  Charakter = RowCharacter.Value
+                          Age = RowAge.NoGeneration ? RowAge.Value : (uint)rnd.Next(12, 100),
+                          Size = RowSize.NoGeneration ? RowSize.Value : data.Sizes.GetRandom(),
+                          Stature = RowStature.NoGeneration ? RowStature.Value : data.Statures.GetRandom(),
+                          Charakter = RowCharacter.Value
                       };
 
             Level level = RowXp.Value;
             npc.Level = level.Name;
 
-            Gender gender = RowGender.NoGeneration ? RowGender.Value : RandomFromList(data.Gender);
+            Gender gender = RowGender.NoGeneration ? RowGender.Value : data.Gender.GetRandom();
             npc.Gender = gender.Id;
 
             OnUpdateStatus("Entdecke Spezies.");
-            Species species = RowSpecies.NoGeneration ? RowSpecies.Value : RandomFromList(data.Species);
+            Species species = RowSpecies.NoGeneration ? RowSpecies.Value : data.Species.GetRandom();
             npc.Species = species.Name;
 
             OnUpdateStatus("Erforsche Kultur.");
@@ -110,21 +112,6 @@ namespace NPCGenerator.Controllers
             return attr;
         }
 
-        private static Stats CalculateStats(Species species, Attributes attr)
-        {
-            var stats = new Stats
-            {
-                Lp = species.BaseHp + 2 * attr.Ko,
-                Sk = species.BaseSk + (int)Math.Floor((attr.Mu + attr.Kl + attr.In) / 6d),
-                Zk = species.BaseZk + (int)Math.Floor((attr.Ko + attr.Ko + attr.Kk) / 6d),
-                Aw = attr.Ge / 2,
-                Ini = (attr.Mu + attr.Ge) / 2,
-                Gs = species.BaseGs
-            };
-
-            return stats;
-        }
-
         private IEnumerable<Talent> CalculateTalents(Level level, IEnumerable<Talent> talents)
         {
             var talentWeight = new Dictionary<int, Talent>();
@@ -170,27 +157,6 @@ namespace NPCGenerator.Controllers
             return talentWeight.Values;
         }
 
-        private T RandomFromList<T>(IEnumerable<T> lst) { return lst.ElementAt(rnd.Next(0, lst.Count())); }
-
-        private static long GetMaxAttr(string attr, long defaultMax, AttrMod mod, string rndAttr)
-        {
-            if (mod.Rnd.HasValue && rndAttr == attr)
-                return defaultMax + 1;
-            if (mod.And != null && mod.And.Stats.Any(s => s == attr))
-                return defaultMax + mod.And.Value;
-            if (mod.Or != null && rndAttr == attr)
-                return defaultMax + mod.Or.Value;
-            return defaultMax;
-        }
-
-        private static string RandomAttrMod(AttrMod mod)
-        {
-            if (!mod.Rnd.HasValue)
-                return mod.Or.Stats[new Random().Next(0, 1)];
-            var attrLst = new[] { "MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK" };
-            return attrLst[new Random().Next(0, 7)];
-        }
-
         private IEnumerable<Talent> MergeBaseTalents(IEnumerable<Talent> cultTalents, IEnumerable<Talent> jobTalents)
         {
             var talents = data.Talents.ToList();
@@ -225,7 +191,7 @@ namespace NPCGenerator.Controllers
                 var defaultCults = data.Cultures.Where(c => c.DefaultSpecies.Contains(species.Id));
                 if (!defaultCults.Any())
                     throw new GenerationException("there is no culture with the species " + species.Name);
-                culture = RandomFromList(defaultCults);
+                culture = defaultCults.GetRandom();
             }
 
             return culture;
@@ -233,7 +199,7 @@ namespace NPCGenerator.Controllers
 
         private Job GetJob(Culture culture)
         {
-            return RowJob.NoGeneration ? (Job)RowJob.Value : RandomFromList(data.Jobs.Where(j => culture.DefaultJobs.Contains(j.ReferenceName)));
+            return RowJob.NoGeneration ? (Job)RowJob.Value : data.Jobs.Where(j => culture.DefaultJobs.Contains(j.ReferenceName)).GetRandom();
         }
 
         private string GetName(Gender.NamingList naming, Culture culture)
@@ -250,12 +216,12 @@ namespace NPCGenerator.Controllers
                     case Gender.NamingList.Male:
                         format = culture.Names.FormatMale;
                         if (string.IsNullOrEmpty(format))
-                            firstName = RandomFromList(culture.Names.Male);
+                            firstName = culture.Names.Male.GetRandom();
                         break;
                     case Gender.NamingList.Female:
                         format = culture.Names.FormatFemale;
                         if (string.IsNullOrEmpty(format))
-                            firstName = RandomFromList(culture.Names.Female);
+                            firstName = culture.Names.Female.GetRandom();
                         break;
                     default:
                         throw new ArgumentOutOfRangeException();
@@ -283,7 +249,7 @@ namespace NPCGenerator.Controllers
                 }
 
                 if (string.IsNullOrEmpty(format))
-                    lastName = culture.Names.Last.Any() ? RandomFromList(culture.Names.Last) : string.Empty;
+                    lastName = culture.Names.Last.Any() ? culture.Names.Last.GetRandom() : string.Empty;
                 else
                     lastName = ResolveNameFormat(format, culture.Names);
             }
@@ -291,20 +257,52 @@ namespace NPCGenerator.Controllers
             return $"{firstName} {lastName}".Trim();
         }
 
-        private string ResolveNameFormat(string format, Names names)
+        private static long GetMaxAttr(string attr, long defaultMax, AttrMod mod, string rndAttr)
+        {
+            if (mod.Rnd.HasValue && rndAttr == attr)
+                return defaultMax + 1;
+            if (mod.And != null && mod.And.Stats.Any(s => s == attr))
+                return defaultMax + mod.And.Value;
+            if (mod.Or != null && rndAttr == attr)
+                return defaultMax + mod.Or.Value;
+            return defaultMax;
+        }
+
+        private static string RandomAttrMod(AttrMod mod)
+        {
+            if (!mod.Rnd.HasValue)
+                return mod.Or.Stats[new Random().Next(0, 1)];
+            var attrLst = new[] { "MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK" };
+            return attrLst[new Random().Next(0, 7)];
+        }
+
+        public static string ResolveNameFormat(string format, Names names)
         {
             var ret = format;
             if (names.Male != null && names.Male.Any())
-                ret = ret.Replace("{male}", names.Male[rnd.Next(0, names.Male.Count() - 1)]);
+                ret = ret.Replace("{male}", names.Male.GetRandom());
             if (names.Female != null && names.Female.Any())
-                ret = ret.Replace("{female}", names.Female[rnd.Next(0, names.Female.Count() - 1)]);
+                ret = ret.Replace("{female}", names.Female.GetRandom());
             if (names.Last != null && names.Last.Any())
-                ret = ret.Replace("{last}", names.Last[rnd.Next(0, names.Last.Count() - 1)]);
+                ret = ret.Replace("{last}", names.Last.GetRandom());
             if (names.Suffix != null && names.Suffix.Any())
-                ret = ret.Replace("{suffix}", names.Suffix[rnd.Next(0, names.Suffix.Count() - 1)]);
+                ret = ret.Replace("{suffix}", names.Suffix.GetRandom());
             return ret;
         }
 
-        protected virtual void OnUpdateStatus(string e) { UpdateStatus?.Invoke(this, e); }
+        public static Stats CalculateStats(Species species, Attributes attr)
+        {
+            var stats = new Stats
+                        {
+                                    Lp = species.BaseHp + 2 * attr.Ko,
+                                    Sk = species.BaseSk + (int)Math.Floor((attr.Mu + attr.Kl + attr.In) / 6d),
+                                    Zk = species.BaseZk + (int)Math.Floor((attr.Ko + attr.Ko + attr.Kk) / 6d),
+                                    Aw = attr.Ge / 2,
+                                    Ini = (attr.Mu + attr.Ge) / 2,
+                                    Gs = species.BaseGs
+                        };
+
+            return stats;
+        }
     }
 }

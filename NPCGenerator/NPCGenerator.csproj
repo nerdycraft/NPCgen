@@ -116,6 +116,7 @@
     <Compile Include="Util\DataGridExtensions.cs" />
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
     <Compile Include="Util\Exceptions.cs" />
+    <Compile Include="Util\Extensions.cs" />
     <Compile Include="ViewModels\JobDesignerVM.cs" />
     <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="ViewModels\NpcOverviewVM.cs" />
