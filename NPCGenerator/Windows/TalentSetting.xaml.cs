@@ -1,4 +1,4 @@
-﻿using NPCGenerator.Dto;
+﻿using NPCGenerator.WindowModels;
 
 namespace NPCGenerator.Windows
 {
@@ -10,7 +10,7 @@ namespace NPCGenerator.Windows
     /// </summary>
     public partial class TalentSetting
     {
-        public TalentSetting(DataContainer data)
+        public TalentSetting(SettingsWM data)
         {
             InitializeComponent();
             DataContext = data;

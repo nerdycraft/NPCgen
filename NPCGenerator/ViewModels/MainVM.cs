@@ -34,6 +34,7 @@ namespace NPCGenerator.ViewModels
                 wnd = new MainWindow(wm);
                 wnd.OpenJobDesignerClicked += delegate { new JobDesignerVM(Data).Run(); };
                 wnd.OpenNpcOverviewClicked += delegate { new OverviewVM().Run(); };
+                wnd.OpenTalentSettingsClicked += delegate { new SettingsVM(Data).Run(); };
                 wnd.Closing += delegate { SaveSettings(); };
                 wnd.GenerateClicked += delegate { Generate(); };
                 wnd.ReloadJsonClicked += delegate { Init(); };
@@ -63,7 +64,7 @@ namespace NPCGenerator.ViewModels
 
                 wm.StatusText = "Data successfully loaded.";
 
-                System.Media.SystemSounds.Beep.Play();
+                //System.Media.SystemSounds.Beep.Play();
             }
             catch (JsonLoadException ex)
             {

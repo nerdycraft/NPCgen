@@ -117,12 +117,14 @@
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
     <Compile Include="Util\Exceptions.cs" />
     <Compile Include="Util\Extensions.cs" />
+    <Compile Include="ViewModels\SettingsVM.cs" />
     <Compile Include="WindowModels\JobDesignerWM.cs" />
     <Compile Include="WindowModels\MainWM.cs" />
     <Compile Include="WindowModels\OverviewWM.cs" />
     <Compile Include="Controls\NpcTreeView.cs" />
     <Compile Include="Controls\NpcTreeViewItem.cs" />
     <Compile Include="Util\References.cs" />
+    <Compile Include="WindowModels\SettingsWM.cs" />
     <Compile Include="Windows\InputDialog.xaml.cs">
       <DependentUpon>InputDialog.xaml</DependentUpon>
     </Compile>

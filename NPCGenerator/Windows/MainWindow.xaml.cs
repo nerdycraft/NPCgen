@@ -17,6 +17,7 @@ namespace NPCGenerator.Windows
     {
         public event EventHandler<RoutedEventArgs> OpenJobDesignerClicked;
         public event EventHandler<RoutedEventArgs> OpenNpcOverviewClicked;
+        public event EventHandler<RoutedEventArgs> OpenTalentSettingsClicked;
         public event EventHandler<RoutedEventArgs> GenerateClicked;
         public event EventHandler<RoutedEventArgs> ReloadJsonClicked; 
 
@@ -54,7 +55,7 @@ namespace NPCGenerator.Windows
 
         private void TalentIgnore_Click(object sender, RoutedEventArgs e)
         {
-            //new TalentSetting(controller.Data).ShowDialog();
+            OpenTalentSettingsClicked?.Invoke(sender, e);
         }
 
         private void NPCOverview_Click(object sender, RoutedEventArgs e)
