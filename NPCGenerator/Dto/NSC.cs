@@ -3,7 +3,7 @@
 using Newtonsoft.Json;
 using System.ComponentModel;
 
-namespace NPCGenerator.Model
+namespace NPCGenerator.Dto
 {
     public class NPC : INotifyPropertyChanged
     {
@@ -58,7 +58,7 @@ namespace NPCGenerator.Model
 
         public override string ToString()
         {
-            return $"{Species}_{Culture}_{Job}-{Level}-{Name}";
+            return $"{Culture}-{Job}-{Level}-{Name}";
         }
     }
 
@@ -96,7 +96,7 @@ namespace NPCGenerator.Model
 
         public uint GetFromStr(string attr)
         {
-            switch (attr)
+            switch (attr.ToUpper())
             {
             case "MU":
                 return Mu;

@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 
 using NPCGenerator.Util;
-using NPCGenerator.ViewModels;
+using NPCGenerator.WindowModels;
 
 namespace NPCGenerator.Windows
 {
@@ -20,10 +20,10 @@ namespace NPCGenerator.Windows
         public event EventHandler<RoutedEventArgs> GenerateClicked;
         public event EventHandler<RoutedEventArgs> ReloadJsonClicked; 
 
-        public MainWindow(MainVM vm)
+        public MainWindow(MainWM wm)
         {
             InitializeComponent();
-            DataContext = vm;
+            DataContext = wm;
         }
 
         private void NoGenCheckChange(object sender, RoutedEventArgs e)

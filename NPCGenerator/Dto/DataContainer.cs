@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 
 using Newtonsoft.Json;
 
-namespace NPCGenerator.Model
+namespace NPCGenerator.Dto
 {
     public class DataContainer
     {

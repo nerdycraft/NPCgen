@@ -2,7 +2,7 @@
 
 using Newtonsoft.Json;
 
-namespace NPCGenerator.Model
+namespace NPCGenerator.Dto
 {
     public class Job
     {

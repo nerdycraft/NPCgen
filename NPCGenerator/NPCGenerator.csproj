@@ -93,9 +93,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controllers\JobDesignerController.cs" />
-    <Compile Include="Controllers\Generator.cs" />
-    <Compile Include="Controllers\NpcOverviewController.cs" />
+    <Compile Include="ViewModels\JobDesignerVM.cs" />
+    <Compile Include="Util\Generator.cs" />
+    <Compile Include="ViewModels\OverviewVM.cs" />
     <Compile Include="Controls\LabelTextBox.xaml.cs">
       <DependentUpon>LabelTextBox.xaml</DependentUpon>
     </Compile>
@@ -103,23 +103,23 @@
       <DependentUpon>NpcDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\NumericTextBox.cs" />
-    <Compile Include="Model\DataRow.cs" />
-    <Compile Include="Model\Gender.cs" />
-    <Compile Include="Model\Culture.cs" />
-    <Compile Include="Model\DataContainer.cs" />
-    <Compile Include="Model\Job.cs" />
-    <Compile Include="Model\Species.cs" />
-    <Compile Include="Model\Level.cs" />
-    <Compile Include="Model\Talent.cs" />
+    <Compile Include="Dto\DataRow.cs" />
+    <Compile Include="Dto\Gender.cs" />
+    <Compile Include="Dto\Culture.cs" />
+    <Compile Include="Dto\DataContainer.cs" />
+    <Compile Include="Dto\Job.cs" />
+    <Compile Include="Dto\Species.cs" />
+    <Compile Include="Dto\Level.cs" />
+    <Compile Include="Dto\Talent.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="ViewModels\MainVM.cs" />
     <Compile Include="Util\DataGridExtensions.cs" />
     <Compile Include="Util\DynamicDataTemplateSelector.cs" />
     <Compile Include="Util\Exceptions.cs" />
     <Compile Include="Util\Extensions.cs" />
-    <Compile Include="ViewModels\JobDesignerVM.cs" />
-    <Compile Include="ViewModels\MainVM.cs" />
-    <Compile Include="ViewModels\NpcOverviewVM.cs" />
+    <Compile Include="WindowModels\JobDesignerWM.cs" />
+    <Compile Include="WindowModels\MainWM.cs" />
+    <Compile Include="WindowModels\OverviewWM.cs" />
     <Compile Include="Controls\NpcTreeView.cs" />
     <Compile Include="Controls\NpcTreeViewItem.cs" />
     <Compile Include="Util\References.cs" />
@@ -134,6 +134,9 @@
     </Compile>
     <Compile Include="Windows\NpcOverview.xaml.cs">
       <DependentUpon>NpcOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Overview.xaml.cs">
+      <DependentUpon>Overview.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\TalentSetting.xaml.cs">
       <DependentUpon>TalentSetting.xaml</DependentUpon>
@@ -178,13 +181,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\Overview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\TalentSetting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\NSC.cs" />
+    <Compile Include="Dto\NSC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

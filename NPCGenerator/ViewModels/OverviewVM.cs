@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -8,22 +7,22 @@ using System.Windows.Controls;
 using Newtonsoft.Json;
 
 using NPCGenerator.Controls;
-using NPCGenerator.Model;
+using NPCGenerator.Dto;
 using NPCGenerator.Util;
-using NPCGenerator.ViewModels;
+using NPCGenerator.WindowModels;
 using NPCGenerator.Windows;
 
 using NpcDetails = NPCGenerator.Windows.NpcDetails;
 
-namespace NPCGenerator.Controllers
+namespace NPCGenerator.ViewModels
 {
-    public class NpcOverviewController
+    public class OverviewVM
     {
-        private readonly ObservableCollection<NPC> npcs = new ObservableCollection<NPC>();
+        private readonly OverviewWM wm = new OverviewWM();
 
         public void Run()
         {
-            var no = new NpcOverview(new NpcOverviewVM(npcs));
+            var no = new NpcOverview(wm);
             no.TreeItemDoubleClicked += (sender, item) => OnTreeItemDoubleClicked(item);
             no.NewFolderClicked += (sender, item) => NewFolderClicked(item);
             no.DeleteItemClicked += (sender, item) => DeleteItemClicked(item);
@@ -75,26 +74,26 @@ namespace NPCGenerator.Controllers
         private void TabMiddleClicked(NPC clickedItem)
         {
             if (clickedItem != null)
-                npcs.Remove(clickedItem);
+                wm.NPCs.Remove(clickedItem);
         }
         private void TabDoubleClicked(NPC clickedItem)
         {
             if (clickedItem != null)
             {
                 new NpcDetails(clickedItem).Show();
-                npcs.Remove(clickedItem);
+                wm.NPCs.Remove(clickedItem);
             }
         }
         public void LoadNpcFromFile(string path)
         {
             var npc = JsonConvert.DeserializeObject<NPC>(File.ReadAllText(path));
-            if (npcs.Any(n => n.ToString() == npc.ToString()))
+            if (wm.NPCs.Any(n => n.ToString() == npc.ToString()))
             {
-                npcs.First(n => n.ToString() == npc.ToString()).IsSelected = true;
+                wm.NPCs.First(n => n.ToString() == npc.ToString()).IsSelected = true;
                 return;
             }
 
-            npcs.Add(npc);
+            wm.NPCs.Add(npc);
             npc.IsSelected = true;
         }
 

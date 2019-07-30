@@ -1,4 +1,4 @@
-﻿using NPCGenerator.Model;
+﻿using NPCGenerator.Dto;
 using System.Windows;
 using System.Windows.Controls;
 

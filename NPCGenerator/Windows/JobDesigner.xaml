@@ -14,8 +14,8 @@
     <Grid>
         <!-- ReSharper disable MarkupAttributeTypo -->
         <ListBox x:Name="List" ItemsSource="{Binding Path=(vm:JobDesignerVM.Jobs)}" IsSynchronizedWithCurrentItem="true" SelectionMode="Single" Style="{StaticResource LeftTop}" Height="385" Width="200"/>
-        <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" Margin="10,395,0,0" Click="OnAddJobClick"/>
-        <Button Content="Löschen" Style="{StaticResource LeftTop}" Width="75" Margin="115,395,0,0" Click="OnDeleteJobClicked"/>
+        <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" Margin="10,390,0,0" Click="OnAddJobClick"/>
+        <Button Content="Löschen" Style="{StaticResource LeftTop}" Width="75" Margin="115,390,0,0" Click="OnDeleteJobClicked"/>
 
         <Grid DataContext="{Binding Path=SelectedItem, ElementName=List}">
             <controls:LabelTextBox Label="Basisname" Text="{Binding ReferenceName, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsNew}" Style="{StaticResource LeftTop}" Height="54" Width="174" Margin="205,10,0,0"/>

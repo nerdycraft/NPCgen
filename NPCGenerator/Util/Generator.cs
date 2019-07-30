@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 
-using NPCGenerator.Model;
-using NPCGenerator.Util;
+using NPCGenerator.Dto;
 
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace NPCGenerator.Controllers
+namespace NPCGenerator.Util
 {
     public class Generator
     {
@@ -54,7 +53,7 @@ namespace NPCGenerator.Controllers
 
             OnUpdateStatus("Entdecke Spezies.");
             Species species = RowSpecies.NoGeneration ? RowSpecies.Value : data.Species.GetRandom();
-            npc.Species = species.Name;
+            npc.Species = species.Id;
 
             OnUpdateStatus("Erforsche Kultur.");
             var culture = GetCulture(species);

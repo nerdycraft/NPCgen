@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows;
 
-using NPCGenerator.Model;
-using NPCGenerator.ViewModels;
+using NPCGenerator.Dto;
+using NPCGenerator.WindowModels;
 
 namespace NPCGenerator.Windows
 {
@@ -18,7 +18,7 @@ namespace NPCGenerator.Windows
         public event EventHandler<Job> SaveClicked;
         public event EventHandler<Job> DeleteClicked;
 
-        public JobDesigner(JobDesignerVM vm)
+        public JobDesigner(JobDesignerWM vm)
         {
             InitializeComponent();
 

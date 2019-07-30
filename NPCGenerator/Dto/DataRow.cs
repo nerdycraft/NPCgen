@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NPCGenerator.Model
+namespace NPCGenerator.Dto
 {
     public class DataRow
     {

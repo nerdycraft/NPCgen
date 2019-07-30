@@ -5,9 +5,9 @@ using System.Windows;
 using System.Windows.Input;
 
 using NPCGenerator.Controls;
-using NPCGenerator.Model;
+using NPCGenerator.Dto;
 using NPCGenerator.Util;
-using NPCGenerator.ViewModels;
+using NPCGenerator.WindowModels;
 
 // ReSharper disable StringLiteralTypo
 
@@ -27,10 +27,10 @@ namespace NPCGenerator.Windows
         public event EventHandler<NPC> TabMiddleClick;
         public event EventHandler<NPC> TabDoubleClick;
 
-        public NpcOverview(NpcOverviewVM vm)
+        public NpcOverview(OverviewWM wm)
         {
             InitializeComponent();
-            DataContext = vm;
+            DataContext = wm;
 
             var root = new NpcTreeViewItem(new DirectoryInfo(References.OUT_FOLDER), "*.json");
             Tree.Items.Add(root);
