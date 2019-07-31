@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 
 using Newtonsoft.Json;
 
@@ -9,7 +9,8 @@ namespace NPCGenerator.Dto
         [JsonProperty("basename"), JsonRequired]
         public string ReferenceName { get; set; } = string.Empty;
 
-        [JsonProperty("name"), JsonRequired] public string Name { get; set; } = string.Empty;
+        [JsonProperty("name"), JsonRequired]
+        public string Name { get; set; } = string.Empty;
 
         [JsonProperty("femname"), JsonRequired]
         public string FemName { get; set; } = string.Empty;
@@ -18,7 +19,7 @@ namespace NPCGenerator.Dto
         public Statweight Statweight { get; set; } = new Statweight();
 
         [JsonProperty( "talents" ), JsonRequired]
-        public List<Talent> Talents { get; set; } = new List<Talent>();
+        public ObservableCollection<Talent> Talents { get; set; } = new ObservableCollection<Talent>();
 
         [JsonProperty( "weapon" )]
         public Weapon Weapon { get; set; } = new Weapon();

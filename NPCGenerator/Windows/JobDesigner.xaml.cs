@@ -15,13 +15,14 @@ namespace NPCGenerator.Windows
     {
         public delegate Job AddJobClicked();
         public event AddJobClicked AddClicked;
-        public event EventHandler<Job> SaveClicked;
-        public event EventHandler<Job> DeleteClicked;
+        public event EventHandler SaveClicked;
+        public event EventHandler DeleteClicked;
+        public event EventHandler AddTalentWeight;
+        public event EventHandler DeleteTalentWeight;
 
         public JobDesigner(JobDesignerWM vm)
         {
             InitializeComponent();
-
             DataContext = vm;
         }
 
@@ -32,12 +33,22 @@ namespace NPCGenerator.Windows
 
         private void OnSaveJobClicked(object sender, RoutedEventArgs e)
         {
-            SaveClicked?.Invoke(this, List.SelectedItem as Job);
+            SaveClicked?.Invoke(this, e);
         }
 
         private void OnDeleteJobClicked(object sender, RoutedEventArgs e)
         {
-            DeleteClicked?.Invoke(this, List.SelectedItem as Job);
+            DeleteClicked?.Invoke(this, e);
+        }
+
+        private void OnAddTalentWeight(object sender, RoutedEventArgs e)
+        {
+            AddTalentWeight?.Invoke(sender, e);
+        }
+
+        private void OnDeleteTalentWeightClick(object sender, RoutedEventArgs e)
+        {
+            DeleteTalentWeight?.Invoke(sender, e);
         }
     }
 }

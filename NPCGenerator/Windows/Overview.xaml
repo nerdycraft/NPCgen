@@ -8,7 +8,7 @@
     <Grid>
         <DataGrid ItemsSource="{Binding Path=NPCs}">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="3*" Binding="{Binding }" />
+                <DataGridTextColumn Width="3*" Binding="{Binding}" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

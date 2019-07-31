@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Windows;
 
 using Newtonsoft.Json;
 
@@ -16,14 +16,18 @@ namespace NPCGenerator.ViewModels
     {
         public DataContainer Data { get; }
 
+        private JobDesigner jd;
+
         public JobDesignerVM(DataContainer data) { Data = data; }
 
         public void Run()
         {
-            var jd = new JobDesigner(new JobDesignerWM { Jobs = Data.Jobs, Talents = Data.Talents });
+            jd = new JobDesigner(new JobDesignerWM { Jobs = Data.Jobs, Talents = Data.Talents });
             jd.AddClicked += AddJob;
-            jd.SaveClicked += (sender, job) => SaveJob(job);
-            jd.DeleteClicked += (sender, job) => DeleteJob(job);
+            jd.SaveClicked += (sender, e) => SaveJob(jd.List.SelectedItem as Job);
+            jd.DeleteClicked += (sender, e) => DeleteJob(jd.List.SelectedItem as Job);
+            jd.AddTalentWeight += (sender, e) =>  AddTalentToJob(jd.List.SelectedItem as Job, jd.TalentBox.SelectionBoxItem as Talent);
+            jd.DeleteTalentWeight += (sender, e) => DeleteTalenFromJob(jd.List.SelectedItem as Job, jd.TalentBox.SelectionBoxItem as Talent);
             jd.Closed += delegate { CleanJobs(); };
             jd.ShowDialog();
         }
@@ -91,5 +95,18 @@ namespace NPCGenerator.ViewModels
             while ((job = Data.Jobs.FirstOrDefault(j => j.IsNew)) != null)
                 Data.Jobs.Remove(job);
         }
+
+        private void AddTalentToJob(Job job, Talent talent)
+        {
+            if (job.Talents.Any(t => t.Name == talent.Name))
+            {
+                MessageBox.Show("Talent schon zugewiesen.");
+                return;
+            }
+
+            job.Talents.Add(talent);
+        }
+
+        private void DeleteTalenFromJob(Job job, Talent talent) { job.Talents.Remove(talent); }
     }
 }
