@@ -18,15 +18,15 @@ namespace NPCGenerator.Dto
         public IEnumerable<Talent> Talents { get; set; }
 
         [JsonProperty("levels"), JsonRequired]
-        public IEnumerable<Level> Levels { get; set; }
+        public ObservableCollection<Level> Levels { get; set; }
 
         [JsonProperty("statures"), JsonRequired]
-        public IEnumerable<string> Statures { get; set; }
+        public ObservableCollection<string> Statures { get; set; }
 
         [JsonProperty("sizes"), JsonRequired]
-        public IEnumerable<string> Sizes { get; set; }
+        public ObservableCollection<string> Sizes { get; set; }
 
         [JsonProperty("gender"), JsonRequired]
-        public IEnumerable<Gender> Gender { get; set; }
+        public ObservableCollection<Gender> Gender { get; set; }
     }
 }

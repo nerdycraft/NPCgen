@@ -1,0 +1,170 @@
+﻿<Window x:Class="NPCGenerator.Windows.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:NPCGenerator.Controls"
+        mc:Ignorable="d"
+        Title="Einstellungen" Height="600" Width="900" WindowStyle="ToolWindow">
+    <Window.Resources>
+        <ResourceDictionary Source="/NPCGenerator;component/Resources/RessourceDictionary.xaml" />
+    </Window.Resources>
+    <Grid>
+        <WrapPanel>
+            <GroupBox Header="Erfahrungsgrad" Style="{StaticResource LeftTop}" Height="190" Width="325" Margin="5">
+                <Grid>
+                    <TextBox Name="LevelName" Margin="10,10,90,138"/>
+                    <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" HorizontalAlignment="Right" Margin="0,10,10,0" Click="OnAddExperienceLevelClicked"/>
+                    <DataGrid Name="LevelGrid" ItemsSource="{Binding Path=Levels}" CanUserAddRows="False" AutoGenerateColumns="False" Style="{StaticResource LeftTop}" CellStyle="{StaticResource CellStyle}" HorizontalAlignment="Stretch" MinHeight="122" RowHeight="25" Margin="10,35,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Name" MinWidth="105" CellStyle="{StaticResource DataGridContentCellCentering}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Attr" CanUserResize="False" Width="35">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:NumericTextBox Text="{Binding Attr, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Max" CanUserResize="False" Width="35">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:NumericTextBox Text="{Binding MaxAttr, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Fw" CanUserResize="False" Width="35">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:NumericTextBox Text="{Binding Fw, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="Max" CanUserResize="False" Width="35">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <controls:NumericTextBox Text="{Binding MaxFw, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="" CanUserResize="False" Width="23">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Click="OnDeleteExpLevelClick" Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Talente Ignorieren" Style="{StaticResource LeftTop}" Height="190" Width="325" Margin="5">
+                <DataGrid ItemsSource="{Binding Path=Talents}" CanUserAddRows="False" CellStyle="{StaticResource CellStyle}" RowHeight="25" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Talent" MinWidth="200"  MaxWidth="200"  CellStyle="{StaticResource DataGridContentCellCentering}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Ignore" MinWidth="50" MaxWidth="50" CellStyle="{StaticResource DataGridContentCellCentering}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding Ignore, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <GroupBox Header="Staturen" Style="{StaticResource LeftTop}" Height="190" Width="230" Margin="5">
+                <Grid>
+                    <TextBox Name="StaturName" Margin="10,10,90,138"/>
+                    <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" HorizontalAlignment="Right" Margin="0,10,10,0" Click="OnAddStatureClicked"/>
+                    <DataGrid Name="StaturGrid" ItemsSource="{Binding Path=Statures}" CanUserAddRows="False" AutoGenerateColumns="False" Style="{StaticResource LeftTop}" CellStyle="{StaticResource CellStyle}" HorizontalAlignment="Stretch" MinHeight="122" RowHeight="25" Margin="10,35,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Name" MinWidth="145" CellStyle="{StaticResource DataGridContentCellCentering}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="" CanUserResize="False" Width="23">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Click="OnDeleteStatureClick" Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Größen" Style="{StaticResource LeftTop}" Height="190" Width="230" Margin="5">
+                <Grid>
+                    <TextBox Name="SizeName" Margin="10,10,90,138"/>
+                    <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" HorizontalAlignment="Right" Margin="0,10,10,0" Click="OnAddSizeClicked"/>
+                    <DataGrid Name="SizeGrid" ItemsSource="{Binding Path=Sizes}" CanUserAddRows="False" AutoGenerateColumns="False" Style="{StaticResource LeftTop}" CellStyle="{StaticResource CellStyle}" HorizontalAlignment="Stretch" MinHeight="122" RowHeight="25" Margin="10,35,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Name" MinWidth="145" CellStyle="{StaticResource DataGridContentCellCentering}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="" CanUserResize="False" Width="23">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Click="OnDeleteSizeClick" Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+            <GroupBox Header="Geschlechter" Style="{StaticResource LeftTop}" Height="190" Width="230" Margin="5" IsEnabled="False">
+                <Grid>
+                    <TextBox Name="GenderName" Margin="10,10,90,138"/>
+                    <Button Content="Hinzufügen" Style="{StaticResource LeftTop}" Width="75" HorizontalAlignment="Right" Margin="0,10,10,0" Click="OnAddSizeClicked"/>
+                    <DataGrid Name="GenderGrid" ItemsSource="{Binding Path=Gender}" CanUserAddRows="False" AutoGenerateColumns="False" Style="{StaticResource LeftTop}" CellStyle="{StaticResource CellStyle}" HorizontalAlignment="Stretch" MinHeight="122" RowHeight="25" Margin="10,35,10,0">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Name" MinWidth="155" CellStyle="{StaticResource DataGridContentCellCentering}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Id}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                            <DataGridTemplateColumn Header="" CanUserResize="False" Width="23">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="X" Click="OnDeleteSizeClick" Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </GroupBox>
+        </WrapPanel>
+
+    </Grid>
+</Window>
