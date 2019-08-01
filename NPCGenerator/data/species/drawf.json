@@ -1,18 +1,20 @@
 ﻿{
-  "id": "dwarf", 
+  "id": "dwarf",
   "name": "Zwerg",
   "baseHP": 8,
   "baseSK": -4,
   "baseZK": -4,
   "baseGS": 6,
-  "mod": {
-    "and": {
+  "mods": [
+    {
+      "type": "And",
       "value": 1,
       "stats": [ "KO", "KK" ]
     },
-    "or": {
+    {
+      "type": "Or",
       "value": -2,
       "stats": [ "CH", "GE" ]
     }
-  }
+  ]
 }

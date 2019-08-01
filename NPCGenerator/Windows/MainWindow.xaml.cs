@@ -16,6 +16,7 @@ namespace NPCGenerator.Windows
     public partial class MainWindow
     {
         public event EventHandler<RoutedEventArgs> OpenJobDesignerClicked;
+        public event EventHandler<RoutedEventArgs> OpenSpeciesDesignerClicked;
         public event EventHandler<RoutedEventArgs> OpenNpcOverviewClicked;
         public event EventHandler<RoutedEventArgs> OpenTalentSettingsClicked;
         public event EventHandler<RoutedEventArgs> GenerateClicked;
@@ -66,6 +67,11 @@ namespace NPCGenerator.Windows
         private void OnOpenJobDesigner(object sender, RoutedEventArgs e)
         {
             OpenJobDesignerClicked?.Invoke(this, e);
+        }
+
+        private void OnOpenSpeciesDesigner(object sender, RoutedEventArgs e)
+        {
+            OpenSpeciesDesignerClicked?.Invoke(this, e);
         }
     }
 }

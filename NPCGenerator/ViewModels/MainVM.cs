@@ -33,6 +33,7 @@ namespace NPCGenerator.ViewModels
                 wm = new MainWM(dataRows);
                 wnd = new MainWindow(wm);
                 wnd.OpenJobDesignerClicked += delegate { new JobDesignerVM(Data).Run(); };
+                wnd.OpenSpeciesDesignerClicked += delegate { new SpeciesDesignerVM(Data).Run(); };
                 wnd.OpenNpcOverviewClicked += delegate { new OverviewVM().Run(); };
                 wnd.OpenTalentSettingsClicked += delegate { new SettingsVM(Data).Run(); };
                 wnd.Closing += delegate { SaveSettings(); };
@@ -89,7 +90,7 @@ namespace NPCGenerator.ViewModels
             generator = null;
             Data = DeserializeHandler<DataContainer>(References.DATA_FILE);
 
-            Data.Species = Directory.GetFiles(References.SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>).ToList();
+            Data.Species = new ObservableCollection<Species>(Directory.GetFiles(References.SPECIES_FOLDER, "*.json").Select(DeserializeHandler<Species>));
             Data.Jobs = new ObservableCollection<Job>(Directory.GetFiles(References.JOB_FOLDER, "*.json").Select(DeserializeHandler<Job>));
             Data.Cultures = Directory.GetFiles(References.CULTURE_FOLDER, "*.json").Select(DeserializeHandler<Culture>).ToList();
 

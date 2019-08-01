@@ -10,7 +10,7 @@ namespace NPCGenerator.Dto
         [JsonIgnore]
         public IEnumerable<Culture> Cultures { get; set; }
         [JsonIgnore]
-        public IEnumerable<Species> Species { get; set; }
+        public ObservableCollection<Species> Species { get; set; }
         [JsonIgnore]
         public ObservableCollection<Job> Jobs { get; set; }
 

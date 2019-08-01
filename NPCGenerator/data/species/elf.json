@@ -5,14 +5,16 @@
   "baseSK": -4,
   "baseZK": -6,
   "baseGS": 8,
-  "mod": {
-    "and": {
+  "mods": [
+    {
+      "type": "And",
       "value": 1,
       "stats": [ "IN", "GE" ]
     },
-    "or": {
+    {
+      "type": "Or",
       "value": -2,
       "stats": [ "KL", "KK" ]
     }
-  }
+  ]
 }

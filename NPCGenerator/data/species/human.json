@@ -5,7 +5,11 @@
   "baseSK": -5,
   "baseZK": -5,
   "baseGS": 8,
-  "mod": {
-    "rnd": 1
-  }
+  "mods": [
+    {
+      "type": "Or",
+      "value": 1,
+      "stats": [ "MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK" ]
+    }
+  ]
 }

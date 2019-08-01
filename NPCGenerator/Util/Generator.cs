@@ -68,40 +68,40 @@ namespace NPCGenerator.Util
             OnUpdateStatus("Neue Talente erforschen.");
             npc.Talents = CalculateTalents(level, MergeBaseTalents(culture.Talents, job.Talents)).ToArray();
 
-            npc.Attributes = CalculateAttr(level, job.Statweight, species.Mod);
+            npc.Attributes = CalculateAttr(level, job.Statweight, species.Mods);
             npc.Stats = CalculateStats(species, npc.Attributes);
             OnUpdateStatus($"NPC Erstellt: {npc}");
             return npc;
         }
 
-        private Attributes CalculateAttr(Level level, Statweight weight, AttrMod mod)
+        private Attributes CalculateAttr(Level level, Statweight weight, IEnumerable<AttrMod> mods)
         {
             if (weight.CumKk != 100)
                 throw new GenerationException("Ich habe gesagt es muss 100 ergeben!!!!");
 
             var attr = new Attributes();
 
-            var rndAttr = RandomAttrMod(mod);
+            var maxAttr = CalcMaxAttr(mods);
 
             var pointsSpent = 0;
             while (pointsSpent < level.Attr)
             {
                 var w = rnd.Next(1, 100);
-                if (w <= weight.CumMu && attr.Mu < GetMaxAttr("MU", level.MaxAttr, mod, rndAttr))
+                if (w <= weight.CumMu && attr.Mu < level.MaxAttr + maxAttr["MU"])
                     attr.Mu++;
-                else if (w <= weight.CumKl && attr.Kl < GetMaxAttr("KL", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumKl && attr.Kl < level.MaxAttr + maxAttr["KL"])
                     attr.Kl++;
-                else if (w <= weight.CumIn && attr.In < GetMaxAttr("IN", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumIn && attr.In < level.MaxAttr + maxAttr["IN"])
                     attr.In++;
-                else if (w <= weight.CumCh && attr.Ch < GetMaxAttr("CH", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumCh && attr.Ch < level.MaxAttr + maxAttr["CH"])
                     attr.Ch++;
-                else if (w <= weight.CumFf && attr.Ff < GetMaxAttr("FF", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumFf && attr.Ff < level.MaxAttr + maxAttr["FF"])
                     attr.Ff++;
-                else if (w <= weight.CumGe && attr.Ge < GetMaxAttr("GE", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumGe && attr.Ge < level.MaxAttr + maxAttr["GE"])
                     attr.Ge++;
-                else if (w <= weight.CumKo && attr.Ko < GetMaxAttr("KO", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumKo && attr.Ko < level.MaxAttr + maxAttr["KO"])
                     attr.Ko++;
-                else if (w <= weight.CumKk && attr.Kk < GetMaxAttr("KK", level.MaxAttr, mod, rndAttr))
+                else if (w <= weight.CumKk && attr.Kk < level.MaxAttr + maxAttr["KK"])
                     attr.Kk++;
                 else
                     continue;
@@ -256,23 +256,25 @@ namespace NPCGenerator.Util
             return $"{firstName} {lastName}".Trim();
         }
 
-        private static long GetMaxAttr(string attr, long defaultMax, AttrMod mod, string rndAttr)
+        private static IReadOnlyDictionary<string, long> CalcMaxAttr(IEnumerable<AttrMod> mods)
         {
-            if (mod.Rnd.HasValue && rndAttr == attr)
-                return defaultMax + 1;
-            if (mod.And != null && mod.And.Stats.Any(s => s == attr))
-                return defaultMax + mod.And.Value;
-            if (mod.Or != null && rndAttr == attr)
-                return defaultMax + mod.Or.Value;
-            return defaultMax;
-        }
-
-        private static string RandomAttrMod(AttrMod mod)
-        {
-            if (!mod.Rnd.HasValue)
-                return mod.Or.Stats[new Random().Next(0, 1)];
             var attrLst = new[] { "MU", "KL", "IN", "CH", "FF", "GE", "KO", "KK" };
-            return attrLst[new Random().Next(0, 7)];
+            var rndStats = new Dictionary<string, long>(attrLst.Length);
+            foreach (var s in attrLst)
+                rndStats.Add(s, 0);
+
+            foreach (var mod in mods)
+            {
+                if(mod.Type == ModType.Or)
+                    rndStats[mod.Stats.GetRandom()] += mod.Value;
+                else
+                {
+                    foreach (var s in mod.Stats)
+                        rndStats[s] += mod.Value;
+                }
+            }
+
+            return rndStats;
         }
 
         public static string ResolveNameFormat(string format, Names names)

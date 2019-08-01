@@ -11,6 +11,6 @@ namespace NPCGenerator.Util
         public static T GetRandom<T>(this IEnumerable<T> lst)
         {
             return lst.ElementAt(rnd.Next(0, lst.Count()));
-        } 
+        }
     }
 }

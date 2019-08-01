@@ -48,9 +48,10 @@
         <Button x:Name="btnGen" Content="Generate" VerticalAlignment="Bottom" Height="20" Click="Generate_Click" Margin="0,0,0,21"/>
         <Menu Height="19" VerticalAlignment="Top">
             <MenuItem Header="_Einstellungen">
-                <MenuItem Header="_Reload Json" Click="ReloadJson_Click"/>
+                <MenuItem Header="_Allgemein" Click="TalentIgnore_Click"/>
                 <MenuItem Header="_Job Designer" Click="OnOpenJobDesigner"/>
-                <MenuItem Header="_Talente ignorieren" Click="TalentIgnore_Click"/>
+                <MenuItem Header="_Spezies Designer" Click="OnOpenSpeciesDesigner"/>
+                <MenuItem Header="_Reload Json" Click="ReloadJson_Click"/>
             </MenuItem>
             <MenuItem Header="_NSC Übersicht" Click="NPCOverview_Click" />
         </Menu>

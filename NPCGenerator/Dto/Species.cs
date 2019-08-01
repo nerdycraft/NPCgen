@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.ObjectModel;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace NPCGenerator.Dto
 {
@@ -22,8 +25,8 @@ namespace NPCGenerator.Dto
         [JsonProperty( "baseGS" ), JsonRequired]
         public uint BaseGs { get; set; }
 
-        [JsonProperty( "mod" ), JsonRequired]
-        public AttrMod Mod { get; set; }
+        [JsonProperty( "mods" ), JsonRequired]
+        public ObservableCollection<AttrMod> Mods { get; set; }
 
         public override string ToString()
         {
@@ -33,22 +36,22 @@ namespace NPCGenerator.Dto
 
     public class AttrMod
     {
-        [JsonProperty( "rnd" )]
-        public long? Rnd { get; set; }
-
-        [JsonProperty( "and" )]
-        public StatMod And { get; set; }
-
-        [JsonProperty( "or" )]
-        public StatMod Or { get; set; }
-    }
-
-    public class StatMod
-    {
-        [JsonProperty( "value" ), JsonRequired]
+        [JsonProperty("value"), JsonRequired]
         public long Value { get; set; }
 
-        [JsonProperty( "stats" ), JsonRequired]
+        [JsonProperty("stats"), JsonRequired]
         public string[] Stats { get; set; }
+
+        [JsonProperty("type")]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public ModType Type { get; set; }
+
+        public override string ToString() { return $"{Type} | {Value} [{string.Join(",", Stats)}]"; }
+    }
+
+    public enum ModType
+    {
+        And,
+        Or
     }
 }
